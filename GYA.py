@@ -1,1 +1,2 @@
 game = True
+print("game")
