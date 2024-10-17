@@ -15,11 +15,11 @@ print("game")
 
 # IMAGES/ACTORS
 #blorp_main = actors('')
-blorp_orange = Actor('blorp_orange')
-blorp_red = Actor('blorp_red')
-blorp_yellow = Actor('blorp_yellow')
-blorp_blue = Actor('blorp_blue')
-blorp_purple = Actor('blorp_purple')
+blorp_orange = Actor('blorp_orange.png')
+blorp_red = Actor('blorp_red.png')
+blorp_yellow = Actor('blorp_yellow.png')
+blorp_blue = Actor('blorp_blue.png')
+blorp_purple = Actor('blorp_purple.png')
 
 # OTHER-FUNKTIONS
 '''Other funktions should placed here'''
@@ -27,7 +27,7 @@ blorp_purple = Actor('blorp_purple')
 # FUNKTIONS
 def draw():
     screen.clear()
-    screen.blit('blorp_yellow.png',(0.0))
+    screen.blit('blorp_blue.png',(0,0))
     blorp_yellow.draw()
 
 def update():
