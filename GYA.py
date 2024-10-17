@@ -22,6 +22,7 @@ blorp_blue = actor('blorp_blue.png')
 blorp_purple = actor('blorp_blue.png')
 
 # OTHER-FUNKTIONS
+#fine function
 def other_funktions():
     pass
 
