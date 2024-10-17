@@ -14,6 +14,7 @@ game = True
 print("game")
 
 # OTHER-FUNKTIONS
+#fine function
 def other_funktions():
     pass
 
