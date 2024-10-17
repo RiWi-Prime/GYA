@@ -7,6 +7,7 @@ Current Version v.12
 ## IMPORTS
 import random
 import pgzrun
+import pygame
 import os
 
 ## CODE
