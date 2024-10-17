@@ -15,11 +15,11 @@ print("game")
 
 # IMAGES/ACTORS
 #blorp_main = actors('')
-blorp_orange = actor('blorp_orange.png')
-blorp_red = actor('blorp_red.png')
-blorp_yellow = actor('blorp_yellow.png')
-blorp_blue = actor('blorp_blue.png')
-blorp_purple = actor('blorp_blue.png')
+blorp_orange = Actor('blorp_orange.png')
+blorp_red = Actor('blorp_red.png')
+blorp_yellow = Actor('blorp_yellow.png')
+blorp_blue = Actor('blorp_blue.png')
+blorp_purple = Actor('blorp_blue.png')
 
 # OTHER-FUNKTIONS
 #fine function
