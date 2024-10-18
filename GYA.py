@@ -15,17 +15,19 @@ game = True
 print("game")
 
 # IMAGES/ACTORS
-#blorp_main = actors('')
 blorp_grey = Actor('blorp_grey.png')
+
 
 # OTHER-FUNKTIONS
 '''Other funktions should placed here'''
 
 # FUNKTIONS
 def draw():
+    ### BASIC DRAW (screen clear/blit/draw ect...)
     screen.clear()
     screen.blit('test_bg1.png',(0,0))
     blorp_grey.draw()
+
 
 def update():
     ### MOVEMENT
@@ -33,6 +35,9 @@ def update():
         blorp_grey.x += 5
     if keyboard.A:
         blorp_grey.x -= 5
+    
+    # GRAVITATION
+    
 
 ## END-CODE
 
