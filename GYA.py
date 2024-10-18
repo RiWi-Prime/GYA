@@ -16,11 +16,7 @@ print("game")
 
 # IMAGES/ACTORS
 #blorp_main = actors('')
-blorp_orange = Actor('blorp_orange.png')
-blorp_red = Actor('blorp_red.png')
-blorp_yellow = Actor('blorp_yellow.png')
-blorp_blue = Actor('blorp_blue.png')
-blorp_purple = Actor('blorp_purple.png')
+blorp_grey = Actor('blorp_grey.png')
 
 # OTHER-FUNKTIONS
 '''Other funktions should placed here'''
@@ -28,15 +24,15 @@ blorp_purple = Actor('blorp_purple.png')
 # FUNKTIONS
 def draw():
     screen.clear()
-    screen.blit('blorp_blue.png',(0,0))
-    blorp_yellow.draw()
+    screen.blit('test_bg1.png',(0,0))
+    blorp_grey.draw()
 
 def update():
     ### MOVEMENT
     if keyboard.D:
-        blorp_yellow.x += 5
+        blorp_grey.x += 5
     if keyboard.A:
-        blorp_yellow.x -= 5
+        blorp_grey.x -= 5
 
 ## END-CODE
 
