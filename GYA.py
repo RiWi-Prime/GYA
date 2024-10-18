@@ -16,6 +16,7 @@ WIDTH = 1280
 ## CODE
 game = True
 print("game")
+timer = 0
 
 # IMAGES/ACTORS
 blorp_grey = Actor('blorp_grey.png')
@@ -34,6 +35,7 @@ def draw():
 
 def update():
     ### MOVEMENT
+    global timer
     if keyboard.D:
         blorp_grey.x += 5
 
@@ -49,7 +51,7 @@ def update():
     blorp_grey.y = min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2)
 
     # GRAVITATION
-    blorp_grey.y= min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2)
+    blorp_grey.y = min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2)
 
 
 ## END-CODE
