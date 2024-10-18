@@ -36,8 +36,10 @@ def update():
     ### MOVEMENT
     if keyboard.D:
         blorp_grey.x += 5
+
     if keyboard.A:
         blorp_grey.x -= 5
+
     if existing == True:
         blorp_grey.y += 5
     
@@ -47,10 +49,9 @@ def update():
     blorp_grey.y = min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2)
 
     # GRAVITATION
-    
-
-
     blorp_grey.y= min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2)
+
+
 ## END-CODE
 
 #SCREEN
