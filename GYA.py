@@ -10,8 +10,10 @@ import pgzrun
 import pygame
 import os
 
+#Variables
 HEIGHT = 650
 WIDTH = 1280
+tile_size = 50
 
 ## CODE
 game = True
@@ -24,12 +26,18 @@ blorp_grey = Actor('blorp_grey.png')
 # OTHER-FUNKTIONS
 '''Other funktions should placed here'''
 
+def draw_grid():
+	for line in range(0, 20):
+		pygame.draw.line(pygame.surface, (255, 255, 255), (0, line * tile_size), (WIDTH, line * tile_size))
+		pygame.draw.line(pygame.surface, (255, 255, 255), (line * tile_size, 0), (line * tile_size, HEIGHT))
+
 # FUNKTIONS
 def draw():
     ### BASIC DRAW (screen clear/blit/draw ect...)
     screen.clear()
     screen.blit('test_bg1.png',(0,0))
     blorp_grey.draw()
+    draw_grid()
 
 
 
