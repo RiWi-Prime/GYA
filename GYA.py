@@ -10,6 +10,9 @@ import pgzrun
 import pygame
 import os
 
+HEIGHT = 650
+WIDTH = 600
+
 ## CODE
 game = True
 print("game")
