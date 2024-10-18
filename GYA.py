@@ -11,7 +11,7 @@ import pygame
 import os
 
 HEIGHT = 650
-WIDTH = 600
+WIDTH = 1280
 
 ## CODE
 game = True
