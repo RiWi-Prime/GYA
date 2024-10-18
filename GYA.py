@@ -35,13 +35,13 @@ def draw():
 
 def update():
     ### MOVEMENT
-    global timer
+    
+    
     if keyboard.D:
         blorp_grey.x += 5
     if keyboard.A:
         blorp_grey.x -= 5
-    if existing == True:
-        blorp_grey.y += 5
+    
     
 
     # BARRIER
@@ -49,7 +49,10 @@ def update():
     blorp_grey.y = min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2)
 
     # GRAVITATION
-    
+    global timer
+    timer += 0.1
+    if existing == True:
+        blorp_grey.y += 2*timer
 
 ## END-CODE
 
