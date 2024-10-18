@@ -16,6 +16,7 @@ WIDTH = 1280
 ## CODE
 game = True
 print("game")
+timer = 0
 
 # IMAGES/ACTORS
 blorp_grey = Actor('blorp_grey.png')
@@ -34,6 +35,7 @@ def draw():
 
 def update():
     ### MOVEMENT
+    global timer
     if keyboard.D:
         blorp_grey.x += 5
     if keyboard.A:
