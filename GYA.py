@@ -39,6 +39,7 @@ def update():
     
     if keyboard.D:
         blorp_grey.x += 5
+
     if keyboard.A:
         blorp_grey.x -= 5
     
