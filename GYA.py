@@ -49,8 +49,6 @@ def update():
     # GRAVITATION
     
 
-
-    blorp_grey.y= min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2)
 ## END-CODE
 
 #SCREEN
