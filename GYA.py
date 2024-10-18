@@ -31,7 +31,7 @@ def draw():
     screen.blit('test_bg1.png',(0,0))
     blorp_grey.draw()
 
-blorp_grey.y= min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2)
+
 
 def update():
     ### MOVEMENT
@@ -39,8 +39,13 @@ def update():
         blorp_grey.x += 5
     if keyboard.A:
         blorp_grey.x -= 5
-    
+
+    # BARRIER
+    blorp_grey.x = min(max(blorp_grey.x,blorp_grey.width//2),WIDTH-blorp_grey.width//2)
+    blorp_grey.y = min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2)
+
     # GRAVITATION
+    
 
 
 ## END-CODE
