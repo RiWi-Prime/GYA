@@ -30,6 +30,8 @@ def draw():
     screen.blit('test_bg1.png',(0,0))
     blorp_grey.draw()
 
+blorp_grey.y= min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2)
+
 def update():
     ### MOVEMENT
     if keyboard.D:
