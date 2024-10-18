@@ -18,7 +18,6 @@ game = True
 print("game")
 
 # IMAGES/ACTORS
-#blorp_main = actors('')
 blorp_grey = Actor('blorp_grey.png')
 existing = True
 # OTHER-FUNKTIONS
@@ -26,6 +25,7 @@ existing = True
 
 # FUNKTIONS
 def draw():
+    ### BASIC DRAW (screen clear/blit/draw ect...)
     screen.clear()
     screen.blit('test_bg1.png',(0,0))
     blorp_grey.draw()
@@ -38,6 +38,9 @@ def update():
         blorp_grey.x -= 5
     if existing == True:
         blorp_grey.y += 5
+    
+    # GRAVITATION
+
 
     blorp_grey.y= min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2)
 ## END-CODE
