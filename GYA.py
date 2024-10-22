@@ -7,7 +7,6 @@ Current Version v.12
 ## IMPORTS
 import random
 import pgzrun
-import pygame
 import os
 
 #Variables
@@ -43,15 +42,11 @@ def draw():
 
 def update():
     ### MOVEMENT
-    
-    
     if keyboard.D:
         blorp_grey.x += 5
 
     if keyboard.A:
         blorp_grey.x -= 5
-    
-    
 
     # BARRIER
     blorp_grey.x = min(max(blorp_grey.x,blorp_grey.width//2),WIDTH-blorp_grey.width//2)
