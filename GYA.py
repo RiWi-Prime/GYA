@@ -7,11 +7,12 @@ Current Version v.12
 ## IMPORTS
 import random
 import pgzrun
-import pygame
 import os
 
+#Variables
 HEIGHT = 650
 WIDTH = 1280
+tile_size = 50
 
 ## CODE
 game = True
@@ -26,26 +27,28 @@ existing = True
 # OTHER-FUNKTIONS
 '''Other funktions should placed here'''
 
+def draw_grid():
+	for line in range(0, 30):
+		screen.draw.line((0, line * tile_size), (WIDTH, line * tile_size), (255, 255, 255))
+		screen.draw.line((line * tile_size, 0), (line * tile_size, HEIGHT), (255, 255, 255))
+
 # FUNKTIONS
 def draw():
     ### BASIC DRAW (screen clear/blit/draw ect...)
     screen.clear()
     screen.blit('test_bg1.png',(0,0))
     blorp_grey.draw()
+    draw_grid()
 
 
 
 def update(dt):
     ### MOVEMENT
-    
-    
     if keyboard.D:
         blorp_grey.x += 5
 
     if keyboard.A:
         blorp_grey.x -= 5
-    
-    
 
     # BARRIER
     blorp_grey.x = min(max(blorp_grey.x,blorp_grey.width//2),WIDTH-blorp_grey.width//2)
@@ -80,4 +83,3 @@ def update(dt):
 #SCREEN
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 pgzrun.go()
-
