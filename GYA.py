@@ -26,9 +26,9 @@ existing = True
 '''Other funktions should placed here'''
 
 def draw_grid():
-	for line in range(0, 20):
-		pygame.draw.line(pygame.surface, (255, 255, 255), (0, line * tile_size), (WIDTH, line * tile_size))
-		pygame.draw.line(pygame.surface, (255, 255, 255), (line * tile_size, 0), (line * tile_size, HEIGHT))
+	for line in range(0, 30):
+		screen.draw.line((0, line * tile_size), (WIDTH, line * tile_size), (255, 255, 255))
+		screen.draw.line((line * tile_size, 0), (line * tile_size, HEIGHT), (255, 255, 255))
 
 # FUNKTIONS
 def draw():
@@ -63,4 +63,3 @@ def update():
 #SCREEN
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 pgzrun.go()
-
