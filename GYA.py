@@ -20,7 +20,9 @@ Menu_value = 0 # KEYBOARD.I
 game = True
 print("game")
 timer = 0
-
+clock = 2
+accel = 1
+grav = 1
 # IMAGES/ACTORS
 blorp_grey = Actor('blorp_grey.png')
 existing = True
@@ -45,7 +47,7 @@ def draw():
 
 
 
-def update():
+def update(dt):
     ### MOVEMENT
     if keyboard.D:
         blorp_grey.x += 5
@@ -59,9 +61,27 @@ def update():
 
     # GRAVITATION
     global timer
-    timer += 0.1
+
     if existing == True:
-        blorp_grey.y += 2*timer
+        global clock
+        global accel
+        global grav
+        accel += dt
+        clock += dt
+        grav -= dt
+
+        if  clock >= 2:
+            blorp_grey.y += 2*accel
+
+        if  not blorp_grey.y == min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2):
+            accel = 1
+
+        if keyboard.space:
+            clock = 0
+            grav = 1
+        if clock <= 2:
+            blorp_grey.y +=-5*grav
+   
 
     ## KEYSBOARD BUTTONS
     # JUMP
