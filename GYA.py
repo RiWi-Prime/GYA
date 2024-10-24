@@ -1,7 +1,7 @@
 '''
     GYA - Funktions spel
 
-Current Version v.12 
+Current Version v.13 
 '''
 
 ## IMPORTS
@@ -44,16 +44,17 @@ def draw():
     # MENU BUTTEN / COULD BE CONVERTED
     if Menu == True:
         screen.draw.text('MENU',(WIDTH/2, 100,),fontsize=50)
+        screen.draw.text('CLOSE [X]',(WIDTH/1.2, 100,),fontsize=25)
 
 
 
 def update(dt):
     ### MOVEMENT
     if keyboard.D:
-        blorp_grey.x += 5
+        blorp_grey.x += 3
 
     if keyboard.A:
-        blorp_grey.x -= 5
+        blorp_grey.x -= 3
 
     # BARRIER
     blorp_grey.x = min(max(blorp_grey.x,blorp_grey.width//2),WIDTH-blorp_grey.width//2)
@@ -96,13 +97,16 @@ def update(dt):
        Menu is True or False'''
     global Menu
     global Menu_value
-    if keyboard.I: 
-         Menu_value + 1
     if Menu_value == 1:
-         Menu = True
+        Menu = True
     if Menu_value >= 2:
         Menu = False
         Menu_value = 0
+
+    if keyboard.I: 
+        Menu_value = 1
+    if keyboard.X:
+        Menu_value = 2
 
 
 ## END-CODE
