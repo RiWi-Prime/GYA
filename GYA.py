@@ -75,7 +75,7 @@ def update(dt):
 
         if  not blorp_grey.y == min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2):
             accel = 1
-            
+
     ## KEYSBOARD BUTTONS
     # JUMP
         if keyboard.space:
@@ -87,9 +87,16 @@ def update(dt):
 
     ## KEYSBOARD BUTTONS
     # MENU
+    '''Create a variable that contains a number, so that when pressing
+       [I] the menu will not close instantly when you let go of the key.
+       
+       You will have to press it again!
+
+       Menu_value have the values 0, 1 or 2
+       Menu is True or False'''
     global Menu
     global Menu_value
-    if keyboard.I:
+    if keyboard.I: 
          Menu_value + 1
     if Menu_value == 1:
          Menu = True
