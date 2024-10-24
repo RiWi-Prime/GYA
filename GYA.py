@@ -75,7 +75,9 @@ def update(dt):
 
         if  not blorp_grey.y == min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2):
             accel = 1
-
+            
+    ## KEYSBOARD BUTTONS
+    # JUMP
         if keyboard.space:
             clock = 0
             grav = 1
@@ -84,7 +86,6 @@ def update(dt):
    
 
     ## KEYSBOARD BUTTONS
-    # JUMP
     # MENU
     global Menu
     global Menu_value
