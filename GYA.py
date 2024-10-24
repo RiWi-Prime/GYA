@@ -71,10 +71,10 @@ def update(dt):
         if  not blorp_grey.y == min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2):
             accel = 1
 
-        if keyboard.space:
+        if (keyboard.space or keyboard.w) and accel == 1:
             clock = 0
             grav = 1
-        if clock <= 2:
+        if clock <= 2 or not accel == 1:
             blorp_grey.y +=-5*grav
    
 
