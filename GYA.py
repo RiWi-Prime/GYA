@@ -78,10 +78,10 @@ def update(dt):
 
     ## KEYSBOARD BUTTONS
     # JUMP
-        if keyboard.space:
+        if (keyboard.space or keyboard.w) and accel == 1:
             clock = 0
             grav = 1
-        if clock <= 2:
+        if clock <= 2 or not accel == 1:
             blorp_grey.y +=-5*grav
    
 
