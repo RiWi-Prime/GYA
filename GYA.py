@@ -13,6 +13,8 @@ import os
 HEIGHT = 650
 WIDTH = 1280
 tile_size = 50
+Menu = False # KEYBOARD.I
+Menu_value = 0 # KEYBOARD.I
 
 ## CODE
 game = True
@@ -22,9 +24,8 @@ timer = 0
 # IMAGES/ACTORS
 blorp_grey = Actor('blorp_grey.png')
 existing = True
-# OTHER-FUNKTIONS
-'''Other funktions should placed here'''
 
+# OTHER-FUNKTIONS
 def draw_grid():
 	for line in range(0, 30):
 		screen.draw.line((0, line * tile_size), (WIDTH, line * tile_size), (255, 255, 255))
@@ -37,6 +38,10 @@ def draw():
     screen.blit('test_bg1.png',(0,0))
     blorp_grey.draw()
     draw_grid()
+
+    # MENU BUTTEN / COULD BE CONVERTED
+    if Menu == True:
+        screen.draw.text('MENU',(WIDTH/2, 100,),fontsize=50)
 
 
 
@@ -57,6 +62,20 @@ def update():
     timer += 0.1
     if existing == True:
         blorp_grey.y += 2*timer
+
+    ## KEYSBOARD BUTTONS
+    # JUMP
+    # MENU
+    global Menu
+    global Menu_value
+    if keyboard.I:
+         Menu_value + 1
+    if Menu_value == 1:
+         Menu = True
+    if Menu_value >= 2:
+        Menu = False
+        Menu_value = 0
+
 
 ## END-CODE
 
