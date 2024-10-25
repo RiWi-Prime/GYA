@@ -58,9 +58,11 @@ def update(dt):
     ### MOVEMENT
     if keyboard.D:
         blorp.x += 3
+        blorp.image = 'blorp_red.png'
 
     if keyboard.A:
         blorp.x -= 3
+        blorp.image = 'blorp_red.png'
 
     # BARRIER
     blorp.x = min(max(blorp.x,blorp.width//2),WIDTH-blorp.width//2)
@@ -83,7 +85,10 @@ def update(dt):
         if  not blorp.y == min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2):
             accel = 1
             blorp.image = 'blorp_grey.png'
-
+            if keyboard.A or keyboard.D:
+                blorp.image = 'blorp_red.png'
+        
+        
     ## KEYSBOARD BUTTONS
     # JUMP
         if (keyboard.space or keyboard.w) and accel == 1:
@@ -92,7 +97,9 @@ def update(dt):
         if not accel == 1:
             blorp.y +=-5*grav
             blorp.image = 'blorp_blue.png'
-   
+            if keyboard.A or keyboard.D:
+                blorp.image = 'blorp_red.png'
+
 
     ## KEYSBOARD BUTTONS
     # MENU
