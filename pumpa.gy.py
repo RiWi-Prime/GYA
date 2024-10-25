@@ -1,106 +1,123 @@
-import pygame
-from pygame.locals import *
+'''
+    GYA - Funktions spel
 
-pygame.init()
+Current Version v.12 
+'''
 
-screen_width = 1000
-screen_height = 1000
+## IMPORTS
+import random
+import pgzrun
+import os
 
-screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption('Platformer')
-
-#define game variables
+#Variables
+HEIGHT = 650
+WIDTH = 1280
 tile_size = 50
 
+# IMAGES/ACTORS
+blorp_grey = Actor('blorp_grey.png')
+i0 = Actor('test_bg2.png')
+i1 = Actor('test_bg3.png')
+existing = True
 
-#load images
-sun_img = pygame.image.load('images/blorp_blue.png')
-bg_img = pygame.image.load('images/blorp_green.png')
+## CODE
+game = True
+print("game")
+timer = 0
+tile_list = []
 
-def draw_grid():
-	for line in range(0, 20):
-		pygame.draw.line(screen, (255, 255, 255), (0, line * tile_size), (screen_width, line * tile_size))
-		pygame.draw.line(screen, (255, 255, 255), (line * tile_size, 0), (line * tile_size, screen_height))
-
-
-
+'''
 class World():
 	def __init__(self, data):
-		self.tile_list = []
-
-		#load images
-		dirt_img = pygame.image.load('images/blorp_red.png')
-		grass_img = pygame.image.load('images/blorp_yellow.png')
 
 		row_count = 0
 		for row in data:
 			col_count = 0
 			for tile in row:
 				if tile == 1:
-					img = pygame.transform.scale(dirt_img, (tile_size, tile_size))
-					img_rect = img.get_rect()
-					img_rect.x = col_count * tile_size
-					img_rect.y = row_count * tile_size
+					img = (dirt_image, (tile_size, tile_size))
+					img_rect = (tile_size, tile_size)
+					#img_rect.x = col_count * tile_size
+					#img_rect.y = row_count * tile_size
 					tile = (img, img_rect)
-					self.tile_list.append(tile)
+					tile_list.append(tile)
 				if tile == 2:
-					img = pygame.transform.scale(grass_img, (tile_size, tile_size))
-					img_rect = img.get_rect()
-					img_rect.x = col_count * tile_size
-					img_rect.y = row_count * tile_size
+					img = (grass_image, (tile_size, tile_size))
+					img_rect = (tile_size, tile_size)
+					#img_rect.x = col_count * tile_size
+					#img_rect.y = row_count * tile_size
 					tile = (img, img_rect)
-					self.tile_list.append(tile)
+					tile_list.append(tile)
 				col_count += 1
 			row_count += 1
-
-	def draw(self):
-		for tile in self.tile_list:
-			screen.blit(tile[0], tile[1])
-
+'''
 
 
 world_data = [
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 1], 
-[1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 2, 2, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 7, 0, 5, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 1], 
-[1, 7, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 7, 0, 0, 0, 0, 1], 
-[1, 0, 2, 0, 0, 7, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 2, 0, 0, 4, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 7, 0, 0, 0, 0, 2, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 2, 2, 2, 2, 2, 1], 
-[1, 0, 0, 0, 0, 0, 2, 2, 2, 6, 6, 6, 6, 6, 1, 1, 1, 1, 1, 1], 
-[1, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
-[1, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
-[1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+[0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], #25w, 13h
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ]
 
+#world = World(world_data)
+
+# OTHER-FUNKTIONS
+'''Other funktions should placed here'''
+
+def draw_grid():
+	for line in range(0, 30):
+		screen.draw.line((0, line * tile_size), (WIDTH, line * tile_size), (255, 255, 255))
+		screen.draw.line((line * tile_size, 0), (line * tile_size, HEIGHT), (255, 255, 255))
+
+def draw_world():
+	for tile in tile_list:
+		tile[0][0].draw()
+
+# FUNKTIONS
+def draw():
+    ### BASIC DRAW (screen clear/blit/draw ect...)
+    screen.clear()
+    screen.blit('test_bg1.png',(0,0))
+    blorp_grey.draw()
+    draw_grid()
+    draw_world()
 
 
 
-world = World(world_data)
+def update():
+    ### MOVEMENT
+    
+    
+    if keyboard.D:
+        blorp_grey.x += 5
 
-run = True
-while run:
+    if keyboard.A:
+        blorp_grey.x -= 5
+    
 
-	screen.blit(bg_img, (0, 0))
-	screen.blit(sun_img, (100, 100))
 
-	world.draw()
+    # BARRIER
+    blorp_grey.x = min(max(blorp_grey.x,blorp_grey.width//2),WIDTH-blorp_grey.width//2)
+    blorp_grey.y = min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2)
 
-	draw_grid()
+    # GRAVITATION
+    global timer
+    timer += 0.1
+    if existing == True:
+        blorp_grey.y += 2*timer
 
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			run = False
+## END-CODE
 
-	pygame.display.update()
-
-pygame.quit()
+#SCREEN
+os.environ['SDL_VIDEO_CENTERED'] = '1'
+pgzrun.go()
