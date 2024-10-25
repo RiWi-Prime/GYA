@@ -33,6 +33,10 @@ def draw_grid():
 		screen.draw.line((0, line * tile_size), (WIDTH, line * tile_size), (255, 255, 255))
 		screen.draw.line((line * tile_size, 0), (line * tile_size, HEIGHT), (255, 255, 255))
 
+def on_mouse_down(pos,button): 
+     if button == mouse.RIGHT and blorp_grey.collidepoint(pos):
+          print('Du har inte råd/Köpet genomfördes') #Future shop funktion
+
 # FUNKTIONS
 def draw():
     ### BASIC DRAW (screen clear/blit/draw ect...)
@@ -84,9 +88,7 @@ def update(dt):
             grav = 1
         if clock <= 2 or not accel == 1:
             blorp_grey.y +=-5*grav
-   
 
-    ## KEYSBOARD BUTTONS
     # MENU
     '''Create a variable that contains a number, so that when pressing
        [I] the menu will not close instantly when you let go of the key.
