@@ -11,10 +11,11 @@ import os
 
 #Variables
 HEIGHT = 650
-WIDTH = 1280
+WIDTH = 1250
 tile_size = 50
 Menu = False # KEYBOARD.I
 Menu_value = 0 # KEYBOARD.I
+existing = True
 
 ## CODE
 game = True
@@ -23,9 +24,9 @@ timer = 0
 clock = 2
 accel = 1
 grav = 1
+
 # IMAGES/ACTORS
-blorp_grey = Actor('blorp_grey.png')
-existing = True
+blorp_grey = Actor('blorp_grey.png',pos = (100,100))
 
 # OTHER-FUNKTIONS
 def draw_grid():
