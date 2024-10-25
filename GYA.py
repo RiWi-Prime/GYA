@@ -22,7 +22,7 @@ print("game")
 timer = 0
 clock = 2
 accel = 1
-grav = 1
+grav = 0
 # IMAGES/ACTORS
 blorp_grey = Actor('blorp_grey.png')
 existing = True
