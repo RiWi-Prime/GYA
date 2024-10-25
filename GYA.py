@@ -24,8 +24,10 @@ timer = 0
 clock = 2
 accel = 1
 grav = 0
+
 # IMAGES/ACTORS
-blorp_grey = Actor('blorp_grey.png',pos = (100,100))
+blorp = Actor('blorp_grey.png',pos = (100,100))
+blorp.image = 'blorp_grey.png'
 
 # OTHER-FUNKTIONS
 def draw_grid():
@@ -38,7 +40,7 @@ def draw():
     ### BASIC DRAW (screen clear/blit/draw ect...)
     screen.clear()
     screen.blit('test_bg1.png',(0,0))
-    blorp_grey.draw()
+    blorp.draw()
     draw_grid()
 
     # MENU BUTTEN / COULD BE CONVERTED
@@ -51,14 +53,14 @@ def draw():
 def update(dt):
     ### MOVEMENT
     if keyboard.D:
-        blorp_grey.x += 3
+        blorp.x += 3
 
     if keyboard.A:
-        blorp_grey.x -= 3
+        blorp.x -= 3
 
     # BARRIER
-    blorp_grey.x = min(max(blorp_grey.x,blorp_grey.width//2),WIDTH-blorp_grey.width//2)
-    blorp_grey.y = min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2)
+    blorp.x = min(max(blorp.x,blorp.width//2),WIDTH-blorp.width//2)
+    blorp.y = min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2)
 
     # GRAVITATION
     global timer
@@ -72,18 +74,20 @@ def update(dt):
         grav -= dt
 
         if  clock >= 2:
-            blorp_grey.y += 2*accel
+            blorp.y += 2*accel
 
-        if  not blorp_grey.y == min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2):
+        if  not blorp.y == min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2):
             accel = 1
+            blorp.image = 'blorp_grey.png'
 
     ## KEYSBOARD BUTTONS
     # JUMP
         if (keyboard.space or keyboard.w) and accel == 1:
             clock = 0
             grav = 1
-        if clock <= 2 or not accel == 1:
-            blorp_grey.y +=-5*grav
+        if not accel == 1:
+            blorp.y +=-5*grav
+            blorp.image = 'blorp_blue.png'
    
 
     ## KEYSBOARD BUTTONS
