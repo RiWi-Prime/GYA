@@ -35,6 +35,10 @@ def draw_grid():
 		screen.draw.line((0, line * tile_size), (WIDTH, line * tile_size), (255, 255, 255))
 		screen.draw.line((line * tile_size, 0), (line * tile_size, HEIGHT), (255, 255, 255))
 
+def on_mouse_down(pos,button): 
+     if button == mouse.RIGHT and blorp_grey.collidepoint(pos):
+          print('Du har inte råd/Köpet genomfördes') #Future shop funktion
+
 # FUNKTIONS
 def draw():
     ### BASIC DRAW (screen clear/blit/draw ect...)
