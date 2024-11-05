@@ -12,15 +12,21 @@ import os
 #Variables
 HEIGHT = 650
 WIDTH = 1250
-tile_size = 50
+
 Menu = False # KEYBOARD.I and X
 Menu_value = 0 # KEYBOARD.I and X
+
 existing = True
 dx, dy = 50, 50
+
+tile_size = 50
+
+map_level = 1
 
 ## CODE
 game = True
 print("game")
+
 timer = 0
 clock = 2
 accel = 1
@@ -78,7 +84,8 @@ def draw():
     screen.clear()
     screen.blit('test_bg1.png',(0,0))
     draw_grid()
-    draw_tiles()
+    if map_level == 1:
+        draw_tiles()
     blorp.draw()
 
     # MENU BUTTEN / COULD BE CONVERTED
@@ -89,7 +96,6 @@ def draw():
 
 def update(dt):
     ### NEXT LEVEL
-
 
     ### MOVEMENT
     if keyboard.D:
