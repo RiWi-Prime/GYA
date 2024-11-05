@@ -1,7 +1,7 @@
 '''
     GYA - Funktions spel
 
-Current Version v.13 
+Current Version v.14
 '''
 
 ## IMPORTS
@@ -13,8 +13,8 @@ import os
 HEIGHT = 650
 WIDTH = 1250
 tile_size = 50
-Menu = False # KEYBOARD.I
-Menu_value = 0 # KEYBOARD.I
+Menu = False # KEYBOARD.I and X
+Menu_value = 0 # KEYBOARD.I and X
 existing = True
 dx, dy = 50, 50
 
@@ -71,6 +71,7 @@ def on_mouse_down(pos,button):
      if button == mouse.RIGHT and blorp.collidepoint(pos):
           print('Du har inte råd/Köpet genomfördes') #Future shop funktion
 
+
 # FUNKTIONS
 def draw():
     ### BASIC DRAW (screen clear/blit/draw ect...)
@@ -86,8 +87,10 @@ def draw():
         screen.draw.text('CLOSE [X]',(WIDTH/1.2, 100,),fontsize=25)
 
 
-
 def update(dt):
+    ### NEXT LEVEL
+
+
     ### MOVEMENT
     if keyboard.D:
         blorp.x += 3
