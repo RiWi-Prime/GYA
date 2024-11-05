@@ -1,7 +1,9 @@
-'''
-    GYA - Funktions spel
+''' 
+Game Title:     The Blorp Game   
+About:          GYA - Funktions spel
+Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version v.14
+Current Version: v.14
 '''
 
 ## IMPORTS
@@ -25,7 +27,7 @@ map_level = 1
 
 ## CODE
 game = True
-print("game")
+print("The Blorp Game")
 
 timer = 0
 clock = 2
