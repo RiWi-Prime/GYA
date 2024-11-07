@@ -63,6 +63,8 @@ def on_key_down(key):
         maze[row][column] = 0 # 0 is 'empty' tile
 
     # enemy movement
+    
+    ### NOT IMPORTANT FOR THE CODE
     row = int(enemy.y / TILE_SIZE)
     column = int(enemy.x / TILE_SIZE)
     row = row + enemy.yv
@@ -76,6 +78,7 @@ def on_key_down(key):
     if enemy.colliderect(player):
         print("You died")
         exit()
+    ### ----------------------
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 pgzrun.go()

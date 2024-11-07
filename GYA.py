@@ -3,7 +3,7 @@ Game Title:     The Blorp Game
 About:          GYA - Funktions spel
 Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version: v.14
+Current Version: v.15
 '''
 
 ## IMPORTS
@@ -72,7 +72,7 @@ map_a = [
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ]
 
-map_2 = [
+map_b = [
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
@@ -151,6 +151,12 @@ def draw():
 
 def update(dt):
     ### COLLIDERECT
+    global map_level
+    row = int(blorp.y / tile_size)
+    column = int(blorp.x / tile_size)
+    tile = pictures[base_map[row][column]]
+    if tile == "portal_1":
+        map_level = map_a
     
     ### NEXT LEVEL
 
