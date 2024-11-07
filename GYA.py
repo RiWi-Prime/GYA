@@ -37,7 +37,7 @@ grav = 0
 # IMAGES/ACTORS
 blorp = Actor('blorp_grey.png',pos = (100,100))
 blorp.image = 'blorp_grey.png'
-pictures = ['test_bg5','test_bg4','portal_1.png','portal_2.png','portal_3.png']
+pictures = ['test_bg5','test_bg4','portal_pink','portal_2.png','portal_3.png']
 
 # WORLD DATA
 base_map = [
@@ -155,7 +155,7 @@ def update(dt):
     row = int(blorp.y / tile_size)
     column = int(blorp.x / tile_size)
     tile = pictures[base_map[row][column]]
-    if tile == "portal_1":
+    if tile == "portal_pink":
         map_level = map_a
     
     ### NEXT LEVEL
