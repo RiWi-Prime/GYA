@@ -3,7 +3,7 @@ Game Title:     The Blorp Game
 About:          GYA - Funktions spel
 Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version: v.14
+Current Version: v.15
 '''
 
 ## IMPORTS
@@ -94,7 +94,9 @@ map_c = [
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
@@ -138,6 +140,9 @@ def draw():
         draw_tiles()
     blorp.draw()
 
+    # DRAW OBSTICALS
+
+
     # MENU BUTTEN / COULD BE CONVERTED
     if Menu == True:
         screen.draw.text('MENU',(WIDTH/2, 100,),fontsize=50)
@@ -145,6 +150,14 @@ def draw():
 
 
 def update(dt):
+    ### COLLIDERECT
+    global map_level
+    row = int(blorp.y / tile_size)
+    column = int(blorp.x / tile_size)
+    tile = pictures[base_map[row][column]]
+    if tile == "portal_1":
+        map_level = map_a
+    
     ### NEXT LEVEL
 
     ### MOVEMENT
@@ -188,6 +201,12 @@ def update(dt):
             grav = 1
         if not accel == 1:
             blorp.y +=-5*grav
+            # Makes you jump slower / can also be adjusted to jump faster
+            if keyboard.A:
+                blorp.x += 0.25
+            if keyboard.D:
+                blorp.x -= 0.25
+            # ------------------
             blorp.image = 'blorp_blue.png'
             if keyboard.A or keyboard.D:
                 blorp.image = 'blorp_red.png'

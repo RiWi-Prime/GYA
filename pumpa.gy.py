@@ -1,123 +1,84 @@
-'''
-    GYA - Funktions spel
-
-Current Version v.12 
-'''
-
-## IMPORTS
-import random
 import pgzrun
 import os
 
-#Variables
-HEIGHT = 650
-WIDTH = 1280
-tile_size = 50
+TILE_SIZE = 64
+WIDTH = TILE_SIZE * 8
+HEIGHT = TILE_SIZE * 8
 
-# IMAGES/ACTORS
-blorp_grey = Actor('blorp_grey.png')
-i0 = Actor('test_bg2.png')
-i1 = Actor('test_bg3.png')
-existing = True
+tiles = ['portal_1', 'portal_2', 'portal_3', 'test_bg6', 'test_bg5']
+unlock = 0
 
-## CODE
-game = True
-print("game")
-timer = 0
-tile_list = []
-
-'''
-class World():
-	def __init__(self, data):
-
-		row_count = 0
-		for row in data:
-			col_count = 0
-			for tile in row:
-				if tile == 1:
-					img = (dirt_image, (tile_size, tile_size))
-					img_rect = (tile_size, tile_size)
-					#img_rect.x = col_count * tile_size
-					#img_rect.y = row_count * tile_size
-					tile = (img, img_rect)
-					tile_list.append(tile)
-				if tile == 2:
-					img = (grass_image, (tile_size, tile_size))
-					img_rect = (tile_size, tile_size)
-					#img_rect.x = col_count * tile_size
-					#img_rect.y = row_count * tile_size
-					tile = (img, img_rect)
-					tile_list.append(tile)
-				col_count += 1
-			row_count += 1
-'''
-
-
-world_data = [
-[0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], #25w, 13h
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+maze = [
+    [1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 1, 2, 0, 1],
+    [1, 0, 1, 0, 1, 1, 3, 1],
+    [1, 0, 1, 0, 0, 0, 0, 1],
+    [1, 0, 1, 0, 1, 0, 0, 1],
+    [1, 0, 1, 4, 1, 0, 0, 1],
+    [1, 0, 1, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1]
 ]
 
-#world = World(world_data)
+player = Actor("blorp_blue", anchor=(0, 0), pos=(1 * TILE_SIZE, 1 * TILE_SIZE))
+enemy = Actor("blorp_green", anchor=(0, 0), pos=(3 * TILE_SIZE, 6 * TILE_SIZE))
+enemy.yv = -1
 
-# OTHER-FUNKTIONS
-'''Other funktions should placed here'''
-
-def draw_grid():
-	for line in range(0, 30):
-		screen.draw.line((0, line * tile_size), (WIDTH, line * tile_size), (255, 255, 255))
-		screen.draw.line((line * tile_size, 0), (line * tile_size, HEIGHT), (255, 255, 255))
-
-def draw_world():
-	for tile in tile_list:
-		tile[0][0].draw()
-
-# FUNKTIONS
 def draw():
-    ### BASIC DRAW (screen clear/blit/draw ect...)
     screen.clear()
-    screen.blit('test_bg1.png',(0,0))
-    blorp_grey.draw()
-    draw_grid()
-    draw_world()
+    for row in range(len(maze)):
+        for column in range(len(maze[row])):
+            x = column * TILE_SIZE
+            y = row * TILE_SIZE
+            tile = tiles[maze[row][column]]
+            screen.blit(tile, (x, y))
+    player.draw()
+    enemy.draw()
 
+def on_key_down(key):
+    # player movement
+    row = int(player.y / TILE_SIZE)
+    column = int(player.x / TILE_SIZE)
+    if key == keys.UP:
+        row = row - 1
+    if key == keys.DOWN:
+        row = row + 1
+    if key == keys.LEFT:
+        column = column - 1
+    if key == keys.RIGHT:
+        column = column + 1
+    tile = tiles[maze[row][column]]
+    if tile == 'portal_1':
+        x = column * TILE_SIZE
+        y = row * TILE_SIZE
+        animate(player, duration=0.1, pos=(x, y))
+    global unlock
+    if tile == 'portal_3':
+        print("Well done")
+        exit()
+    elif tile == 'test_bg5':
+        unlock = unlock + 1
+        maze[row][column] = 0 # 0 is 'empty' tile
+    elif tile == 'test_bg6' and unlock > 0:
+        unlock = unlock - 1
+        maze[row][column] = 0 # 0 is 'empty' tile
 
-
-def update():
-    ### MOVEMENT
+    # enemy movement
     
-    
-    if keyboard.D:
-        blorp_grey.x += 5
+    ### NOT IMPORTANT FOR THE CODE
+    row = int(enemy.y / TILE_SIZE)
+    column = int(enemy.x / TILE_SIZE)
+    row = row + enemy.yv
+    tile = tiles[maze[row][column]]
+    if not tile == 'portal_2':
+        x = column * TILE_SIZE
+        y = row * TILE_SIZE
+        animate(enemy, duration=0.1, pos=(x, y))
+    else:
+        enemy.yv = enemy.yv * -1
+    if enemy.colliderect(player):
+        print("You died")
+        exit()
+    ### ----------------------
 
-    if keyboard.A:
-        blorp_grey.x -= 5
-    
-
-
-    # BARRIER
-    blorp_grey.x = min(max(blorp_grey.x,blorp_grey.width//2),WIDTH-blorp_grey.width//2)
-    blorp_grey.y = min(max(blorp_grey.y,blorp_grey.height//2),HEIGHT-blorp_grey.height//2)
-
-    # GRAVITATION
-    global timer
-    timer += 0.1
-    if existing == True:
-        blorp_grey.y += 2*timer
-
-## END-CODE
-
-#SCREEN
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 pgzrun.go()
