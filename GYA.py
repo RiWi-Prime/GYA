@@ -37,7 +37,7 @@ grav = 0
 # IMAGES/ACTORS
 blorp = Actor('blorp_grey.png',pos = (100,100))
 blorp.image = 'blorp_grey.png'
-pictures = ['test_bg5','test_bg4','portal_1.png','portal_2.png','portal_3.png']
+pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple-png','portal_pink.png','portal_blue.png','portal_purple.png']
 
 # WORLD DATA
 base_map = [
@@ -134,7 +134,7 @@ def on_mouse_down(pos,button):
 def draw():
     ### BASIC DRAW (screen clear/blit/draw ect...)
     screen.clear()
-    screen.blit('test_bg1.png',(0,0))
+    screen.blit('background_grey',(0,0))
     draw_grid()
     if map_level == 1:
         draw_tiles()
