@@ -195,6 +195,12 @@ def update(dt):
             grav = 1
         if not accel == 1:
             blorp.y +=-5*grav
+            # Makes you jump slower / can also be adjusted to jump faster
+            if keyboard.A:
+                blorp.x += 0.25
+            if keyboard.D:
+                blorp.x -= 0.25
+            # ------------------
             blorp.image = 'blorp_blue.png'
             if keyboard.A or keyboard.D:
                 blorp.image = 'blorp_red.png'
