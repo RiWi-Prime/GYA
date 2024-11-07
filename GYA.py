@@ -1,7 +1,9 @@
-'''
-    GYA - Funktions spel
+''' 
+Game Title:     The Blorp Game   
+About:          GYA - Funktions spel
+Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version v.13 
+Current Version: v.14
 '''
 
 ## IMPORTS
@@ -12,15 +14,21 @@ import os
 #Variables
 HEIGHT = 650
 WIDTH = 1250
-tile_size = 50
-Menu = False # KEYBOARD.I
-Menu_value = 0 # KEYBOARD.I
+
+Menu = False # KEYBOARD.I and X
+Menu_value = 0 # KEYBOARD.I and X
+
 existing = True
 dx, dy = 50, 50
 
+tile_size = 50
+
+map_level = 1
+
 ## CODE
 game = True
-print("game")
+print("The Blorp Game")
+
 timer = 0
 clock = 2
 accel = 1
@@ -119,13 +127,15 @@ def on_mouse_down(pos,button):
      if button == mouse.RIGHT and blorp.collidepoint(pos):
           print('Du har inte råd/Köpet genomfördes') #Future shop funktion
 
+
 # FUNKTIONS
 def draw():
     ### BASIC DRAW (screen clear/blit/draw ect...)
     screen.clear()
     screen.blit('test_bg1.png',(0,0))
     draw_grid()
-    draw_tiles()
+    if map_level == 1:
+        draw_tiles()
     blorp.draw()
 
     # MENU BUTTEN / COULD BE CONVERTED
@@ -134,8 +144,9 @@ def draw():
         screen.draw.text('CLOSE [X]',(WIDTH/1.2, 100,),fontsize=25)
 
 
-
 def update(dt):
+    ### NEXT LEVEL
+
     ### MOVEMENT
     if keyboard.D:
         blorp.x += 3
