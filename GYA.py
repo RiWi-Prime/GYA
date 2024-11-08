@@ -11,7 +11,7 @@ import random
 import pgzrun
 import os
 
-#Variables
+# Variables
 HEIGHT = 650
 WIDTH = 1250
 
@@ -35,9 +35,9 @@ accel = 1
 grav = 0
 
 # IMAGES/ACTORS
-blorp = Actor('blorp_grey.png',pos = (100,500))
+blorp = Actor('blorp_grey.png',pos = (75,575))
 blorp.image = 'blorp_grey.png'
-pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png','portal_pink.png','portal_green.png','portal_purple.png']
+pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png','portal_pink.png','portal_green.png','portal_purple.png','blorp_yellow.png']
 
 # WORLD DATA
 base_map = [
@@ -51,14 +51,14 @@ base_map = [
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 6, 0, 7, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ]
 
 map_a = [
 [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2, 6, 0, 2], 
+[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2, 8, 0, 2], 
 [2, 0, 2, 2, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 2, 0, 2, 2, 0, 0, 0, 2, 2, 0, 2], 
 [2, 0, 0, 2, 2, 0, 0, 0, 2, 2, 0, 2, 2, 0, 2, 0, 0, 2, 2, 0, 0, 2, 0, 0, 2], 
 [2, 2, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 2, 0, 0, 2, 2, 0, 0, 0, 2, 2], 
@@ -68,7 +68,7 @@ map_a = [
 [2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
 [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
 [2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
+[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 2], 
 [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
 ]
 
@@ -84,7 +84,7 @@ map_b = [
 [3, 3, 3, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 3, 3, 0, 3, 0, 3, 0, 0, 3], 
 [3, 3, 0, 0, 0, 3, 3, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3], 
 [3, 3, 0, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3, 3, 3], 
-[3, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 7, 3], 
+[3, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 8, 3], 
 [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
 ]
 
@@ -100,7 +100,7 @@ map_c = [
 [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
 [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
 [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
-[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
+[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 4], 
 [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 ]
 
@@ -132,6 +132,22 @@ def draw_tiles():
                 tile = pictures[map_a[row][column]]
                 screen.blit(tile, (x, y))
 
+    if map_level == 3:
+        for row in range(len(map_b)):
+            for column in range(len(map_b[row])):
+                x = column * tile_size
+                y = row * tile_size
+                tile = pictures[map_b[row][column]]
+                screen.blit(tile, (x, y))
+
+    if map_level == 4:
+        for row in range(len(map_c)):
+            for column in range(len(map_c[row])):
+                x = column * tile_size
+                y = row * tile_size
+                tile = pictures[map_c[row][column]]
+                screen.blit(tile, (x, y))
+
 def on_mouse_down(pos,button): 
      if button == mouse.RIGHT and blorp.collidepoint(pos):
           print('Du har inte råd/Köpet genomfördes') #Future shop funktion
@@ -147,20 +163,18 @@ def draw():
         screen.blit('background_grey',(0,0))
     if map_level == 2:
         screen.blit('background_pink',(0,0))
+    if map_level == 3:
+        screen.blit('background_green',(0,0))
+    if map_level == 4:
+        screen.blit('background_purple',(0,0))
         # ADD MORE UNDER
 
     draw_grid()
-    if map_level == 1:
-        draw_tiles()
-    if map_level == 2:
-        draw_tiles()
+    draw_tiles()
     
     blorp.draw()
 
-    # DRAW OBSTICALS
-
-
-    # MENU BUTTEN / COULD BE CONVERTED
+    # MENU / COULD BE CONVERTED
     if Menu == True:
         screen.draw.text('MENU',(WIDTH/2, 100,),fontsize=50)
         screen.draw.text('CLOSE [X]',(WIDTH/1.2, 100,),fontsize=25)
@@ -168,10 +182,37 @@ def draw():
 
 def update(dt):
     ### COLLIDERECT
+
+    ### NEXT LEVEL
     global map_level
-    global accel
-    global clock
-    global grav
+
+    ## GOLDEN PORTAL
+    # MAP A
+    if map_level == 2:
+        row = int(blorp.y / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[map_a[row][column]]
+        if tile == "blorp_yellow.png":
+            map_level = 1
+            # ADD POS HERE
+    # MAP B
+    if map_level == 3:
+        row = int(blorp.y / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[map_b[row][column]]
+        if tile == "blorp_yellow.png":
+            map_level = 1
+            # ADD POS HERE
+    # MAP C
+    if map_level == 4:
+        row = int(blorp.y / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[map_c[row][column]]
+        if tile == "blorp_yellow.png":
+            map_level = 1
+            # ADD POS HERE
+            
+    ## PORTALS BASE MAP
     if map_level == 1:
             row = int(blorp.y / tile_size)
             column = int(blorp.x / tile_size)
@@ -180,23 +221,26 @@ def update(dt):
                 grav = 0
                 clock = 0
         
-    if map_level == 2:
+    if map_level == 1:
             row = int(blorp.y / tile_size)
             column = int(blorp.x / tile_size)
-            tile = pictures[map_a[row][column]]
-            if tile == "portal_purple.png": #CHANGE PORTAL
+            tile = pictures[base_map[row][column]]
+            if tile == "portal_green.png": #CHANGE PORTAL
                 map_level = 3
-    
-    ### NEXT LEVEL
+
+    if map_level == 1:
+            row = int(blorp.y / tile_size)
+            column = int(blorp.x / tile_size)
+            tile = pictures[base_map[row][column]]
+            if tile == "portal_purple.png": #CHANGE PORTAL
+                map_level = 4
 
     ### MOVEMENT
     if keyboard.D:
         blorp.x += 3
-        blorp.image = 'blorp_red.png'
 
     if keyboard.A:
         blorp.x -= 3
-        blorp.image = 'blorp_red.png'
 
     # BARRIER
     blorp.x = min(max(blorp.x,blorp.width//2),WIDTH-blorp.width//2)
@@ -219,8 +263,6 @@ def update(dt):
         if  not blorp.y == min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2):
             accel = 1
             blorp.image = 'blorp_grey.png'
-            if keyboard.A or keyboard.D:
-                blorp.image = 'blorp_red.png'
         
         
     ## KEYSBOARD BUTTONS
@@ -230,15 +272,15 @@ def update(dt):
             grav = 1
         if not accel == 1:
             blorp.y +=-5*grav
+
             # Makes you jump slower / can also be adjusted to jump faster
             if keyboard.A:
                 blorp.x += 0.25
             if keyboard.D:
                 blorp.x -= 0.25
             # ------------------
-            blorp.image = 'blorp_blue.png'
-            if keyboard.A or keyboard.D:
-                blorp.image = 'blorp_red.png'
+
+            blorp.image = 'blorp_grey_jump.png'
 
 
     ## KEYSBOARD BUTTONS
