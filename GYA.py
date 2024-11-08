@@ -185,6 +185,34 @@ def update(dt):
 
     ### NEXT LEVEL
     global map_level
+
+    ## GOLDEN PORTAL
+    # MAP A
+    if map_level == 2:
+        row = int(blorp.y / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[map_a[row][column]]
+        if tile == "blorp_yellow.png":
+            map_level = 1
+            # ADD POS HERE
+    # MAP B
+    if map_level == 3:
+        row = int(blorp.y / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[map_b[row][column]]
+        if tile == "blorp_yellow.png":
+            map_level = 1
+            # ADD POS HERE
+    # MAP C
+    if map_level == 4:
+        row = int(blorp.y / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[map_c[row][column]]
+        if tile == "blorp_yellow.png":
+            map_level = 1
+            # ADD POS HERE
+            
+    ## PORTALS BASE MAP
     if map_level == 1:
             row = int(blorp.y / tile_size)
             column = int(blorp.x / tile_size)
