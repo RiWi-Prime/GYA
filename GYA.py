@@ -182,6 +182,8 @@ def draw():
 
 def update(dt):
     ### COLLIDERECT
+
+    ### NEXT LEVEL
     global map_level
     if map_level == 1:
             row = int(blorp.y / tile_size)
@@ -203,8 +205,6 @@ def update(dt):
             tile = pictures[base_map[row][column]]
             if tile == "portal_purple.png": #CHANGE PORTAL
                 map_level = 4
-    
-    ### NEXT LEVEL
 
     ### MOVEMENT
     if keyboard.D:
