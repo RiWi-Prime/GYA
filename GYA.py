@@ -35,7 +35,7 @@ accel = 1
 grav = 0
 
 # IMAGES/ACTORS
-blorp = Actor('blorp_grey.png',pos = (100,100))
+blorp = Actor('blorp_grey.png',pos = (100,500))
 blorp.image = 'blorp_grey.png'
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png','portal_pink.png','portal_green.png','portal_purple.png']
 
@@ -152,6 +152,9 @@ def draw():
     draw_grid()
     if map_level == 1:
         draw_tiles()
+    if map_level == 2:
+        draw_tiles()
+    
     blorp.draw()
 
     # DRAW OBSTICALS
