@@ -218,8 +218,7 @@ def update(dt):
             column = int(blorp.x / tile_size)
             tile = pictures[base_map[row][column]]
             if tile == "portal_pink.png": #CHANGE PORTAL
-                grav = 0
-                clock = 0
+                map_level = 2
         
     if map_level == 1:
             row = int(blorp.y / tile_size)
@@ -250,9 +249,9 @@ def update(dt):
     global timer
 
     if existing == True:
-        
-        
-        
+        global clock
+        global accel
+        global grav
         accel += dt
         clock += dt
         grav -= dt
