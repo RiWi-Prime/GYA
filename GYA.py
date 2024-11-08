@@ -11,7 +11,7 @@ import random
 import pgzrun
 import os
 
-#Variables
+# Variables
 HEIGHT = 650
 WIDTH = 1250
 
@@ -166,21 +166,11 @@ def draw():
         # ADD MORE UNDER
 
     draw_grid()
-    if map_level == 1:
-        draw_tiles()
-    if map_level == 2:
-        draw_tiles()
-    if map_level == 3:
-        draw_tiles()
-    if map_level == 4:
-        draw_tiles()
+    draw_tiles()
     
     blorp.draw()
 
-    # DRAW OBSTICALS
-
-
-    # MENU BUTTEN / COULD BE CONVERTED
+    # MENU / COULD BE CONVERTED
     if Menu == True:
         screen.draw.text('MENU',(WIDTH/2, 100,),fontsize=50)
         screen.draw.text('CLOSE [X]',(WIDTH/1.2, 100,),fontsize=25)
@@ -261,12 +251,14 @@ def update(dt):
             grav = 1
         if not accel == 1:
             blorp.y +=-5*grav
+
             # Makes you jump slower / can also be adjusted to jump faster
             if keyboard.A:
                 blorp.x += 0.25
             if keyboard.D:
                 blorp.x -= 0.25
             # ------------------
+            
             blorp.image = 'blorp_blue.png'
             if keyboard.A or keyboard.D:
                 blorp.image = 'blorp_red.png'
