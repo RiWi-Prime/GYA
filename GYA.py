@@ -131,6 +131,22 @@ def draw_tiles():
                 y = row * tile_size
                 tile = pictures[map_a[row][column]]
                 screen.blit(tile, (x, y))
+    
+    if map_level == 3:
+        for row in range(len(map_b)):
+            for column in range(len(map_b[row])):
+                x = column * tile_size
+                y = row * tile_size
+                tile = pictures[map_b[row][column]]
+                screen.blit(tile, (x, y))
+
+    if map_level == 4:
+        for row in range(len(map_c)):
+            for column in range(len(map_c[row])):
+                x = column * tile_size
+                y = row * tile_size
+                tile = pictures[map_c[row][column]]
+                screen.blit(tile, (x, y))
 
 def on_mouse_down(pos,button): 
      if button == mouse.RIGHT and blorp.collidepoint(pos):
@@ -154,6 +170,10 @@ def draw():
         draw_tiles()
     if map_level == 2:
         draw_tiles()
+    if map_level == 3:
+        draw_tiles()
+    if map_level == 4:
+        draw_tiles()
     
     blorp.draw()
 
@@ -168,6 +188,9 @@ def draw():
 
 def update(dt):
     ### COLLIDERECT
+
+
+    ### NEXT LEVEL
     global map_level
     if map_level == 1:
             row = int(blorp.y / tile_size)
@@ -182,8 +205,20 @@ def update(dt):
             tile = pictures[map_a[row][column]]
             if tile == "portal_purple.png": #CHANGE PORTAL
                 map_level = 3
+
+    if map_level == 3:
+            row = int(blorp.y / tile_size)
+            column = int(blorp.x / tile_size)
+            tile = pictures[map_b[row][column]]
+            if tile == "portal_purple.png": #CHANGE PORTAL
+                map_level = 4
     
-    ### NEXT LEVEL
+    if map_level == 4:
+            row = int(blorp.y / tile_size)
+            column = int(blorp.x / tile_size)
+            tile = pictures[map_c[row][column]]
+            if tile == "portal_purple.png": #CHANGE PORTAL
+                map_level = 5
 
     ### MOVEMENT
     if keyboard.D:
