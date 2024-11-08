@@ -37,7 +37,7 @@ grav = 0
 # IMAGES/ACTORS
 blorp = Actor('blorp_grey.png',pos = (75,575))
 blorp.image = 'blorp_grey.png'
-pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png','portal_pink.png','portal_green.png','portal_purple.png']
+pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png','portal_pink.png','portal_green.png','portal_purple.png','blorp_yellow.png']
 
 # WORLD DATA
 base_map = [
@@ -58,7 +58,7 @@ base_map = [
 
 map_a = [
 [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2, 5, 0, 2], 
+[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2, 8, 0, 2], 
 [2, 0, 2, 2, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 2, 0, 2, 2, 0, 0, 0, 2, 2, 0, 2], 
 [2, 0, 0, 2, 2, 0, 0, 0, 2, 2, 0, 2, 2, 0, 2, 0, 0, 2, 2, 0, 0, 2, 0, 0, 2], 
 [2, 2, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 2, 0, 0, 2, 2, 0, 0, 0, 2, 2], 
@@ -68,7 +68,7 @@ map_a = [
 [2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
 [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
 [2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
+[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 2], 
 [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
 ]
 
@@ -84,7 +84,7 @@ map_b = [
 [3, 3, 3, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 3, 3, 0, 3, 0, 3, 0, 0, 3], 
 [3, 3, 0, 0, 0, 3, 3, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3], 
 [3, 3, 0, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3, 3, 3], 
-[3, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 6, 3], 
+[3, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 8, 3], 
 [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
 ]
 
@@ -100,7 +100,7 @@ map_c = [
 [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
 [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
 [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
-[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
+[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 4], 
 [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 ]
 
@@ -209,11 +209,9 @@ def update(dt):
     ### MOVEMENT
     if keyboard.D:
         blorp.x += 3
-        blorp.image = 'blorp_red.png'
 
     if keyboard.A:
         blorp.x -= 3
-        blorp.image = 'blorp_red.png'
 
     # BARRIER
     blorp.x = min(max(blorp.x,blorp.width//2),WIDTH-blorp.width//2)
@@ -236,8 +234,6 @@ def update(dt):
         if  not blorp.y == min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2):
             accel = 1
             blorp.image = 'blorp_grey.png'
-            if keyboard.A or keyboard.D:
-                blorp.image = 'blorp_red.png'
         
         
     ## KEYSBOARD BUTTONS
@@ -255,9 +251,7 @@ def update(dt):
                 blorp.x -= 0.25
             # ------------------
 
-            blorp.image = 'blorp_blue.png'
-            if keyboard.A or keyboard.D:
-                blorp.image = 'blorp_red.png'
+            blorp.image = 'blorp_grey_jump.png'
 
 
     ## KEYSBOARD BUTTONS
