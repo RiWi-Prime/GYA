@@ -35,7 +35,7 @@ accel = 1
 grav = 0
 
 # IMAGES/ACTORS
-blorp = Actor('blorp_grey.png',pos = (100,100))
+blorp = Actor('blorp_grey.png',pos = (100,500))
 blorp.image = 'blorp_grey.png'
 blorp.pos = 100,100
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png','portal_pink.png','portal_green.png','portal_purple.png']
@@ -52,7 +52,7 @@ base_map = [
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 6, 0, 7, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ]
@@ -117,12 +117,21 @@ def draw_grid():
         y += dy 
 
 def draw_tiles():
-    for row in range(len(map_c)):
-        for column in range(len(map_c[row])):
-            x = column * tile_size
-            y = row * tile_size
-            tile = pictures[map_c[row][column]]
-            screen.blit(tile, (x, y))
+    if map_level == 1:
+        for row in range(len(base_map)):
+            for column in range(len(base_map[row])):
+                x = column * tile_size
+                y = row * tile_size
+                tile = pictures[base_map[row][column]]
+                screen.blit(tile, (x, y))
+                
+    if map_level == 2:
+        for row in range(len(map_a)):
+            for column in range(len(map_a[row])):
+                x = column * tile_size
+                y = row * tile_size
+                tile = pictures[map_a[row][column]]
+                screen.blit(tile, (x, y))
 
 def on_mouse_down(pos,button): 
      if button == mouse.RIGHT and blorp.collidepoint(pos):
@@ -133,10 +142,20 @@ def on_mouse_down(pos,button):
 def draw():
     ### BASIC DRAW (screen clear/blit/draw ect...)
     screen.clear()
-    screen.blit('background_grey',(0,0))
+
+    # MAP . DRAW
+    if map_level == 1:
+        screen.blit('background_grey',(0,0))
+    if map_level == 2:
+        screen.blit('background_pink',(0,0))
+        # ADD MORE UNDER
+
     draw_grid()
     if map_level == 1:
         draw_tiles()
+    if map_level == 2:
+        draw_tiles()
+    
     blorp.draw()
 
     # DRAW OBSTICALS
@@ -151,11 +170,19 @@ def draw():
 def update(dt):
     ### COLLIDERECT
     global map_level
-    row = int(blorp.y / tile_size)
-    column = int(blorp.x / tile_size)
-    tile = pictures[base_map[row][column]]
-    if tile == "portal_1":
-        map_level = map_a
+    if map_level == 1:
+            row = int(blorp.y / tile_size)
+            column = int(blorp.x / tile_size)
+            tile = pictures[base_map[row][column]]
+            if tile == "portal_pink.png": #CHANGE PORTAL
+                map_level = 2
+        
+    if map_level == 2:
+            row = int(blorp.y / tile_size)
+            column = int(blorp.x / tile_size)
+            tile = pictures[map_a[row][column]]
+            if tile == "portal_purple.png": #CHANGE PORTAL
+                map_level = 3
     
     ### NEXT LEVEL
 
