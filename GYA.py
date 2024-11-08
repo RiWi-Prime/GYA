@@ -35,7 +35,7 @@ accel = 1
 grav = 0
 
 # IMAGES/ACTORS
-blorp = Actor('blorp_grey.png',pos = (100,500))
+blorp = Actor('blorp_grey.png',pos = (75,575))
 blorp.image = 'blorp_grey.png'
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png','portal_pink.png','portal_green.png','portal_purple.png']
 
@@ -131,7 +131,7 @@ def draw_tiles():
                 y = row * tile_size
                 tile = pictures[map_a[row][column]]
                 screen.blit(tile, (x, y))
-    
+
     if map_level == 3:
         for row in range(len(map_b)):
             for column in range(len(map_b[row])):
@@ -163,17 +163,14 @@ def draw():
         screen.blit('background_grey',(0,0))
     if map_level == 2:
         screen.blit('background_pink',(0,0))
+    if map_level == 3:
+        screen.blit('background_green',(0,0))
+    if map_level == 4:
+        screen.blit('background_purple',(0,0))
         # ADD MORE UNDER
 
     draw_grid()
-    if map_level == 1:
-        draw_tiles()
-    if map_level == 2:
-        draw_tiles()
-    if map_level == 3:
-        draw_tiles()
-    if map_level == 4:
-        draw_tiles()
+    draw_tiles()
     
     blorp.draw()
 
@@ -188,9 +185,6 @@ def draw():
 
 def update(dt):
     ### COLLIDERECT
-
-
-    ### NEXT LEVEL
     global map_level
     if map_level == 1:
             row = int(blorp.y / tile_size)
@@ -199,26 +193,21 @@ def update(dt):
             if tile == "portal_pink.png": #CHANGE PORTAL
                 map_level = 2
         
-    if map_level == 2:
+    if map_level == 1:
             row = int(blorp.y / tile_size)
             column = int(blorp.x / tile_size)
-            tile = pictures[map_a[row][column]]
-            if tile == "portal_purple.png": #CHANGE PORTAL
+            tile = pictures[base_map[row][column]]
+            if tile == "portal_green.png": #CHANGE PORTAL
                 map_level = 3
 
-    if map_level == 3:
+    if map_level == 1:
             row = int(blorp.y / tile_size)
             column = int(blorp.x / tile_size)
-            tile = pictures[map_b[row][column]]
+            tile = pictures[base_map[row][column]]
             if tile == "portal_purple.png": #CHANGE PORTAL
                 map_level = 4
     
-    if map_level == 4:
-            row = int(blorp.y / tile_size)
-            column = int(blorp.x / tile_size)
-            tile = pictures[map_c[row][column]]
-            if tile == "portal_purple.png": #CHANGE PORTAL
-                map_level = 5
+    ### NEXT LEVEL
 
     ### MOVEMENT
     if keyboard.D:
