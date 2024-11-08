@@ -254,7 +254,7 @@ def update(dt):
             if keyboard.D:
                 blorp.x -= 0.25
             # ------------------
-            
+
             blorp.image = 'blorp_blue.png'
             if keyboard.A or keyboard.D:
                 blorp.image = 'blorp_red.png'
