@@ -165,6 +165,7 @@ def draw():
 
 
 def update(dt):
+
     ### COLLIDERECT
     global map_level
     global clock
@@ -174,7 +175,9 @@ def update(dt):
             row = int((blorp.y +25) / tile_size)
             column = int((blorp.x) / tile_size)
             tile = pictures[base_map[row][column]]
-           
+            if tile == "portal_pink.png":
+                map_level == 2
+
             if tile == "block_grey.png": #CHANGE PORTAL
                 on_block = True
             if not tile == "block_grey.png": #CHANGE PORTAL
@@ -189,6 +192,11 @@ def update(dt):
             tile = pictures[map_a[row][column]]
             if tile == "portal_purple.png": #CHANGE PORTAL
                 map_level = 3
+
+            if tile == "block_grey.png": #CHANGE PORTAL
+                on_block = True
+            if not tile == "block_grey.png": #CHANGE PORTAL
+                on_block = False
     
     ### NEXT LEVEL
 
