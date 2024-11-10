@@ -211,8 +211,8 @@ def update(dt):
         if tile == "portal_black.png":
             map_level = 1
             money += 10 # change value
-            blorp.pos = (55,600)
-            # ADD POS HERE
+            blorp.pos = (75,575)
+            
     # MAP B
     if map_level == 3:
         row = int(blorp.y / tile_size)
@@ -221,8 +221,8 @@ def update(dt):
         if tile == "portal_black.png":
             map_level = 1
             money += 10 # change value 
-            blorp.pos = (55,600)
-            # ADD POS HERE
+            blorp.pos = (75,575)
+            
     # MAP C
     if map_level == 4:
         row = int(blorp.y / tile_size)
@@ -231,8 +231,8 @@ def update(dt):
         if tile == "portal_black.png":
             map_level = 1
             money += 10 # change value
-            blorp.pos = (55,600)
-            # ADD POS HERE
+            blorp.pos = (75,575)
+            
             
     ## PORTALS BASE MAP / where you enter from 'HOME'
     if map_level == 1:
@@ -241,15 +241,15 @@ def update(dt):
             tile = pictures[base_map[row][column]]
             if tile == "portal_pink.png": #CHANGE PORTAL
                 map_level = 2
-                blorp.pos = (55,600)
+                blorp.pos = (75,575)
 
             if tile == "portal_green.png": #CHANGE PORTAL
                 map_level = 3
-                blorp.pos = (55,600)
+                blorp.pos = (75,575)
 
             if tile == "portal_purple.png": #CHANGE PORTAL
                 map_level = 4
-                blorp.pos = (55,600)
+                blorp.pos = (75,575)
 
     ### MOVEMENT
     if keyboard.D:
