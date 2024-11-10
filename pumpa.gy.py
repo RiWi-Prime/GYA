@@ -165,17 +165,26 @@ def draw():
 
 
 def update(dt):
+
     ### COLLIDERECT
     global map_level
     global clock
     global on_block
 
     if map_level == 1:
-            row = int(blorp.y / tile_size)
-            column = int(blorp.x / tile_size)
+            row = int((blorp.y +25) / tile_size)
+            column = int((blorp.x) / tile_size)
             tile = pictures[base_map[row][column]]
-            if tile == "portal_pink.png": #CHANGE PORTAL
-                map_level = 2
+            if tile == "portal_pink.png":
+                map_level == 2
+
+            if tile == "block_grey.png": #CHANGE PORTAL
+                on_block = True
+            if not tile == "block_grey.png": #CHANGE PORTAL
+                on_block = False
+
+                
+            
         
     if map_level == 2:
             row = int(blorp.y / tile_size)
@@ -183,6 +192,11 @@ def update(dt):
             tile = pictures[map_a[row][column]]
             if tile == "portal_purple.png": #CHANGE PORTAL
                 map_level = 3
+
+            if tile == "block_grey.png": #CHANGE PORTAL
+                on_block = True
+            if not tile == "block_grey.png": #CHANGE PORTAL
+                on_block = False
     
     ### NEXT LEVEL
 
@@ -208,15 +222,15 @@ def update(dt):
         
     ## KEYSBOARD BUTTONS
     # JUMP
-    if on_block == False:
-        blorp.y += 2
+    if on_block == False and clock >= 0.4:
+        blorp.y += 4
     if not blorp.y == min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2):
         on_block = True        
     if (keyboard.space or keyboard.w) and on_block == True:
         clock = 0
         on_block = False
-    if clock <= 2:
-        blorp.y -= 2
+    if clock <= 0.4:
+        blorp.y -= 5
           
             # Makes you jump slower / can also be adjusted to jump faster
         if keyboard.A:

@@ -3,7 +3,7 @@ Game Title:     The Blorp Game
 About:          GYA - Funktions spel
 Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version: v.15
+Current Version: v.1.5.1
 '''
 
 ## IMPORTS
@@ -18,6 +18,8 @@ WIDTH = 1250
 Menu = False # KEYBOARD.I and X
 Menu_value = 0 # KEYBOARD.I and X
 
+home = False
+
 existing = True
 dx, dy = 50, 50
 
@@ -28,6 +30,7 @@ map_level = 1
 ## CODE
 game = True
 print("The Blorp Game")
+print("Verison V.1.5.0")
 
 timer = 0
 clock = 2
@@ -182,6 +185,11 @@ def draw():
     if Menu == True:
         screen.draw.text('MENU',(WIDTH/2, 100,),fontsize=50)
         screen.draw.text('CLOSE [X]',(WIDTH/1.2, 100,),fontsize=25)
+    
+    ### HOME 
+    # HOME BASE TEXT
+    if home == True:
+        screen.draw.text('ENTER A PORTAL TO BEGIN!',(WIDTH/3,230),fontsize=65)
 
 
 def update(dt):
@@ -216,7 +224,7 @@ def update(dt):
             map_level = 1
             # ADD POS HERE
             
-    ## PORTALS BASE MAP
+    ## PORTALS BASE MAP / where you enter from 'HOME'
     if map_level == 1:
             row = int(blorp.y / tile_size)
             column = int(blorp.x / tile_size)
@@ -267,9 +275,7 @@ def update(dt):
             accel = 1
             blorp.image = 'blorp_grey.png'
         
-        
-    ## KEYSBOARD BUTTONS
-    # JUMP
+        # JUMP
         if (keyboard.space or keyboard.w) and accel == 1:
             clock = 0
             grav = 1
@@ -302,11 +308,17 @@ def update(dt):
     if Menu_value >= 2:
         Menu = False
         Menu_value = 0
-
     if keyboard.I: 
         Menu_value = 1
     if keyboard.X:
         Menu_value = 2
+    
+    ### HOME
+    global home
+    if map_level == 1:
+        home = True
+    else:
+        home = False
 
 
 ## END-CODE
