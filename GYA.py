@@ -3,7 +3,7 @@ Game Title:     The Blorp Game
 About:          GYA - Funktions spel
 Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version: v.1.5.0
+Current Version: v.1.5.1
 '''
 
 ## IMPORTS
@@ -271,9 +271,7 @@ def update(dt):
             accel = 1
             blorp.image = 'blorp_grey.png'
         
-        
-    ## KEYSBOARD BUTTONS
-    # JUMP
+        # JUMP
         if (keyboard.space or keyboard.w) and accel == 1:
             clock = 0
             grav = 1
