@@ -212,10 +212,10 @@ def update(dt):
         if tile == "portal_black.png":
             map_level = 1
             blorp.pos = (75,575)
-        if tile == "block_pink.png": #CHANGE PORTAL
-                on_block = True
-        if not tile == "block_pink.png": #CHANGE PORTAL
-                on_block = False    
+        if tile == "block_pink.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False
     # MAP B
     if map_level == 3:
         row = int((blorp.y + 26) / tile_size)
@@ -224,10 +224,10 @@ def update(dt):
         if tile == "portal_black.png":
             map_level = 1
             blorp.pos = (75,575)
-        if tile == "block_green.png": #CHANGE PORTAL
-                on_block = True
-        if not tile == "block_green.png": #CHANGE PORTAL
-                on_block = False    
+        if tile == "block_green.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False
     # MAP C
     if map_level == 4:
         row = int((blorp.y +26) / tile_size)
@@ -236,10 +236,10 @@ def update(dt):
         if tile == "portal_black.png":
             map_level = 1
             blorp.pos = (75,575)
-        if tile == "block_purple.png": #CHANGE PORTAL
-                on_block = True
-        if not tile == "block_purple.png": #CHANGE PORTAL
-                on_block = False    
+        if tile == "block_purple.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False
             
     ## PORTALS BASE MAP / where you enter from 'HOME'
     if map_level == 1:
@@ -257,9 +257,10 @@ def update(dt):
             if tile == "portal_purple.png": #CHANGE PORTAL
                 map_level = 4
                 blorp.pos = (75,575)
-            if tile == "block_grey.png": #CHANGE PORTAL
+
+            if tile == "block_grey.png" or tile == "block_dark_grey.png": #ADD BLOCK
                 on_block = True
-            if not tile == "block_grey.png": #CHANGE PORTAL
+            else:
                 on_block = False
     ### MOVEMENT
     if keyboard.D:

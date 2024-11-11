@@ -220,7 +220,7 @@ def update(dt):
         tile = pictures[map_b[row][column]]
         if tile == "portal_black.png":
             map_level = 1
-            money += 10 # change value 
+            money += 25 # change value 
             blorp.pos = (75,575)
             
     # MAP C
@@ -230,7 +230,7 @@ def update(dt):
         tile = pictures[map_c[row][column]]
         if tile == "portal_black.png":
             map_level = 1
-            money += 10 # change value
+            money += 50 # change value
             blorp.pos = (75,575)
             
             
