@@ -215,14 +215,25 @@ def update(dt):
     ## KEYSBOARD BUTTONS
     # JUMP
     if on_block == False and clock >= 0.4:
-        blorp.y += 4
+        if clock >= 0.45:
+            blorp.y += 1
+        if clock >= 0.6:
+            blorp.y += 2
+        if clock >= 0.8:
+            blorp.y += 2
     if not blorp.y == min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2):
         on_block = True        
     if (keyboard.space or keyboard.w) and on_block == True:
         clock = 0
         on_block = False
     if clock <= 0.4:
-        blorp.y -= 5
+        blorp.y -= 5.5
+        if clock >= 0.2:
+            blorp.y += 1
+        if clock >= 0.3:
+            blorp.y += 1
+        if clock >= 0.35:
+            blorp.y += 2
           
             # Makes you jump slower / can also be adjusted to jump faster
         if keyboard.A:
