@@ -54,7 +54,7 @@ base_map = [
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], #25w, 13h 
 [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
@@ -193,8 +193,6 @@ def draw():
     # HOME BASE TEXT
     if home == True:
         screen.draw.text('ENTER A PORTAL TO BEGIN!',(600,310),fontsize=55,color="darkgrey",alpha=0.4)
-        screen.draw.text('COSMETICS',(WIDTH/3,100),fontsize=55)
-        screen.draw.text(f'Money : {money} B',(10,10),fontsize=25,color="gold")
 
 def update(dt):
     ### COLLIDERECT
@@ -211,7 +209,6 @@ def update(dt):
         tile = pictures[map_a[row][column]]
         if tile == "portal_black.png":
             map_level = 1
-            money += 10 # change value
             blorp.pos = (75,575)
             
     # MAP B
@@ -221,7 +218,6 @@ def update(dt):
         tile = pictures[map_b[row][column]]
         if tile == "portal_black.png":
             map_level = 1
-            money += 10 # change value 
             blorp.pos = (75,575)
             
     # MAP C
@@ -231,7 +227,6 @@ def update(dt):
         tile = pictures[map_c[row][column]]
         if tile == "portal_black.png":
             map_level = 1
-            money += 10 # change value
             blorp.pos = (75,575)
             
             
