@@ -1,7 +1,7 @@
 ''' 
-Game Title:     The Blorp Game   
+Game Title:     The Blorp Game  
 About:          GYA - Funktions bas spel. Vilket betyder 
-                att detta spel innehåller inte funktionerna. 
+                att detta spel innehåller inte funktionerna.
 Creators:       Rikard W, Sebastian B and Oscar K
 
 Current Version: v.1.5.2
