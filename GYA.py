@@ -28,8 +28,6 @@ tile_size = 50
 
 map_level = 1
 
-money = 0
-
 ## CODE
 game = True
 print("The Blorp Game")
