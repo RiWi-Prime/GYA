@@ -197,7 +197,9 @@ def draw():
 
 def update(dt):
     ### COLLIDERECT
-
+    global map_level
+    global clock
+    global on_block
     ### NEXT LEVEL
     global map_level
     global money
@@ -236,7 +238,7 @@ def update(dt):
             
     ## PORTALS BASE MAP / where you enter from 'HOME'
     if map_level == 1:
-            row = int(blorp.y / tile_size)
+            row = int((blorp.y +25) / tile_size)
             column = int(blorp.x / tile_size)
             tile = pictures[base_map[row][column]]
             if tile == "portal_pink.png": #CHANGE PORTAL
@@ -250,7 +252,10 @@ def update(dt):
             if tile == "portal_purple.png": #CHANGE PORTAL
                 map_level = 4
                 blorp.pos = (75,575)
-
+            if tile == "block_grey.png": #CHANGE PORTAL
+                on_block = True
+            if not tile == "block_grey.png": #CHANGE PORTAL
+                on_block = False
     ### MOVEMENT
     if keyboard.D:
         blorp.x += 3
@@ -263,38 +268,29 @@ def update(dt):
     blorp.y = min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2)
 
     # GRAVITATION
-    global timer
+    clock += dt
 
-    if existing == True:
-        global clock
-        global accel
-        global grav
-        accel += dt
-        clock += dt
-        grav -= dt
-
-        if  clock >= 2:
-            blorp.y += 2*accel
-
-        if  not blorp.y == min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2):
-            accel = 1
-            blorp.image = 'blorp_grey.png'
-        
-        # JUMP
-        if (keyboard.space or keyboard.w) and accel == 1:
-            clock = 0
-            grav = 1
-        if not accel == 1:
-            blorp.y +=-5*grav
-
-            # Makes you jump slower / can also be adjusted to jump faster
-            if keyboard.A:
-                blorp.x += 0.25
-            if keyboard.D:
-                blorp.x -= 0.25
-            # ------------------
-
-            blorp.image = 'blorp_grey_jump.png'
+    # JUMP
+    if on_block == False and clock >= 0.4:
+        if clock >= 0.45:
+            blorp.y += 1
+        if clock >= 0.6:
+            blorp.y += 2
+        if clock >= 0.8:
+            blorp.y += 2
+    if not blorp.y == min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2):
+        on_block = True        
+    if (keyboard.space or keyboard.w) and on_block == True:
+        clock = 0
+        on_block = False
+    if clock <= 0.4:
+        blorp.y -= 5.5
+        if clock >= 0.2:
+            blorp.y += 1
+        if clock >= 0.3:
+            blorp.y += 1
+        if clock >= 0.35:
+            blorp.y += 2
 
 
     ## KEYSBOARD BUTTONS
