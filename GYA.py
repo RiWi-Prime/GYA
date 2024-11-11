@@ -3,7 +3,7 @@ Game Title:     The Blorp Game
 About:          GYA - Funktions spel
 Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version: v.1.5.1
+Current Version: v.1.5.2
 '''
 
 ## IMPORTS
@@ -27,10 +27,12 @@ tile_size = 50
 
 map_level = 1
 
+money = 0
+
 ## CODE
 game = True
 print("The Blorp Game")
-print("Verison V.1.5.0")
+print("Verison V.1.5.2")
 
 timer = 0
 clock = 2
@@ -189,14 +191,16 @@ def draw():
     ### HOME 
     # HOME BASE TEXT
     if home == True:
-        screen.draw.text('ENTER A PORTAL TO BEGIN!',(WIDTH/3,230),fontsize=65)
-
+        screen.draw.text('ENTER A PORTAL TO BEGIN!',(600,310),fontsize=55,color="darkgrey",alpha=0.4)
+        screen.draw.text('COSMETICS',(WIDTH/3,100),fontsize=55)
+        screen.draw.text(f'Money : {money} B',(10,10),fontsize=25,color="gold")
 
 def update(dt):
     ### COLLIDERECT
 
     ### NEXT LEVEL
     global map_level
+    global money
 
     ## GOLDEN PORTAL
     # MAP A
@@ -206,7 +210,9 @@ def update(dt):
         tile = pictures[map_a[row][column]]
         if tile == "portal_black.png":
             map_level = 1
-            # ADD POS HERE
+            money += 10 # change value
+            blorp.pos = (75,575)
+            
     # MAP B
     if map_level == 3:
         row = int(blorp.y / tile_size)
@@ -214,7 +220,9 @@ def update(dt):
         tile = pictures[map_b[row][column]]
         if tile == "portal_black.png":
             map_level = 1
-            # ADD POS HERE
+            money += 10 # change value 
+            blorp.pos = (75,575)
+            
     # MAP C
     if map_level == 4:
         row = int(blorp.y / tile_size)
@@ -222,7 +230,9 @@ def update(dt):
         tile = pictures[map_c[row][column]]
         if tile == "portal_black.png":
             map_level = 1
-            # ADD POS HERE
+            money += 10 # change value
+            blorp.pos = (75,575)
+            
             
     ## PORTALS BASE MAP / where you enter from 'HOME'
     if map_level == 1:
@@ -231,20 +241,15 @@ def update(dt):
             tile = pictures[base_map[row][column]]
             if tile == "portal_pink.png": #CHANGE PORTAL
                 map_level = 2
-        
-    if map_level == 1:
-            row = int(blorp.y / tile_size)
-            column = int(blorp.x / tile_size)
-            tile = pictures[base_map[row][column]]
+                blorp.pos = (75,575)
+
             if tile == "portal_green.png": #CHANGE PORTAL
                 map_level = 3
+                blorp.pos = (75,575)
 
-    if map_level == 1:
-            row = int(blorp.y / tile_size)
-            column = int(blorp.x / tile_size)
-            tile = pictures[base_map[row][column]]
             if tile == "portal_purple.png": #CHANGE PORTAL
                 map_level = 4
+                blorp.pos = (75,575)
 
     ### MOVEMENT
     if keyboard.D:
