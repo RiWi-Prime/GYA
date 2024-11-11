@@ -206,35 +206,44 @@ def update(dt):
     ## GOLDEN PORTAL
     # MAP A
     if map_level == 2:
-        row = int(blorp.y / tile_size)
+        row = int((blorp.y +26) / tile_size)
         column = int(blorp.x / tile_size)
         tile = pictures[map_a[row][column]]
         if tile == "portal_black.png":
             map_level = 1
             blorp.pos = (75,575)
-            
+        if tile == "block_pink.png": #CHANGE PORTAL
+                on_block = True
+        if not tile == "block_pink.png": #CHANGE PORTAL
+                on_block = False    
     # MAP B
     if map_level == 3:
-        row = int(blorp.y / tile_size)
+        row = int((blorp.y + 26) / tile_size)
         column = int(blorp.x / tile_size)
         tile = pictures[map_b[row][column]]
         if tile == "portal_black.png":
             map_level = 1
             blorp.pos = (75,575)
-            
+        if tile == "block_green.png": #CHANGE PORTAL
+                on_block = True
+        if not tile == "block_green.png": #CHANGE PORTAL
+                on_block = False    
     # MAP C
     if map_level == 4:
-        row = int(blorp.y / tile_size)
+        row = int((blorp.y +26) / tile_size)
         column = int(blorp.x / tile_size)
         tile = pictures[map_c[row][column]]
         if tile == "portal_black.png":
             map_level = 1
             blorp.pos = (75,575)
-            
+        if tile == "block_purple.png": #CHANGE PORTAL
+                on_block = True
+        if not tile == "block_purple.png": #CHANGE PORTAL
+                on_block = False    
             
     ## PORTALS BASE MAP / where you enter from 'HOME'
     if map_level == 1:
-            row = int((blorp.y +25) / tile_size)
+            row = int((blorp.y +26) / tile_size)
             column = int(blorp.x / tile_size)
             tile = pictures[base_map[row][column]]
             if tile == "portal_pink.png": #CHANGE PORTAL
