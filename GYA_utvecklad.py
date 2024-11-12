@@ -27,7 +27,7 @@ tile_size = 50
 
 map_level = 1
 
-money = 1000
+money = 100000
 
 loot = ["blorp_special.png"]
 spin_the_wheel = 0
@@ -53,8 +53,9 @@ clock = 2
 on_block = True
 
 # IMAGES/ACTORS
-blorp = Actor('blorp_grey.png',pos = (75,575))
-blorp.image = 'blorp_grey.png'
+blorp_select = 'blorp_grey.png'
+blorp = Actor(f'{blorp_select}',pos = (75,575))
+#blorp.image = 'blorp_grey.png'
 blorp_color = 1
 casino = Actor('sign_casino.png',pos = (225,125))
 sign = Actor('sign_wood.png',pos = (875,75))
@@ -184,13 +185,17 @@ def on_mouse_down(pos,button):
             print('You need more money!')
 
 def loot_box():
-    spin_the_wheel = random.randint(0,100)
+    global unlock_special
+    global unlock_ultimate
+    spin_the_wheel = random.randint(0,1000)
     if spin_the_wheel == 1000:
         print('You won "GLITCHED BLORP"')
+        unlock_special = True
     else:
         print(f'Your number was {spin_the_wheel}, You lost!')
-    if spin_the_wheel == 100:
+    if spin_the_wheel in [100,110,120,130,140,150,160,170,180,190,200]:
         print('You won "ULTIMATE BLORP"')
+        unlock_ultimate = True
 
 # FUNKTIONS
 def draw():
@@ -333,6 +338,7 @@ def update(dt):
                 on_block = False
 
             ## BUY SKINS
+            global blorp_select
             global blorp_color
             global unlock_blue
             global unlock_light_blue
@@ -346,6 +352,7 @@ def update(dt):
             if not blorp_color == 2 and money >= 25:
                 if tile == "blorp_blue.png":
                     blorp_color = 2
+                    blorp_select = 'blorp_blue.png'
                     if unlock_blue != True:
                         money -= 25
                         unlock_blue = True
@@ -353,6 +360,7 @@ def update(dt):
             if not blorp_color == 3 and money >= 25:
                 if tile == "blorp_light_blue.png":
                     blorp_color = 3
+                    blorp_select = 'blorp_light_blue.png'
                     if unlock_light_blue != True:
                         money -= 25
                         unlock_light_blue = True
@@ -360,6 +368,7 @@ def update(dt):
             if not blorp_color == 4 and money >= 25:
                 if tile == "blorp_green.png":
                     blorp_color = 4
+                    blorp_select = 'blorp_green.png'
                     if unlock_green != True:
                         money -= 25
                         unlock_green = True
@@ -367,6 +376,7 @@ def update(dt):
             if not blorp_color == 5 and money >= 25:
                 if tile == "blorp_yellow.png":
                     blorp_color = 5
+                    blorp_select = 'blorp_yellow.png'
                     if unlock_yellow != True:
                         money -= 25
                         unlock_yellow = True
@@ -374,6 +384,7 @@ def update(dt):
             if not blorp_color == 6 and money >= 25:
                 if tile == "blorp_red.png":
                     blorp_color = 6
+                    blorp_select = 'blorp_red.png'
                     if unlock_red != True:
                         money -= 25
                         unlock_red = True
@@ -381,9 +392,16 @@ def update(dt):
             if not blorp_color == 7 and money >= 25:
                 if tile == "blorp_magenta.png":
                     blorp_color = 7
+                    blorp_select = 'blorp_magenta.png'
                     if unlock_megenta != True:
                         money -= 25
                         unlock_megenta = True
+            # SPEICAL
+            if unlock_special == True:
+                blorp_color = 1000
+                blorp_select = 'blorp_special.png'
+            # ULTIMATE
+            # ADD HERE
 
     ### MOVEMENT
     if keyboard.D:
@@ -421,7 +439,7 @@ def update(dt):
         if clock >= 0.35:
             blorp.y += 2
     if on_block == True:
-            blorp.image = 'blorp_grey.png'
+            blorp.image = blorp_select
 
             # Makes you jump slower / can also be adjusted to jump faster
             if keyboard.A:
@@ -446,6 +464,8 @@ def update(dt):
                 blorp.image = 'blorp_red_jump.png'
             if blorp_color == 7:
                 blorp.image = 'blorp_magenda_jump.png'
+            if blorp_color == 1000:
+                blorp.image = 'blorp_special.png' # CHANGE HERE TO JUMP
                 
 
 
