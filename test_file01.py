@@ -1,305 +1,119 @@
-''' 
-Game Title:     The Blorp Game   
-About:          GYA - Funktions spel
-Creators:       Rikard W, Sebastian B and Oscar K
+import os, sys
+import pygame
 
-Current Version: v.15
-'''
-
-## IMPORTS
-import random
-import pgzrun
-import os
-
-# Variables
-HEIGHT = 650
-WIDTH = 1250
-
-Menu = False # KEYBOARD.I and X
-Menu_value = 0 # KEYBOARD.I and X
-
-existing = True
-dx, dy = 50, 50
-
-tile_size = 50
-
-map_level = 1
-
-## CODE
-game = True
-print("The Blorp Game")
-
-timer = 0
-clock = 2
-accel = 1
-grav = 0
-
-# IMAGES/ACTORS
-blorp = Actor('blorp_grey.png',pos = (75,575))
-blorp.image = 'blorp_grey.png'
-pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png','portal_pink.png','portal_green.png','portal_purple.png']
-
-# WORLD DATA
-base_map = [
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], #25w, 13h 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 6, 0, 7, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-]
-
-map_a = [
-[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2, 5, 0, 2], 
-[2, 0, 2, 2, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 2, 0, 2, 2, 0, 0, 0, 2, 2, 0, 2], 
-[2, 0, 0, 2, 2, 0, 0, 0, 2, 2, 0, 2, 2, 0, 2, 0, 0, 2, 2, 0, 0, 2, 0, 0, 2], 
-[2, 2, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 2, 0, 0, 2, 2, 0, 0, 0, 2, 2], 
-[2, 0, 0, 0, 2, 0, 0, 0, 2, 2, 0, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2], 
-[2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2], 
-[2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-]
-
-map_b = [
-[3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-[3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 0, 0, 0, 3], 
-[3, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 3], 
-[3, 3, 0, 3, 3, 3, 3, 3, 0, 3, 0, 3, 0, 3, 0, 3, 3, 3, 0, 3, 3, 3, 3, 0, 3], 
-[3, 3, 0, 3, 0, 0, 3, 3, 0, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3], 
-[3, 3, 0, 3, 3, 0, 3, 0, 0, 3, 0, 3, 3, 3, 3, 3, 3, 0, 3, 3, 3, 3, 0, 3, 3], 
-[3, 3, 0, 0, 3, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 3, 3, 0, 3, 3, 0, 0, 0, 0, 3], 
-[3, 3, 3, 0, 3, 3, 0, 3, 3, 3, 3, 3, 0, 3, 0, 3, 3, 0, 0, 3, 0, 3, 3, 0, 3], 
-[3, 3, 3, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 3, 3, 0, 3, 0, 3, 0, 0, 3], 
-[3, 3, 0, 0, 0, 3, 3, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3], 
-[3, 3, 0, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3, 3, 3], 
-[3, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 6, 3], 
-[3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-]
-
-map_c = [
-[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
-[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
-[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
-[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
-[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
-[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
-[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
-[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
-[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
-[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
-[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4], 
-[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-]
-
-# OTHER-FUNKTIONS
-def draw_grid():
-    '''draw a nXn grid'''
-    x,y = 0,0
-
-    for _ in range(tile_size+1):
-        screen.draw.line((x,0),(x,HEIGHT),'red')
-        screen.draw.line((0,y),(WIDTH,y),'red')
-        x += dx 
-        y += dy 
-
-def draw_tiles():
-    if map_level == 1:
-        for row in range(len(base_map)):
-            for column in range(len(base_map[row])):
-                x = column * tile_size
-                y = row * tile_size
-                tile = pictures[base_map[row][column]]
-                screen.blit(tile, (x, y))
-                
-    if map_level == 2:
-        for row in range(len(map_a)):
-            for column in range(len(map_a[row])):
-                x = column * tile_size
-                y = row * tile_size
-                tile = pictures[map_a[row][column]]
-                screen.blit(tile, (x, y))
-
-    if map_level == 3:
-        for row in range(len(map_b)):
-            for column in range(len(map_b[row])):
-                x = column * tile_size
-                y = row * tile_size
-                tile = pictures[map_b[row][column]]
-                screen.blit(tile, (x, y))
-
-    if map_level == 4:
-        for row in range(len(map_c)):
-            for column in range(len(map_c[row])):
-                x = column * tile_size
-                y = row * tile_size
-                tile = pictures[map_c[row][column]]
-                screen.blit(tile, (x, y))
-
-def on_mouse_down(pos,button): 
-     if button == mouse.RIGHT and blorp.collidepoint(pos):
-          print('Du har inte råd/Köpet genomfördes') #Future shop funktion
-
-
-# FUNKTIONS
-def draw():
-    ### BASIC DRAW (screen clear/blit/draw ect...)
-    screen.clear()
-
-    # MAP . DRAW
-    if map_level == 1:
-        screen.blit('background_grey',(0,0))
-    if map_level == 2:
-        screen.blit('background_pink',(0,0))
-    if map_level == 3:
-        screen.blit('background_green',(0,0))
-    if map_level == 4:
-        screen.blit('background_purple',(0,0))
-        # ADD MORE UNDER
-
-    draw_grid()
-    draw_tiles()
+# Class for the orange dude
+class Player(object):
     
-    blorp.draw()
+    def __init__(self):
+        self.rect = pygame.Rect(32, 32, 16, 16)
 
-    # MENU / COULD BE CONVERTED
-    if Menu == True:
-        screen.draw.text('MENU',(WIDTH/2, 100,),fontsize=50)
-        screen.draw.text('CLOSE [X]',(WIDTH/1.2, 100,),fontsize=25)
-
-
-def update(dt):
-    ### COLLIDERECT
-    global map_level
-    if map_level == 1:
-            row = int(blorp.y / tile_size)
-            column = int(blorp.x / tile_size)
-            tile = pictures[base_map[row][column]]
-            if tile == "portal_pink.png": #CHANGE PORTAL
-                map_level = 2
-
-    if map_level == 2:
-            row = int(blorp.y / tile_size)
-            column = int(blorp.x / tile_size)
-            tile = pictures[base_map[row][column]]
-            if tile == "portal_pink.png": #CHANGE PORTAL
-                map_level = 1
+    def move(self, dx, dy):
         
-    if map_level == 1:
-            row = int(blorp.y / tile_size)
-            column = int(blorp.x / tile_size)
-            tile = pictures[base_map[row][column]]
-            if tile == "portal_green.png": #CHANGE PORTAL
-                map_level = 3
-
-    if map_level == 3:
-            row = int(blorp.y / tile_size)
-            column = int(blorp.x / tile_size)
-            tile = pictures[base_map[row][column]]
-            if tile == "portal_green.png": #CHANGE PORTAL
-                map_level = 1
-
-    if map_level == 1:
-            row = int(blorp.y / tile_size)
-            column = int(blorp.x / tile_size)
-            tile = pictures[base_map[row][column]]
-            if tile == "portal_purple.png": #CHANGE PORTAL
-                map_level = 4
-
-    if map_level == 4:
-            row = int(blorp.y / tile_size)
-            column = int(blorp.x / tile_size)
-            tile = pictures[base_map[row][column]]
-            if tile == "portal_purple.png": #CHANGE PORTAL
-                map_level = 1
+        # Move each axis separately. Note that this checks for collisions both times.
+        if dx != 0:
+            self.move_single_axis(dx, 0)
+        if dy != 0:
+            self.move_single_axis(0, dy)
     
-    ### NEXT LEVEL
-
-    ### MOVEMENT
-    if keyboard.D:
-        blorp.x += 3
-
-    if keyboard.A:
-        blorp.x -= 3
-
-    # BARRIER
-    blorp.x = min(max(blorp.x,blorp.width//2),WIDTH-blorp.width//2)
-    blorp.y = min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2)
-
-    # GRAVITATION
-    global timer
-
-    if existing == True:
-        global clock
-        global accel
-        global grav
-        accel += dt
-        clock += dt
-        grav -= dt
-
-        if  clock >= 2:
-            blorp.y += 2*accel
-
-        if  not blorp.y == min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2):
-            accel = 1
-            blorp.image = 'blorp_grey.png'
+    def move_single_axis(self, dx, dy):
         
-        
-    ## KEYSBOARD BUTTONS
-    # JUMP
-        if (keyboard.space or keyboard.w) and accel == 1:
-            clock = 0
-            grav = 1
-        if not accel == 1:
-            blorp.y +=-5*grav
+        # Move the rect
+        self.rect.x += dx
+        self.rect.y += dy
 
-            # Makes you jump slower / can also be adjusted to jump faster
-            if keyboard.A:
-                blorp.x += 0.25
-            if keyboard.D:
-                blorp.x -= 0.25
-            # ------------------
-            
-            blorp.image = 'blorp_grey_jump.png'
+        # If you collide with a wall, move out based on velocity
+        for wall in walls:
+            if self.rect.colliderect(wall.rect):
+                if dx > 0: # Moving right; Hit the left side of the wall
+                    self.rect.right = wall.rect.left
+                if dx < 0: # Moving left; Hit the right side of the wall
+                    self.rect.left = wall.rect.right
+                if dy > 0: # Moving down; Hit the top side of the wall
+                    self.rect.bottom = wall.rect.top
+                if dy < 0: # Moving up; Hit the bottom side of the wall
+                    self.rect.top = wall.rect.bottom
 
+# Nice class to hold a wall rect
+class Wall(object):
+    
+    def __init__(self, pos):
+        walls.append(self)
+        self.rect = pygame.Rect(pos[0], pos[1], 16, 16)
 
-    ## KEYSBOARD BUTTONS
-    # MENU
-    '''Create a variable that contains a number, so that when pressing
-       [I] the menu will not close instantly when you let go of the key.
-       
-       You will have to press it again!
+# Initialise pygame
+os.environ["SDL_VIDEO_CENTERED"] = "1"
+pygame.init()
 
-       Menu_value have the values 0, 1 or 2
-       Menu is True or False'''
-    global Menu
-    global Menu_value
-    if Menu_value == 1:
-        Menu = True
-    if Menu_value >= 2:
-        Menu = False
-        Menu_value = 0
+# Set up the display
+pygame.display.set_caption("Get to the red square!")
+screen = pygame.display.set_mode((320, 240))
 
-    if keyboard.I: 
-        Menu_value = 1
-    if keyboard.X:
-        Menu_value = 2
+clock = pygame.time.Clock()
+walls = [] # List to hold the walls
+player = Player() # Create the player
 
+# Holds the level layout in a list of strings.
+level = [
+"WWWWWWWWWWWWWWWWWWWW",
+"W                  W",
+"W         WWWWWW   W",
+"W   WWWW       W   W",
+"W   W        WWWW  W",
+"W WWW  WWWW        W",
+"W   W     W W      W",
+"W   W     W   WWW WW",
+"W   WWW WWW   W W  W",
+"W     W   W   W W  W",
+"WWW   W   WWWWW W  W",
+"W W      WW        W",
+"W W   WWWW   WWW   W",
+"W     W    E   W   W",
+"WWWWWWWWWWWWWWWWWWWW",
+]
 
-## END-CODE
+# Parse the level string above. W = wall, E = exit
+x = y = 0
+for row in level:
+    for col in row:
+        if col == "W":
+            Wall((x, y))
+        if col == "E":
+            end_rect = pygame.Rect(x, y, 16, 16)
+        x += 16
+    y += 16
+    x = 0
 
-#SCREEN
-os.environ['SDL_VIDEO_CENTERED'] = '1'
-pgzrun.go()
+running = True
+while running:
+    
+    clock.tick(60)
+    
+    for e in pygame.event.get():
+        if e.type == pygame.QUIT:
+            running = False
+        if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+            running = False
+    
+    # Move the player if an arrow key is pressed
+    key = pygame.key.get_pressed()
+    if key[pygame.K_LEFT]:
+        player.move(-2, 0)
+    if key[pygame.K_RIGHT]:
+        player.move(2, 0)
+    if key[pygame.K_UP]:
+        player.move(0, -2)
+    if key[pygame.K_DOWN]:
+        player.move(0, 2)
+    
+    # Just added this to make it slightly fun ;)
+    if player.rect.colliderect(end_rect):
+         pygame.quit()
+         sys.exit()
+    
+    # Draw the scene
+    screen.fill((0, 0, 0))
+    for wall in walls:
+        pygame.draw.rect(screen, (255, 255, 255), wall.rect)
+    pygame.draw.rect(screen, (255, 0, 0), end_rect)
+    pygame.draw.rect(screen, (255, 200, 0), player.rect)
+    pygame.display.flip()
