@@ -31,7 +31,17 @@ money = 1000
 
 loot = ["blorp_special.png"]
 spin_the_wheel = 0
-unlock = False
+# unlock color
+unlock_blue = False
+unlock_light_blue = False
+unlock_green = False
+unlock_yellow = False
+unlock_red = False
+unlock_megenta= False
+# unlock special and ultimate
+unlock_special = False
+unlock_ultimate = False
+
 
 ## CODE
 game = True
@@ -218,6 +228,38 @@ def draw():
         wheel.draw()
         screen.draw.text('COSMETICS',(760,60),fontsize=55,color='black',alpha=0.6)
 
+        ## UNLOCK GUI
+        # BLUE
+        if unlock_blue != False:
+            screen.draw.text('Owned',(600,125),fontsize=25,color='silver',alpha=1)
+        else:
+            screen.draw.text('25 B',(610,125),fontsize=25,color='gold',alpha=1)
+        # LIGHT BLUE
+        if unlock_light_blue != False:
+            screen.draw.text('Owned',(700,125),fontsize=25,color='silver',alpha=1)
+        else:
+            screen.draw.text('25 B',(710,125),fontsize=25,color='gold',alpha=1)
+        # GREEN
+        if unlock_green != False:
+            screen.draw.text('Owned',(800,125),fontsize=25,color='silver',alpha=1)
+        else:
+            screen.draw.text('25 B',(810,125),fontsize=25,color='gold',alpha=1)
+        # YELLOW
+        if unlock_yellow != False:
+            screen.draw.text('Owned',(900,125),fontsize=25,color='silver',alpha=1)
+        else:
+            screen.draw.text('25 B',(910,125),fontsize=25,color='gold',alpha=1)
+        # RED
+        if unlock_red != False:
+            screen.draw.text('Owned',(1000,125),fontsize=25,color='silver',alpha=1)
+        else:
+            screen.draw.text('25 B',(1010,125),fontsize=25,color='gold',alpha=1)
+        # MEGENTA
+        if unlock_megenta != False:
+            screen.draw.text('Owned',(1100,125),fontsize=25,color='silver',alpha=1)
+        else:
+            screen.draw.text('25 B',(1110,125),fontsize=25,color='gold',alpha=1)
+
 def update(dt):
     ### COLLIDERECT
 
@@ -292,13 +334,56 @@ def update(dt):
 
             ## BUY SKINS
             global blorp_color
-            global unlock
+            global unlock_blue
+            global unlock_light_blue
+            global unlock_green
+            global unlock_yellow
+            global unlock_red
+            global unlock_megenta
+            global unlock_special
+            global unlock_ultimate
+            # BLUE
             if not blorp_color == 2 and money >= 25:
                 if tile == "blorp_blue.png":
                     blorp_color = 2
-                    money -= 25
-                    unlock = True
-                    
+                    if unlock_blue != True:
+                        money -= 25
+                        unlock_blue = True
+            # LIGHT BLUE
+            if not blorp_color == 3 and money >= 25:
+                if tile == "blorp_light_blue.png":
+                    blorp_color = 3
+                    if unlock_light_blue != True:
+                        money -= 25
+                        unlock_light_blue = True
+            # GREEN
+            if not blorp_color == 4 and money >= 25:
+                if tile == "blorp_green.png":
+                    blorp_color = 4
+                    if unlock_green != True:
+                        money -= 25
+                        unlock_green = True
+            # YELLOW
+            if not blorp_color == 5 and money >= 25:
+                if tile == "blorp_yellow.png":
+                    blorp_color = 5
+                    if unlock_yellow != True:
+                        money -= 25
+                        unlock_yellow = True
+            # RED
+            if not blorp_color == 6 and money >= 25:
+                if tile == "blorp_red.png":
+                    blorp_color = 6
+                    if unlock_red != True:
+                        money -= 25
+                        unlock_red = True
+            # MAGENTA
+            if not blorp_color == 7 and money >= 25:
+                if tile == "blorp_magenta.png":
+                    blorp_color = 7
+                    if unlock_megenta != True:
+                        money -= 25
+                        unlock_megenta = True
 
     ### MOVEMENT
     if keyboard.D:
@@ -352,15 +437,16 @@ def update(dt):
             if blorp_color == 2:
                 blorp.image = 'blorp_blue_jump.png'
             if blorp_color == 3:
-                blorp.image = 'blorp_green_jump.png'
-            if blorp_color == 4:
                 blorp.image = 'blorp_light_blue_jump.png'
+            if blorp_color == 4:
+                blorp.image = 'blorp_green_jump.png'
             if blorp_color == 5:
-                blorp.image = 'blorp_magenda_jump.png'
+                blorp.image = 'blorp_yellow_jump.png'
             if blorp_color == 6:
                 blorp.image = 'blorp_red_jump.png'
             if blorp_color == 7:
-                blorp.image = 'blorp_yellow_jump.png'
+                blorp.image = 'blorp_magenda_jump.png'
+                
 
 
     ## KEYSBOARD BUTTONS
@@ -400,4 +486,5 @@ def update(dt):
 
 #SCREEN
 os.environ['SDL_VIDEO_CENTERED'] = '1'
+
 pgzrun.go()
