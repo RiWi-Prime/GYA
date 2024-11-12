@@ -3,7 +3,7 @@ Game Title:     The Blorp Game
 About:          GYA - Funktions spel
 Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version: v.1.5.2
+Current Version: v.1.5.3
 '''
 
 ## IMPORTS
@@ -27,10 +27,11 @@ tile_size = 50
 
 map_level = 1
 
-money = 100000
+money = 1000
 
 loot = ["blorp_special.png"]
 spin_the_wheel = 0
+unlock = False
 
 ## CODE
 game = True
@@ -44,7 +45,7 @@ on_block = True
 # IMAGES/ACTORS
 blorp = Actor('blorp_grey.png',pos = (75,575))
 blorp.image = 'blorp_grey.png'
-blorp.color = 1
+blorp_color = 1
 casino = Actor('sign_casino.png',pos = (225,125))
 sign = Actor('sign_wood.png',pos = (875,75))
 wheel = Actor('casino_wheel.png',pos = (225,250))
@@ -173,12 +174,13 @@ def on_mouse_down(pos,button):
             print('You need more money!')
 
 def loot_box():
-    global blorp
     spin_the_wheel = random.randint(0,100)
-    if spin_the_wheel == 100:
+    if spin_the_wheel == 1000:
         print('You won "GLITCHED BLORP"')
     else:
         print(f'Your number was {spin_the_wheel}, You lost!')
+    if spin_the_wheel == 100:
+        print('You won "ULTIMATE BLORP"')
 
 # FUNKTIONS
 def draw():
@@ -288,6 +290,16 @@ def update(dt):
             else:
                 on_block = False
 
+            ## BUY SKINS
+            global blorp_color
+            global unlock
+            if not blorp_color == 2 and money >= 25:
+                if tile == "blorp_blue.png":
+                    blorp_color = 2
+                    money -= 25
+                    unlock = True
+                    
+
     ### MOVEMENT
     if keyboard.D:
         blorp.x += 3
@@ -302,7 +314,7 @@ def update(dt):
     # GRAVITATION
     clock += dt
   
-        # JUMP
+    # JUMP
     if on_block == False and clock >= 0.4:
         if clock >= 0.45:
             blorp.y += 1
@@ -332,20 +344,22 @@ def update(dt):
             if keyboard.D:
                 blorp.x -= 0.25
             # ------------------
+
+    # While jumping
     if on_block == False:
-            if blorp.color == 1:
+            if blorp_color == 1:
                 blorp.image = 'blorp_grey_jump.png'
-            if blorp.color == 2:
+            if blorp_color == 2:
                 blorp.image = 'blorp_blue_jump.png'
-            if blorp.color == 3:
+            if blorp_color == 3:
                 blorp.image = 'blorp_green_jump.png'
-            if blorp.color == 4:
+            if blorp_color == 4:
                 blorp.image = 'blorp_light_blue_jump.png'
-            if blorp.color == 5:
-                blorp.image = 'blorp_magenta_jump.png'
-            if blorp.color == 6:
+            if blorp_color == 5:
+                blorp.image = 'blorp_magenda_jump.png'
+            if blorp_color == 6:
                 blorp.image = 'blorp_red_jump.png'
-            if blorp.color == 7:
+            if blorp_color == 7:
                 blorp.image = 'blorp_yellow_jump.png'
 
 
