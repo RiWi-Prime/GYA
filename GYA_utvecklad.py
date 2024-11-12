@@ -46,6 +46,7 @@ blorp.image = 'blorp_grey.png'
 blorp.color = 1
 casino = Actor('sign_casino.png',pos = (225,125))
 sign = Actor('sign_wood.png',pos = (875,75))
+wheel = Actor('casino_wheel.png',pos = (225,250))
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png',
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
@@ -199,6 +200,7 @@ def draw():
         screen.draw.text(f'Money : {money} B',(10,10),fontsize=25,color="gold")
         casino.draw()
         sign.draw()
+        wheel.draw()
         screen.draw.text('COSMETICS',(760,60),fontsize=55,color='black',alpha=0.6)
 
 def update(dt):
