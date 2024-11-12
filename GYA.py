@@ -199,8 +199,7 @@ def update(dt):
     global on_block
     ### NEXT LEVEL
     global map_level
-    global money
-
+    
     ## GOLDEN PORTAL
     # MAP A
     if map_level == 2:
@@ -260,6 +259,7 @@ def update(dt):
                 on_block = True
             else:
                 on_block = False
+                
     ### MOVEMENT
     if keyboard.D:
         blorp.x += 3
