@@ -3,7 +3,7 @@ Game Title:     The Blorp Game
 About:          GYA - Funktions spel
 Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version: v.1.5.3
+Current Version: v.1.6.0
 '''
 
 ## IMPORTS
@@ -31,6 +31,8 @@ money = 100000
 
 loot = ["blorp_special.png"]
 spin_the_wheel = 0
+price_1 = False 
+price_2 = False
 # unlock color
 unlock_blue = False
 unlock_light_blue = False
@@ -46,7 +48,7 @@ unlock_ultimate = False
 ## CODE
 game = True
 print("The Blorp Game")
-print("Verison V.1.5.3")
+print("Verison V.1.6.0")
 
 timer = 0
 clock = 2
@@ -177,6 +179,8 @@ def draw_tiles():
 
 def on_mouse_down(pos,button): 
      global money
+     global unlock_special
+    # Buy loot box
      if button == mouse.LEFT and blorp.collidepoint(pos):
         if money >= 50:
             loot_box()
@@ -184,18 +188,27 @@ def on_mouse_down(pos,button):
         else:
             print('You need more money!')
 
+    # Select skin
+     if button == mouse.LEFT and wheel.collidepoint(pos) and Menu == True and price_1 == True:
+         unlock_special = True
+        
+
 def loot_box():
     global unlock_special
     global unlock_ultimate
-    spin_the_wheel = random.randint(0,1000)
+    global price_1
+    global price_2
+    spin_the_wheel = random.randint(1,1000)
     if spin_the_wheel == 1000:
         print('You won "GLITCHED BLORP"')
         unlock_special = True
+        price_1 = True
     else:
         print(f'Your number was {spin_the_wheel}, You lost!')
     if spin_the_wheel in [100,110,120,130,140,150,160,170,180,190,200]:
-        print('You won "ULTIMATE BLORP"')
+        print(f'You won "ULTIMATE BLORP"')
         unlock_ultimate = True
+        price_2 = True
 
 # FUNKTIONS
 def draw():
@@ -219,18 +232,20 @@ def draw():
     blorp.draw()
 
     # MENU / COULD BE CONVERTED
-    if Menu == True:
+    if Menu == True and home == True:
         screen.draw.text('MENU',(WIDTH/2, 100,),fontsize=50)
         screen.draw.text('CLOSE [X]',(WIDTH/1.2, 100,),fontsize=25)
+        # ...draw()  # Change for a Yes
+        # ...draw()  # Change for a No
     
     ### HOME 
     # HOME BASE TEXT
     if home == True:
         screen.draw.text('ENTER A PORTAL TO BEGIN!',(600,310),fontsize=55,color="darkgrey",alpha=0.4)
         screen.draw.text(f'Money : {money} B',(10,10),fontsize=25,color="gold")
+        wheel.draw()
         casino.draw()
         sign.draw()
-        wheel.draw()
         screen.draw.text('COSMETICS',(760,60),fontsize=55,color='black',alpha=0.6)
 
         ## UNLOCK GUI
@@ -438,9 +453,11 @@ def update(dt):
             blorp.y += 1
         if clock >= 0.35:
             blorp.y += 2
+
+    ## ON BLOCK IS TRUE OR FALSE
+    # While not jumping
     if on_block == True:
             blorp.image = blorp_select
-
             # Makes you jump slower / can also be adjusted to jump faster
             if keyboard.A:
                 blorp.x += 0.25
