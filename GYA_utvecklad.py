@@ -27,14 +27,15 @@ tile_size = 50
 
 map_level = 1
 
-money = 0
+money = 100000
 
-loot = []
+loot = ["blorp_special.png"]
+spin_the_wheel = 0
 
 ## CODE
 game = True
 print("The Blorp Game")
-print("Verison V.1.5.2")
+print("Verison V.1.5.3")
 
 timer = 0
 clock = 2
@@ -163,9 +164,21 @@ def draw_tiles():
                 screen.blit(tile, (x, y))
 
 def on_mouse_down(pos,button): 
-     if button == mouse.RIGHT and blorp.collidepoint(pos):
-          print('Du har inte råd/Köpet genomfördes') #Future shop funktion
+     global money
+     if button == mouse.LEFT and blorp.collidepoint(pos):
+        if money >= 50:
+            loot_box()
+            money -= 50
+        else:
+            print('You need more money!')
 
+def loot_box():
+    global blorp
+    spin_the_wheel = random.randint(0,100)
+    if spin_the_wheel == 100:
+        print('You won "GLITCHED BLORP"')
+    else:
+        print(f'Your number was {spin_the_wheel}, You lost!')
 
 # FUNKTIONS
 def draw():
@@ -344,6 +357,10 @@ def update(dt):
         home = True
     else:
         home = False
+
+    ### LOOT BOXES
+    global loot
+    global spin_the_wheel
 
 
 ## END-CODE
