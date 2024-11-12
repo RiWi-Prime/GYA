@@ -39,8 +39,7 @@ print("Verison V.1.5.3")
 
 timer = 0
 clock = 2
-accel = 1
-grav = 0
+on_block = True
 
 # IMAGES/ACTORS
 blorp = Actor('blorp_grey.png',pos = (75,575))
@@ -48,6 +47,7 @@ blorp.image = 'blorp_grey.png'
 blorp.color = 1
 casino = Actor('sign_casino.png',pos = (225,125))
 sign = Actor('sign_wood.png',pos = (875,75))
+wheel = Actor('casino_wheel.png',pos = (225,250))
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png',
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
@@ -213,6 +213,7 @@ def draw():
         screen.draw.text(f'Money : {money} B',(10,10),fontsize=25,color="gold")
         casino.draw()
         sign.draw()
+        wheel.draw()
         screen.draw.text('COSMETICS',(760,60),fontsize=55,color='black',alpha=0.6)
 
 def update(dt):
@@ -221,42 +222,53 @@ def update(dt):
     ### NEXT LEVEL
     global map_level
     global money
-
+    global clock
+    global on_block
     ## GOLDEN PORTAL
     # MAP A
     if map_level == 2:
-        row = int(blorp.y / tile_size)
+        row = int((blorp.y + 26)/ tile_size)
         column = int(blorp.x / tile_size)
         tile = pictures[map_a[row][column]]
         if tile == "portal_black.png":
             map_level = 1
             money += 10 # change value
             blorp.pos = (75,575)
-            
+        if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False
+
     # MAP B
     if map_level == 3:
-        row = int(blorp.y / tile_size)
+        row = int((blorp.y + 26)/ tile_size)
         column = int(blorp.x / tile_size)
         tile = pictures[map_b[row][column]]
         if tile == "portal_black.png":
             map_level = 1
             money += 25 # change value 
             blorp.pos = (75,575)
-            
+        if tile == "block_green.png" or tile == "block_dark_grey.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False    
     # MAP C
     if map_level == 4:
-        row = int(blorp.y / tile_size)
+        row = int((blorp.y + 26) / tile_size)
         column = int(blorp.x / tile_size)
         tile = pictures[map_c[row][column]]
         if tile == "portal_black.png":
             map_level = 1
             money += 50 # change value
             blorp.pos = (75,575)
-            
+        if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False    
             
     ## PORTALS BASE MAP / where you enter from 'HOME'
     if map_level == 1:
-            row = int(blorp.y / tile_size)
+            row = int((blorp.y + 26) / tile_size)
             column = int(blorp.x / tile_size)
             tile = pictures[base_map[row][column]]
             if tile == "portal_pink.png": #CHANGE PORTAL
@@ -270,6 +282,11 @@ def update(dt):
             if tile == "portal_purple.png": #CHANGE PORTAL
                 map_level = 4
                 blorp.pos = (75,575)
+            
+            if tile == "block_grey.png" or tile == "block_dark_grey.png" or tile == "block_red.png": #ADD BLOCK
+                on_block = True
+            else:
+                on_block = False
 
     ### MOVEMENT
     if keyboard.D:
@@ -283,29 +300,31 @@ def update(dt):
     blorp.y = min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2)
 
     # GRAVITATION
-    global timer
-
-    if existing == True:
-        global clock
-        global accel
-        global grav
-        accel += dt
-        clock += dt
-        grav -= dt
-
-        if  clock >= 2:
-            blorp.y += 2*accel
-
-        if  not blorp.y == min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2):
-            accel = 1
-            blorp.image = 'blorp_grey.png'
-        
+    clock += dt
+  
         # JUMP
-        if (keyboard.space or keyboard.w) and accel == 1:
-            clock = 0
-            grav = 1
-        if not accel == 1:
-            blorp.y +=-5*grav
+    if on_block == False and clock >= 0.4:
+        if clock >= 0.45:
+            blorp.y += 1
+        if clock >= 0.6:
+            blorp.y += 2
+        if clock >= 0.8:
+            blorp.y += 2
+    if not blorp.y == min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2):
+        on_block = True        
+    if (keyboard.space or keyboard.w) and on_block == True:
+        clock = 0
+        on_block = False
+    if clock <= 0.4:
+        blorp.y -= 5.5
+        if clock >= 0.2:
+            blorp.y += 1
+        if clock >= 0.3:
+            blorp.y += 1
+        if clock >= 0.35:
+            blorp.y += 2
+    if on_block == True:
+            blorp.image = 'blorp_grey.png'
 
             # Makes you jump slower / can also be adjusted to jump faster
             if keyboard.A:
@@ -313,7 +332,7 @@ def update(dt):
             if keyboard.D:
                 blorp.x -= 0.25
             # ------------------
-
+    if on_block == False:
             if blorp.color == 1:
                 blorp.image = 'blorp_grey_jump.png'
             if blorp.color == 2:
