@@ -29,6 +29,8 @@ map_level = 1
 
 money = 0
 
+loot = []
+
 ## CODE
 game = True
 print("The Blorp Game")
@@ -184,8 +186,6 @@ def draw():
     draw_tiles()
     
     blorp.draw()
-    casino.draw()
-    sign.draw()
 
     # MENU / COULD BE CONVERTED
     if Menu == True:
@@ -196,11 +196,10 @@ def draw():
     # HOME BASE TEXT
     if home == True:
         screen.draw.text('ENTER A PORTAL TO BEGIN!',(600,310),fontsize=55,color="darkgrey",alpha=0.4)
-        screen.draw.text('COSMETICS',(550,75),fontsize=55)
         screen.draw.text(f'Money : {money} B',(10,10),fontsize=25,color="gold")
-        screen.draw.text('World 1',(652.5,460),fontsize=20,color="pink",alpha=0.45)
-        screen.draw.text('World 2',(851,460),fontsize=20,color="green",alpha=0.2)
-        screen.draw.text('World 3',(1051,460),fontsize=20,color="purple",alpha=0.45)
+        casino.draw()
+        sign.draw()
+        screen.draw.text('COSMETICS',(760,60),fontsize=55,color='black',alpha=0.6)
 
 def update(dt):
     ### COLLIDERECT
