@@ -29,6 +29,8 @@ map_level = 1
 
 money = 0
 
+loot = []
+
 ## CODE
 game = True
 print("The Blorp Game")
