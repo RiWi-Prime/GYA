@@ -214,34 +214,44 @@ def update(dt):
     ## GOLDEN PORTAL
     # MAP A
     if map_level == 2:
-        row = int(blorp.y / tile_size)
+        row = int((blorp.y + 26)/ tile_size)
         column = int(blorp.x / tile_size)
         tile = pictures[map_a[row][column]]
         if tile == "portal_black.png":
             map_level = 1
             money += 10 # change value
             blorp.pos = (75,575)
-            
+        if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False
+
     # MAP B
     if map_level == 3:
-        row = int(blorp.y / tile_size)
+        row = int((blorp.y + 26)/ tile_size)
         column = int(blorp.x / tile_size)
         tile = pictures[map_b[row][column]]
         if tile == "portal_black.png":
             map_level = 1
             money += 25 # change value 
             blorp.pos = (75,575)
-            
+        if tile == "block_green.png" or tile == "block_dark_grey.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False    
     # MAP C
     if map_level == 4:
-        row = int(blorp.y / tile_size)
+        row = int((blorp.y + 26) / tile_size)
         column = int(blorp.x / tile_size)
         tile = pictures[map_c[row][column]]
         if tile == "portal_black.png":
             map_level = 1
             money += 50 # change value
             blorp.pos = (75,575)
-            
+        if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False    
             
     ## PORTALS BASE MAP / where you enter from 'HOME'
     if map_level == 1:
@@ -260,7 +270,7 @@ def update(dt):
                 map_level = 4
                 blorp.pos = (75,575)
             
-            if tile == "block_grey.png" or tile == "block_dark_grey.png": #ADD BLOCK
+            if tile == "block_grey.png" or tile == "block_dark_grey.png" or tile == "block_red.png": #ADD BLOCK
                 on_block = True
             else:
                 on_block = False
