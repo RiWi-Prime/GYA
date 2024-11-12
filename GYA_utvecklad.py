@@ -43,6 +43,8 @@ grav = 0
 blorp = Actor('blorp_grey.png',pos = (75,575))
 blorp.image = 'blorp_grey.png'
 blorp.color = 1
+casino = Actor('sign_casino.png',pos = (225,125))
+sign = Actor('sign_wood.png',pos = (875,75))
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png',
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
@@ -183,6 +185,8 @@ def draw():
     draw_tiles()
     
     blorp.draw()
+    casino.draw()
+    sign.draw()
 
     # MENU / COULD BE CONVERTED
     if Menu == True:
