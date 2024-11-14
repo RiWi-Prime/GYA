@@ -27,7 +27,7 @@ tile_size = 50
 
 map_level = 1
 
-money = 100000
+money = 0
 
 loot = ["blorp_special.png"]
 spin_the_wheel = 0
@@ -62,6 +62,7 @@ blorp_color = 1
 casino = Actor('sign_casino.png',pos = (225,125))
 sign = Actor('sign_wood.png',pos = (875,75))
 wheel = Actor('casino_wheel.png',pos = (225,250))
+menu_background = Actor('menu.png',pos = (650,300))
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png',
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
@@ -230,13 +231,6 @@ def draw():
     draw_tiles()
     
     blorp.draw()
-
-    # MENU / COULD BE CONVERTED
-    if Menu == True and home == True:
-        screen.draw.text('MENU',(WIDTH/2, 100,),fontsize=50)
-        screen.draw.text('CLOSE [X]',(WIDTH/1.2, 100,),fontsize=25)
-        # ...draw()  # Change for a Yes
-        # ...draw()  # Change for a No
     
     ### HOME 
     # HOME BASE TEXT
@@ -279,6 +273,23 @@ def draw():
             screen.draw.text('Owned',(1100,125),fontsize=25,color='silver',alpha=1)
         else:
             screen.draw.text('25 B',(1110,125),fontsize=25,color='gold',alpha=1)
+
+    # MENU
+    if Menu == True and home == True:
+        menu_background.draw()
+        screen.draw.text('MENU',(625, 100,),fontsize=50,color='black')
+        screen.draw.text('CLOSE [X]',(WIDTH/1.2, 100,),fontsize=25,color='red')
+        screen.draw.text('SPEICAL BLORPS',(230, 170,),fontsize=35,color='black')
+        screen.draw.text('Info: Speical blorps are unlocked by\nspinning the wheel at the casino.',(230, 200,),fontsize=20,color='darkgrey')
+        
+        if price_1 == False:
+            screen.draw.text('Not owned',(250, 400,),fontsize=25,color='black')
+
+        if price_2 == False:
+            screen.draw.text('Not owned',(250, 350,),fontsize=25,color='black')
+
+        # ...draw()  # Change for a Yes
+        # ...draw()  # Change for a No
 
 def update(dt):
     ### COLLIDERECT
