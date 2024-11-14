@@ -37,7 +37,7 @@ class Player(object):
 class Wall(object):
     
     def __init__(self, pos):
-        walls.append(self)
+        walls.append(self)#tile
         self.rect = pygame.Rect(pos[0], pos[1], 16, 16)
 
 # Initialise pygame
@@ -73,10 +73,10 @@ level = [
 
 # Parse the level string above. W = wall, E = exit
 x = y = 0
-for row in level:
+for row in level:#map
     for col in row:
         if col == "W":
-            Wall((x, y))
+            Wall((x, y))#tile
         if col == "E":
             end_rect = pygame.Rect(x, y, 16, 16)
         x += 16
