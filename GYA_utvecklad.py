@@ -3,7 +3,7 @@ Game Title:     The Blorp Game
 About:          GYA - Funktions spel
 Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version: v.1.5.2
+Current Version: v.1.6.0
 '''
 
 ## IMPORTS
@@ -31,20 +31,34 @@ money = 100000
 
 loot = ["blorp_special.png"]
 spin_the_wheel = 0
+price_1 = False 
+price_2 = False
+# unlock color
+unlock_blue = False
+unlock_light_blue = False
+unlock_green = False
+unlock_yellow = False
+unlock_red = False
+unlock_megenta= False
+# unlock special and ultimate
+unlock_special = False
+unlock_ultimate = False
+
 
 ## CODE
 game = True
 print("The Blorp Game")
-print("Verison V.1.5.3")
+print("Verison V.1.6.0")
 
 timer = 0
 clock = 2
 on_block = True
 
 # IMAGES/ACTORS
-blorp = Actor('blorp_grey.png',pos = (75,575))
-blorp.image = 'blorp_grey.png'
-blorp.color = 1
+blorp_select = 'blorp_grey.png'
+blorp = Actor(f'{blorp_select}',pos = (75,575))
+#blorp.image = 'blorp_grey.png'
+blorp_color = 1
 casino = Actor('sign_casino.png',pos = (225,125))
 sign = Actor('sign_wood.png',pos = (875,75))
 wheel = Actor('casino_wheel.png',pos = (225,250))
@@ -165,6 +179,8 @@ def draw_tiles():
 
 def on_mouse_down(pos,button): 
      global money
+     global unlock_special
+    # Buy loot box
      if button == mouse.LEFT and blorp.collidepoint(pos):
         if money >= 50:
             loot_box()
@@ -172,13 +188,27 @@ def on_mouse_down(pos,button):
         else:
             print('You need more money!')
 
+    # Select skin
+     if button == mouse.LEFT and wheel.collidepoint(pos) and Menu == True and price_1 == True:
+         unlock_special = True
+        
+
 def loot_box():
-    global blorp
-    spin_the_wheel = random.randint(0,100)
-    if spin_the_wheel == 100:
+    global unlock_special
+    global unlock_ultimate
+    global price_1
+    global price_2
+    spin_the_wheel = random.randint(1,1000)
+    if spin_the_wheel == 1000:
         print('You won "GLITCHED BLORP"')
+        unlock_special = True
+        price_1 = True
     else:
         print(f'Your number was {spin_the_wheel}, You lost!')
+    if spin_the_wheel in [100,110,120,130,140,150,160,170,180,190,200]:
+        print(f'You won "ULTIMATE BLORP"')
+        unlock_ultimate = True
+        price_2 = True
 
 # FUNKTIONS
 def draw():
@@ -202,19 +232,53 @@ def draw():
     blorp.draw()
 
     # MENU / COULD BE CONVERTED
-    if Menu == True:
+    if Menu == True and home == True:
         screen.draw.text('MENU',(WIDTH/2, 100,),fontsize=50)
         screen.draw.text('CLOSE [X]',(WIDTH/1.2, 100,),fontsize=25)
+        # ...draw()  # Change for a Yes
+        # ...draw()  # Change for a No
     
     ### HOME 
     # HOME BASE TEXT
     if home == True:
         screen.draw.text('ENTER A PORTAL TO BEGIN!',(600,310),fontsize=55,color="darkgrey",alpha=0.4)
         screen.draw.text(f'Money : {money} B',(10,10),fontsize=25,color="gold")
+        wheel.draw()
         casino.draw()
         sign.draw()
-        wheel.draw()
         screen.draw.text('COSMETICS',(760,60),fontsize=55,color='black',alpha=0.6)
+
+        ## UNLOCK GUI
+        # BLUE
+        if unlock_blue != False:
+            screen.draw.text('Owned',(600,125),fontsize=25,color='silver',alpha=1)
+        else:
+            screen.draw.text('25 B',(610,125),fontsize=25,color='gold',alpha=1)
+        # LIGHT BLUE
+        if unlock_light_blue != False:
+            screen.draw.text('Owned',(700,125),fontsize=25,color='silver',alpha=1)
+        else:
+            screen.draw.text('25 B',(710,125),fontsize=25,color='gold',alpha=1)
+        # GREEN
+        if unlock_green != False:
+            screen.draw.text('Owned',(800,125),fontsize=25,color='silver',alpha=1)
+        else:
+            screen.draw.text('25 B',(810,125),fontsize=25,color='gold',alpha=1)
+        # YELLOW
+        if unlock_yellow != False:
+            screen.draw.text('Owned',(900,125),fontsize=25,color='silver',alpha=1)
+        else:
+            screen.draw.text('25 B',(910,125),fontsize=25,color='gold',alpha=1)
+        # RED
+        if unlock_red != False:
+            screen.draw.text('Owned',(1000,125),fontsize=25,color='silver',alpha=1)
+        else:
+            screen.draw.text('25 B',(1010,125),fontsize=25,color='gold',alpha=1)
+        # MEGENTA
+        if unlock_megenta != False:
+            screen.draw.text('Owned',(1100,125),fontsize=25,color='silver',alpha=1)
+        else:
+            screen.draw.text('25 B',(1110,125),fontsize=25,color='gold',alpha=1)
 
 def update(dt):
     ### COLLIDERECT
@@ -288,6 +352,72 @@ def update(dt):
             else:
                 on_block = False
 
+            ## BUY SKINS
+            global blorp_select
+            global blorp_color
+            global unlock_blue
+            global unlock_light_blue
+            global unlock_green
+            global unlock_yellow
+            global unlock_red
+            global unlock_megenta
+            global unlock_special
+            global unlock_ultimate
+            # BLUE
+            if not blorp_color == 2 and money >= 25:
+                if tile == "blorp_blue.png":
+                    blorp_color = 2
+                    blorp_select = 'blorp_blue.png'
+                    if unlock_blue != True:
+                        money -= 25
+                        unlock_blue = True
+            # LIGHT BLUE
+            if not blorp_color == 3 and money >= 25:
+                if tile == "blorp_light_blue.png":
+                    blorp_color = 3
+                    blorp_select = 'blorp_light_blue.png'
+                    if unlock_light_blue != True:
+                        money -= 25
+                        unlock_light_blue = True
+            # GREEN
+            if not blorp_color == 4 and money >= 25:
+                if tile == "blorp_green.png":
+                    blorp_color = 4
+                    blorp_select = 'blorp_green.png'
+                    if unlock_green != True:
+                        money -= 25
+                        unlock_green = True
+            # YELLOW
+            if not blorp_color == 5 and money >= 25:
+                if tile == "blorp_yellow.png":
+                    blorp_color = 5
+                    blorp_select = 'blorp_yellow.png'
+                    if unlock_yellow != True:
+                        money -= 25
+                        unlock_yellow = True
+            # RED
+            if not blorp_color == 6 and money >= 25:
+                if tile == "blorp_red.png":
+                    blorp_color = 6
+                    blorp_select = 'blorp_red.png'
+                    if unlock_red != True:
+                        money -= 25
+                        unlock_red = True
+            # MAGENTA
+            if not blorp_color == 7 and money >= 25:
+                if tile == "blorp_magenta.png":
+                    blorp_color = 7
+                    blorp_select = 'blorp_magenta.png'
+                    if unlock_megenta != True:
+                        money -= 25
+                        unlock_megenta = True
+            # SPEICAL
+            if unlock_special == True:
+                blorp_color = 1000
+                blorp_select = 'blorp_special.png'
+            # ULTIMATE
+            # ADD HERE
+
     ### MOVEMENT
     if keyboard.D:
         blorp.x += 3
@@ -302,7 +432,7 @@ def update(dt):
     # GRAVITATION
     clock += dt
   
-        # JUMP
+    # JUMP
     if on_block == False and clock >= 0.4:
         if clock >= 0.45:
             blorp.y += 1
@@ -323,30 +453,37 @@ def update(dt):
             blorp.y += 1
         if clock >= 0.35:
             blorp.y += 2
-    if on_block == True:
-            blorp.image = 'blorp_grey.png'
 
+    ## ON BLOCK IS TRUE OR FALSE
+    # While not jumping
+    if on_block == True:
+            blorp.image = blorp_select
             # Makes you jump slower / can also be adjusted to jump faster
             if keyboard.A:
                 blorp.x += 0.25
             if keyboard.D:
                 blorp.x -= 0.25
             # ------------------
+
+    # While jumping
     if on_block == False:
-            if blorp.color == 1:
+            if blorp_color == 1:
                 blorp.image = 'blorp_grey_jump.png'
-            if blorp.color == 2:
+            if blorp_color == 2:
                 blorp.image = 'blorp_blue_jump.png'
-            if blorp.color == 3:
-                blorp.image = 'blorp_green_jump.png'
-            if blorp.color == 4:
+            if blorp_color == 3:
                 blorp.image = 'blorp_light_blue_jump.png'
-            if blorp.color == 5:
-                blorp.image = 'blorp_magenta_jump.png'
-            if blorp.color == 6:
-                blorp.image = 'blorp_red_jump.png'
-            if blorp.color == 7:
+            if blorp_color == 4:
+                blorp.image = 'blorp_green_jump.png'
+            if blorp_color == 5:
                 blorp.image = 'blorp_yellow_jump.png'
+            if blorp_color == 6:
+                blorp.image = 'blorp_red_jump.png'
+            if blorp_color == 7:
+                blorp.image = 'blorp_magenda_jump.png'
+            if blorp_color == 1000:
+                blorp.image = 'blorp_special.png' # CHANGE HERE TO JUMP
+                
 
 
     ## KEYSBOARD BUTTONS
@@ -386,4 +523,5 @@ def update(dt):
 
 #SCREEN
 os.environ['SDL_VIDEO_CENTERED'] = '1'
+
 pgzrun.go()
