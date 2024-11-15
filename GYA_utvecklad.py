@@ -31,8 +31,8 @@ money = 50
 
 loot = ["blorp_special.png"]
 spin_the_wheel = 0
-price_1 = True
-price_2 = True
+price_1 = False
+price_2 = False
 # unlock color
 unlock_blue = False
 unlock_light_blue = False
@@ -60,18 +60,18 @@ blorp = Actor(f'{blorp_select}',pos = (75,575))
 #blorp.image = 'blorp_grey.png'
 blorp_color = 1
 ## Yes and No and blorp preview
-blorp_preview_1 = Actor('blorp_glitch',pos=(250,350))
+blorp_preview_1 = Actor('blorp_glitch',pos=(325,270)) #230, 200
 blorp_preview_2 = 0
-yes_button = Actor('yes.png',pos=(250, 400))
-no_button = Actor('no.png',pos=(300, 400))
-yes_button_2 = Actor('yes.png',pos=(250,450))
-no_button_2 = Actor('no.png',pos=(300,450))
+yes_button = Actor('yes.png',pos=(290, 335))
+no_button = Actor('no.png',pos=(360, 335))
+yes_button_2 = Actor('yes.png',pos=(290,450))
+no_button_2 = Actor('no.png',pos=(360,450))
 ## Switches
 switch_easy = Actor('switch_normal.png',pos=(875,500))
 switch_hard = Actor('switch_difficult.png',pos=(875,500))
 ## Lock
-lock = Actor('lock.png',pos=(300,100))
-lock2 = Actor('lock.png',pos=(310,110))
+lock = Actor('lock.png',pos=(290,300))
+lock2 = Actor('lock.png',pos=(290,425))
 casino = Actor('sign_casino.png',pos = (300,100))
 sign = Actor('sign_wood.png',pos = (875,75))
 wheel = Actor('casino_wheel.png',pos = (175,200))
@@ -311,8 +311,8 @@ def draw():
         screen.draw.text('Info: Speical blorps are unlocked by\nspinning the wheel at the casino.',(230, 200,),fontsize=20,color='darkgrey')
         
         if price_1 == False:
-            screen.draw.text('Not owned',(250, 400,),fontsize=25,color='black')
-            lock.draw() #
+            screen.draw.text('Not owned',(285, 315,),fontsize=25,color='black')
+            lock.draw() # 290,300
             blorp_preview_1.draw()
         else:
             blorp_preview_1.draw()
@@ -320,8 +320,8 @@ def draw():
             no_button.draw()  #
 
         if price_2 == False:
-            screen.draw.text('Not owned',(250, 350,),fontsize=25,color='black')
-            lock2.draw() #
+            screen.draw.text('Not owned',(285, 440,),fontsize=25,color='black')
+            lock2.draw() # 290,425
         else:
             yes_button_2.draw() #
             no_button_2.draw() #
