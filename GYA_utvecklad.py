@@ -31,8 +31,8 @@ money = 0
 
 loot = ["blorp_special.png"]
 spin_the_wheel = 0
-price_1 = False 
-price_2 = False
+price_1 = True
+price_2 = True
 # unlock color
 unlock_blue = False
 unlock_light_blue = False
@@ -59,9 +59,22 @@ blorp_select = 'blorp_grey.png'
 blorp = Actor(f'{blorp_select}',pos = (75,575))
 #blorp.image = 'blorp_grey.png'
 blorp_color = 1
-casino = Actor('sign_casino.png',pos = (225,125))
+## Yes and No and blorp preview
+blorp_preview_1 = Actor('blorp_glitch',pos=(250,350))
+blorp_preview_2 = 0
+yes_button = Actor('yes.png',pos=(250, 400))
+no_button = Actor('no.png',pos=(300, 400))
+yes_button_2 = Actor('yes.png',pos=(250,450))
+no_button_2 = Actor('no.png',pos=(300,450))
+## Switches
+switch_easy = Actor('switch_normal.png',pos=(875,500))
+switch_hard = Actor('switch_difficult.png',pos=(875,500))
+## Lock
+lock = Actor('lock.png',pos=(300,100))
+lock2 = Actor('lock.png',pos=(310,110))
+casino = Actor('sign_casino.png',pos = (300,100))
 sign = Actor('sign_wood.png',pos = (875,75))
-wheel = Actor('casino_wheel.png',pos = (225,250))
+wheel = Actor('casino_wheel.png',pos = (175,200))
 menu_background = Actor('menu.png',pos = (650,300))
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png',
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
@@ -181,8 +194,11 @@ def draw_tiles():
 def on_mouse_down(pos,button): 
      global money
      global unlock_special
+     global unlock_ultimate
+     global blorp_select
+     global blorp_color
     # Buy loot box
-     if button == mouse.LEFT and blorp.collidepoint(pos):
+     if button == mouse.LEFT and wheel.collidepoint(pos):
         if money >= 50:
             loot_box()
             money -= 50
@@ -190,10 +206,22 @@ def on_mouse_down(pos,button):
             print('You need more money!')
 
     # Select skin
-     if button == mouse.LEFT and wheel.collidepoint(pos) and Menu == True and price_1 == True:
+    # SPEICAL BLORP
+     if button == mouse.LEFT and yes_button.collidepoint(pos) and Menu == True and price_1 == True:
          unlock_special = True
-        
+     if button == mouse.LEFT and no_button.collidepoint(pos) and Menu == True and price_1 == True:
+         unlock_special = False
+         blorp_color = 1
+         blorp_select = 'blorp_grey.png'
+    # ULTIMATE BLORP
+     if button == mouse.LEFT and yes_button_2.collidepoint(pos) and Menu == True and price_2 == True:
+         unlock_ultimate = True
+     if button == mouse.LEFT and no_button_2.collidepoint(pos) and Menu == True and price_2 == True:
+         unlock_ultimate = False
+         blorp_color = 1
+         blorp_select = 'blorp_grey.png'
 
+        
 def loot_box():
     global unlock_special
     global unlock_ultimate
@@ -277,19 +305,26 @@ def draw():
     # MENU
     if Menu == True and home == True:
         menu_background.draw()
-        screen.draw.text('MENU',(625, 100,),fontsize=50,color='black')
-        screen.draw.text('CLOSE [X]',(WIDTH/1.2, 100,),fontsize=25,color='red')
+        screen.draw.text('MENU',(625, 85,),fontsize=50,color='black')
+        screen.draw.text('CLOSE [X]',(WIDTH/1.2, 85,),fontsize=25,color='red')
         screen.draw.text('SPEICAL BLORPS',(230, 170,),fontsize=35,color='black')
         screen.draw.text('Info: Speical blorps are unlocked by\nspinning the wheel at the casino.',(230, 200,),fontsize=20,color='darkgrey')
         
         if price_1 == False:
             screen.draw.text('Not owned',(250, 400,),fontsize=25,color='black')
+            lock.draw() #
+            blorp_preview_1.draw()
+        else:
+            blorp_preview_1.draw()
+            yes_button.draw() #
+            no_button.draw()  #
 
         if price_2 == False:
             screen.draw.text('Not owned',(250, 350,),fontsize=25,color='black')
-
-        # ...draw()  # Change for a Yes
-        # ...draw()  # Change for a No
+            lock2.draw() #
+        else:
+            yes_button_2.draw() #
+            no_button_2.draw() #
 
 def update(dt):
     ### COLLIDERECT
@@ -424,8 +459,8 @@ def update(dt):
                         unlock_megenta = True
             # SPEICAL
             if unlock_special == True:
-                blorp_color = 1000
-                blorp_select = 'blorp_special.png'
+                blorp_color = 9
+                blorp_select = 'blorp_glitch.png'
             # ULTIMATE
             # ADD HERE
 
@@ -492,8 +527,8 @@ def update(dt):
                 blorp.image = 'blorp_red_jump.png'
             if blorp_color == 7:
                 blorp.image = 'blorp_magenda_jump.png'
-            if blorp_color == 1000:
-                blorp.image = 'blorp_special.png' # CHANGE HERE TO JUMP
+            if blorp_color == 9:
+                blorp.image = 'blorp_glitch_jump.png' # CHANGE HERE TO JUMP
                 
 
 
