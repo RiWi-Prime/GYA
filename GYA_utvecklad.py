@@ -302,7 +302,7 @@ def draw():
         else:
             screen.draw.text('25 B',(1110,125),fontsize=25,color='gold',alpha=1)
 
-        blorp.draw()
+    blorp.draw()
 
     # MENU
     if Menu == True and home == True:
