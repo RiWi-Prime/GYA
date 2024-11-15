@@ -27,7 +27,7 @@ tile_size = 50
 
 map_level = 1
 
-money = 50
+money = 1000000
 
 loot = ["blorp_special.png"]
 spin_the_wheel = 0
@@ -234,12 +234,13 @@ def loot_box():
         print('You won "GLITCHED BLORP"')
         unlock_special = True
         price_1 = True
-    else:
-        print(f'Your number was {spin_the_wheel}, You lost!')
     if spin_the_wheel in [100,110,120,130,140,150,160,170,180,190,200]:
         print(f'You won "ULTIMATE BLORP"')
         unlock_ultimate = True
         price_2 = True
+    elif spin_the_wheel != 1000 and spin_the_wheel not in [100,110,120,130,140,150,160,170,180,190,200]:
+        print(f'Your number was {spin_the_wheel}, You lost!')
+    
 
 # FUNKTIONS
 def draw():
