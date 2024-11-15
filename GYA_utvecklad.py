@@ -31,8 +31,8 @@ money = 50
 
 loot = ["blorp_special.png"]
 spin_the_wheel = 0
-price_1 = True
-price_2 = True
+price_1 = False
+price_2 = False
 # unlock color
 unlock_blue = False
 unlock_light_blue = False
@@ -43,7 +43,6 @@ unlock_megenta= False
 # unlock special and ultimate
 unlock_special = False
 unlock_ultimate = False
-
 
 ## CODE
 game = True
@@ -493,7 +492,6 @@ def update(dt):
             if unlock_ultimate == True:
                 blorp_color = 10
                 blorp_select = 'blorp_ultimate.png'
-            
 
     ### MOVEMENT
     if keyboard.D:
@@ -563,7 +561,6 @@ def update(dt):
             if blorp_color == 10:
                 blorp.image = 'blorp_ultimate.png' # CHANGE HERE TO JUMP
 
-
     ## KEYSBOARD BUTTONS
     # MENU
     '''Create a variable that contains a number, so that when pressing
@@ -595,7 +592,6 @@ def update(dt):
     ### LOOT BOXES
     global loot
     global spin_the_wheel
-
 
 ## END-CODE
 
