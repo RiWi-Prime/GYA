@@ -209,6 +209,7 @@ def on_mouse_down(pos,button):
     # SPEICAL BLORP
      if button == mouse.LEFT and yes_button.collidepoint(pos) and Menu == True and price_1 == True:
          unlock_special = True
+         unlock_ultimate = False
      if button == mouse.LEFT and no_button.collidepoint(pos) and Menu == True and price_1 == True:
          unlock_special = False
          blorp_color = 1
@@ -216,6 +217,7 @@ def on_mouse_down(pos,button):
     # ULTIMATE BLORP
      if button == mouse.LEFT and yes_button_2.collidepoint(pos) and Menu == True and price_2 == True:
          unlock_ultimate = True
+         unlock_special = False
      if button == mouse.LEFT and no_button_2.collidepoint(pos) and Menu == True and price_2 == True:
          unlock_ultimate = False
          blorp_color = 1
