@@ -27,12 +27,12 @@ tile_size = 50
 
 map_level = 1
 
-money = 1000000
+money = 100000
 
-loot = ["blorp_special.png"]
+loot = ["blorp_special.png","blorp_ulimate.png"]
 spin_the_wheel = 0
-price_1 = True
-price_2 = True
+price_1 = False
+price_2 = False
 # unlock color
 unlock_blue = False
 unlock_light_blue = False
@@ -43,7 +43,6 @@ unlock_megenta= False
 # unlock special and ultimate
 unlock_special = False
 unlock_ultimate = False
-
 
 ## CODE
 game = True
@@ -261,8 +260,6 @@ def draw():
     #draw_grid()
     draw_tiles()
     
-    blorp.draw()
-    
     ### HOME 
     # HOME BASE TEXT
     if home == True:
@@ -272,6 +269,7 @@ def draw():
         casino.draw()
         sign.draw()
         screen.draw.text('COSMETICS',(760,60),fontsize=55,color='black',alpha=0.6)
+        screen.draw.text('Press the wheel\nto spin!!\nChance to win \nSPECIAL blorps',(275,150),fontsize=25,color='white')
 
         ## UNLOCK GUI
         # BLUE
@@ -304,6 +302,8 @@ def draw():
             screen.draw.text('Owned',(1100,125),fontsize=25,color='silver',alpha=1)
         else:
             screen.draw.text('25 B',(1110,125),fontsize=25,color='gold',alpha=1)
+
+    blorp.draw()
 
     # MENU
     if Menu == True and home == True:
@@ -496,7 +496,6 @@ def update(dt):
             if unlock_ultimate == True:
                 blorp_color = 10
                 blorp_select = 'blorp_ultimate.png'
-            
 
     ### MOVEMENT
     if keyboard.D:
@@ -566,7 +565,6 @@ def update(dt):
             if blorp_color == 10:
                 blorp.image = 'blorp_ultimate.png' # CHANGE HERE TO JUMP
 
-
     ## KEYSBOARD BUTTONS
     # MENU
     '''Create a variable that contains a number, so that when pressing
@@ -598,7 +596,6 @@ def update(dt):
     ### LOOT BOXES
     global loot
     global spin_the_wheel
-
 
 ## END-CODE
 
