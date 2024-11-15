@@ -27,7 +27,7 @@ tile_size = 50
 
 map_level = 1
 
-money = 0
+money = 50
 
 loot = ["blorp_special.png"]
 spin_the_wheel = 0
@@ -410,53 +410,77 @@ def update(dt):
             global unlock_special
             global unlock_ultimate
             # BLUE
-            if not blorp_color == 2 and money >= 25:
-                if tile == "blorp_blue.png":
-                    blorp_color = 2
-                    blorp_select = 'blorp_blue.png'
-                    if unlock_blue != True:
+            if not blorp_color == 2:
+                if unlock_blue != True and money >= 25:
+                    if tile == "blorp_blue.png":
+                        blorp_color = 2
+                        blorp_select = 'blorp_blue.png'
                         money -= 25
                         unlock_blue = True
+                elif unlock_blue == True:
+                    if tile == "blorp_blue.png":
+                        blorp_color = 2
+                        blorp_select = 'blorp_blue.png'
             # LIGHT BLUE
-            if not blorp_color == 3 and money >= 25:
-                if tile == "blorp_light_blue.png":
-                    blorp_color = 3
-                    blorp_select = 'blorp_light_blue.png'
-                    if unlock_light_blue != True:
+            if not blorp_color == 3:
+                if unlock_light_blue != True and money >= 25:
+                    if tile == "blorp_light_blue.png":
+                        blorp_color = 3
+                        blorp_select = 'blorp_.png'
                         money -= 25
                         unlock_light_blue = True
+                elif unlock_light_blue == True:
+                    if tile == "blorp_light_blue.png":
+                        blorp_color = 3
+                        blorp_select = 'blorp_light_blue.png'
             # GREEN
-            if not blorp_color == 4 and money >= 25:
-                if tile == "blorp_green.png":
-                    blorp_color = 4
-                    blorp_select = 'blorp_green.png'
-                    if unlock_green != True:
+            if not blorp_color == 4:
+                if unlock_green != True and money >= 25:
+                    if tile == "blorp_green.png":
+                        blorp_color = 4
+                        blorp_select = 'blorp_green.png'
                         money -= 25
                         unlock_green = True
+                elif unlock_green == True:
+                    if tile == "blorp_green.png":
+                        blorp_color = 4
+                        blorp_select = 'blorp_green.png'
             # YELLOW
-            if not blorp_color == 5 and money >= 25:
-                if tile == "blorp_yellow.png":
-                    blorp_color = 5
-                    blorp_select = 'blorp_yellow.png'
-                    if unlock_yellow != True:
+            if not blorp_color == 5:
+                if unlock_yellow != True and money >= 25:
+                    if tile == "blorp_yellow.png":
+                        blorp_color = 5
+                        blorp_select = 'blorp_yellow.png'
                         money -= 25
                         unlock_yellow = True
+                elif unlock_yellow == True:
+                    if tile == "blorp_yellow.png":
+                        blorp_color = 5
+                        blorp_select = 'blorp_yellow.png'
             # RED
-            if not blorp_color == 6 and money >= 25:
-                if tile == "blorp_red.png":
-                    blorp_color = 6
-                    blorp_select = 'blorp_red.png'
-                    if unlock_red != True:
+            if not blorp_color == 6:
+                if unlock_red != True and money >= 25:
+                    if tile == "blorp_red.png":
+                        blorp_color = 6
+                        blorp_select = 'blorp_red.png'
                         money -= 25
                         unlock_red = True
+                elif unlock_red == True:
+                    if tile == "blorp_red.png":
+                        blorp_color = 6
+                        blorp_select = 'blorp_red.png'
             # MAGENTA
-            if not blorp_color == 7 and money >= 25:
-                if tile == "blorp_magenta.png":
-                    blorp_color = 7
-                    blorp_select = 'blorp_magenta.png'
-                    if unlock_megenta != True:
+            if not blorp_color == 7:
+                if unlock_megenta != True and money >= 25:
+                    if tile == "blorp_magenta.png":
+                        blorp_color = 7
+                        blorp_select = 'blorp_magenta.png'
                         money -= 25
                         unlock_megenta = True
+                elif unlock_megenta == True:
+                    if tile == "blorp_magenta.png":
+                        blorp_color = 7
+                        blorp_select = 'blorp_magenta.png'
             # SPEICAL
             if unlock_special == True:
                 blorp_color = 9
