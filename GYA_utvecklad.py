@@ -3,7 +3,7 @@ Game Title:     The Blorp Game
 About:          GYA - Funktions spel
 Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version: v.1.6.0
+Current Version: v.1.6.1
 '''
 
 ## IMPORTS
@@ -31,8 +31,8 @@ money = 0
 
 loot = ["blorp_special.png"]
 spin_the_wheel = 0
-price_1 = False
-price_2 = False
+price_1 = True
+price_2 = True
 # unlock color
 unlock_blue = False
 unlock_light_blue = False
@@ -48,7 +48,7 @@ unlock_ultimate = False
 ## CODE
 game = True
 print("The Blorp Game")
-print("Verison V.1.6.0")
+print("Verison V.1.6.1")
 
 timer = 0
 clock = 2
@@ -61,7 +61,7 @@ blorp = Actor(f'{blorp_select}',pos = (75,575))
 blorp_color = 1
 ## Yes and No and blorp preview
 blorp_preview_1 = Actor('blorp_glitch',pos=(325,270)) #230, 200
-blorp_preview_2 = 0
+blorp_preview_2 = Actor('blorp_ultimate',pos=(325,385))
 yes_button = Actor('yes.png',pos=(290, 335))
 no_button = Actor('no.png',pos=(360, 335))
 yes_button_2 = Actor('yes.png',pos=(290,450))
@@ -315,6 +315,7 @@ def draw():
             lock.draw() # 290,300
             blorp_preview_1.draw()
         else:
+            screen.draw.text('Equip',(302, 296,),fontsize=25,color='silver')
             blorp_preview_1.draw()
             yes_button.draw() #
             no_button.draw()  #
@@ -322,7 +323,10 @@ def draw():
         if price_2 == False:
             screen.draw.text('Not owned',(285, 440,),fontsize=25,color='black')
             lock2.draw() # 290,425
+            blorp_preview_2.draw()
         else:
+            screen.draw.text('Equip',(302, 412,),fontsize=25,color='silver')
+            blorp_preview_2.draw()
             yes_button_2.draw() #
             no_button_2.draw() #
 
@@ -462,7 +466,10 @@ def update(dt):
                 blorp_color = 9
                 blorp_select = 'blorp_glitch.png'
             # ULTIMATE
-            # ADD HERE
+            if unlock_ultimate == True:
+                blorp_color = 10
+                blorp_select = 'blorp_ultimate.png'
+            
 
     ### MOVEMENT
     if keyboard.D:
@@ -529,7 +536,8 @@ def update(dt):
                 blorp.image = 'blorp_magenda_jump.png'
             if blorp_color == 9:
                 blorp.image = 'blorp_glitch_jump.png' # CHANGE HERE TO JUMP
-                
+            if blorp_color == 10:
+                blorp.image = 'blorp_ultimate.png' # CHANGE HERE TO JUMP
 
 
     ## KEYSBOARD BUTTONS
