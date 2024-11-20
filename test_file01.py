@@ -214,7 +214,7 @@ def draw():
         screen.blit('background_purple',(0,0))
         # ADD MORE UNDER
 
-    #draw_grid()
+    draw_grid()
     draw_tiles()
     
     blorp.draw()

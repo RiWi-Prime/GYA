@@ -3,7 +3,7 @@ Game Title:     The Blorp Game
 About:          GYA - Funktions spel
 Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version: v.1.6.1
+Current Version: v.1.6.2
 '''
 
 ## IMPORTS
@@ -14,6 +14,8 @@ import os
 # Variables
 HEIGHT = 650
 WIDTH = 1250
+
+difficulty = False
 
 Menu = False # KEYBOARD.I and X
 Menu_value = 0 # KEYBOARD.I and X
@@ -53,7 +55,7 @@ unlock_ultimate = False
 ## CODE
 game = True
 print("The Blorp Game")
-print("Verison V.1.6.1")
+print("Verison V.1.6.2")
 
 timer = 0
 clock = 2
@@ -72,8 +74,8 @@ no_button = Actor('no.png',pos=(360, 335))
 yes_button_2 = Actor('yes.png',pos=(290,450))
 no_button_2 = Actor('no.png',pos=(360,450))
 ## Switches
-switch_easy = Actor('switch_normal.png',pos=(875,500))
-switch_hard = Actor('switch_difficult.png',pos=(875,500))
+switch_easy = Actor('switch_normal.png',pos=(950,450))
+switch_hard = Actor('switch_difficult.png',pos=(950,450))
 ## Lock
 lock = Actor('lock.png',pos=(290,300))
 lock2 = Actor('lock.png',pos=(290,425))
@@ -84,7 +86,7 @@ menu_background = Actor('menu.png',pos = (650,300))
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png',
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
-            'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png','block_red.png'
+            'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png','block_red.png', 'block_void.png'
             ]
 
 # WORLD DATA
@@ -149,6 +151,54 @@ map_c = [
 [4, 0, 0, 4, 0, 0, 4, 4, 4, 4, 4, 4, 4, 0, 4, 0, 0, 4, 0, 0, 0, 4, 0, 0, 4], 
 [4, 0, 4, 4, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 4, 0, 4, 4, 0, 4, 0, 4, 4], 
 [4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 8, 4], 
+[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+]
+
+map_da = [
+[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17, 2, 0, 0, 0, 0, 17, 2, 2, 8, 0, 2], 
+[2, 0, 2, 2, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 2, 0, 2, 2, 0, 0, 0, 2, 2, 0, 2], 
+[2, 0, 0, 2, 2, 0, 0, 2, 2, 0, 2, 2, 0, 0, 2, 0, 0, 17, 2, 0, 0, 2, 0, 0, 2], 
+[2, 2, 0, 17, 2, 0, 0, 2, 0, 0, 0, 2, 0, 0, 2, 2, 0, 0, 17, 2, 0, 0, 0, 2, 2], 
+[2, 17, 0, 0, 2, 0, 0, 2, 2, 0, 2, 2, 17, 0, 2, 0, 0, 0, 0, 17, 0, 0, 2, 2, 2], 
+[2, 0, 2, 0, 0, 17, 17, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 17, 0, 0, 17, 0, 0, 2, 2], 
+[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17, 0, 0, 0, 17, 0, 0, 0, 0, 2, 0, 0, 2], 
+[2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 17, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
+[2, 17, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
+[2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
+[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 2], 
+[2, 2, 2, 2, 2, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17],
+]
+
+map_db = [
+[3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+[3, 3, 3, 3, 3, 3, 3, 17, 0, 0, 0, 3, 3, 3, 3, 17, 0, 0, 0, 3, 3, 0, 0, 0, 3], 
+[3, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 3], 
+[3, 3, 0, 3, 3, 3, 3, 3, 0, 3, 0, 3, 0, 3, 0, 3, 3, 3, 0, 3, 3, 3, 17, 0, 3], 
+[3, 3, 0, 3, 17, 0, 3, 3, 0, 3, 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3], 
+[3, 3, 0, 3, 3, 0, 3, 0, 0, 3, 0, 3, 3, 3, 3, 3, 3, 0, 17, 3, 3, 17, 0, 3, 3], 
+[3, 3, 0, 0, 3, 0, 0, 0, 3, 17, 0, 0, 0, 0, 0, 3, 3, 0, 3, 3, 0, 0, 0, 0, 3], 
+[3, 3, 17, 0, 3, 3, 0, 17, 3, 3, 3, 3, 0, 3, 0, 3, 3, 0, 0, 3, 0, 3, 3, 0, 3], 
+[3, 3, 3, 0, 17, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 17, 3, 3, 0, 3, 0, 3, 0, 0, 3], 
+[3, 3, 0, 0, 0, 17, 3, 0, 3, 3, 3, 3, 3, 17, 0, 0, 0, 3, 0, 3, 0, 3, 0, 17, 3], 
+[3, 3, 0, 3, 0, 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3, 3, 3], 
+[3, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 8, 3], 
+[3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+]
+
+map_dc = [
+[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 17, 4, 4],
+[4, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 4, 0, 8, 4], 
+[4, 0, 4, 4, 4, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 17, 0, 4, 4, 4, 0, 17, 0, 4, 4], 
+[17, 0, 0, 4, 4, 0, 17, 0, 4, 4, 4, 0, 0, 0, 17, 0, 0, 4, 0, 0, 0, 17, 0, 0, 17], 
+[4, 4, 0, 4, 17, 0, 0, 17, 0, 0, 0, 4, 0, 4, 0, 0, 4, 17, 0, 4, 4, 0, 4, 0, 4], 
+[4, 0, 0, 17, 0, 4, 0, 0, 0, 4, 0, 0, 4, 4, 0, 4, 0, 17, 0, 0, 0, 4, 0, 0, 4], 
+[4, 0, 4, 0, 0, 0, 4, 4, 4, 0, 4, 0, 17, 17, 0, 0, 17, 0, 4, 4, 0, 17, 0, 4, 4], 
+[17, 0, 0, 4, 0, 17, 0, 0, 0, 17, 0, 0, 17, 0, 4, 0, 0, 4, 0, 0, 0, 17, 0, 0, 17], 
+[4, 4, 0, 4, 17, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 17, 0, 4, 4, 0, 4, 0, 4], 
+[4, 0, 0, 17, 0, 0, 4, 17, 4, 4, 4, 17, 4, 0, 4, 0, 0, 17, 0, 0, 0, 4, 0, 0, 4], 
+[4, 0, 4, 4, 0, 4, 0, 0, 0, 17, 0, 0, 0, 4, 0, 0, 4, 0, 4, 4, 0, 17, 0, 4, 4], 
+[4, 0, 4, 17, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 17, 0, 0, 0, 8, 4], 
 [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 ]
 
@@ -435,7 +485,8 @@ def update(dt):
             else:
                 on_block = False
 
-            ## BUY SKINS
+            ### BUY SKINS - OPTAINING SKINS
+            # Global blorps
             global blorp_select
             global blorp_color
             global unlock_blue
@@ -463,7 +514,7 @@ def update(dt):
                 if unlock_light_blue != True and money >= 25:
                     if tile == "blorp_light_blue.png":
                         blorp_color = 3
-                        blorp_select = 'blorp_.png'
+                        blorp_select = 'blorp_light_blue.png'
                         money -= 25
                         unlock_light_blue = True
                 elif unlock_light_blue == True:
@@ -593,7 +644,7 @@ def update(dt):
             if blorp_color == 9:
                 blorp.image = 'blorp_glitch_jump.png' # CHANGE HERE TO JUMP
             if blorp_color == 10:
-                blorp.image = 'blorp_ultimate.png' # CHANGE HERE TO JUMP
+                blorp.image = 'blorp_ultimate_jump.png' # CHANGE HERE TO JUMP
 
     ## KEYSBOARD BUTTONS
     # MENU
