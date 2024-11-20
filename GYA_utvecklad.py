@@ -28,6 +28,7 @@ dx, dy = 50, 50
 tile_size = 50
 
 map_level = 1
+current_map = []
 timer = 0
 gliched_blorp = False
 ultimate_blorp = False
@@ -202,6 +203,8 @@ map_dc = [
 [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 ]
 
+current_map = base_map.copy()
+
 # OTHER-FUNKTIONS
 def draw_grid():
     '''draw a nXn grid'''
@@ -246,8 +249,25 @@ def draw_tiles():
                 tile = pictures[map_c[row][column]]
                 screen.blit(tile, (x, y))
 
+def possible_move(deltax,deltay):
+    global r
+    blorp.x += deltax
+    blorp.y += deltay
+    for ri,row in enumerate(current_map):
+        for ci,tile in enumerate(row):
+                if tile and not tile in [5,6,7,8,9,10,11,12,13,14,17]:
+                    # Smaller rect than tile 
+                    r = Rect(ci*dx+5,ri*dy+5,dx-10,dy-10)
+                    if blorp.colliderect(r):
+                        #print(r,blorp.pos,tile)
+                        blorp.x -= deltax
+                        blorp.y -= deltay
 
-    
+                        return False
+    blorp.x -= deltax
+    blorp.y -= deltay
+    r = None
+    return True
 
 # FUNKTIONS
 def draw():
@@ -337,8 +357,8 @@ def draw():
         else:
             screen.draw.text('Equip',(302, 296,),fontsize=25,color='silver')
             blorp_preview_1.draw()
-            yes_button.draw() #
-            no_button.draw()  #
+            yes_button.draw()
+            no_button.draw() 
 
         if price_2 == False:
             screen.draw.text('Not owned',(285, 440,),fontsize=25,color='black')
@@ -347,8 +367,8 @@ def draw():
         else:
             screen.draw.text('Equip',(302, 412,),fontsize=25,color='silver')
             blorp_preview_2.draw()
-            yes_button_2.draw() #
-            no_button_2.draw() #
+            yes_button_2.draw()
+            no_button_2.draw()
     
         if difficulty == True:
             screen.draw.text('Difficulty switch: ',(850, 400,),fontsize=25,color='black')
@@ -452,6 +472,7 @@ def update(dt):
     global on_block
     global nothing,gliched_blorp,ultimate_blorp
     global timer
+    global current_map
     timer += dt
     if timer >= 5:
         nothing = False
@@ -467,6 +488,8 @@ def update(dt):
             map_level = 1
             money += 10 # change value
             blorp.pos = (75,575)
+            current_map.clear()
+            current_map = base_map.copy()
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -481,6 +504,8 @@ def update(dt):
             map_level = 1
             money += 25 # change value 
             blorp.pos = (75,575)
+            current_map.clear()
+            current_map = base_map.copy()
         if tile == "block_green.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -494,6 +519,8 @@ def update(dt):
             map_level = 1
             money += 50 # change value
             blorp.pos = (75,575)
+            current_map.clear()
+            current_map = base_map.copy()
         if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -507,14 +534,20 @@ def update(dt):
             if tile == "portal_pink.png": #CHANGE PORTAL
                 map_level = 2
                 blorp.pos = (75,575)
+                current_map.clear()
+                current_map = map_a.copy()
 
             if tile == "portal_green.png": #CHANGE PORTAL
                 map_level = 3
                 blorp.pos = (75,575)
+                current_map.clear()
+                current_map = map_b.copy()
 
             if tile == "portal_purple.png": #CHANGE PORTAL
                 map_level = 4
                 blorp.pos = (75,575)
+                current_map.clear()
+                current_map = map_c.copy()
             
             if tile == "block_grey.png" or tile == "block_dark_grey.png" or tile == "block_red.png": #ADD BLOCK
                 on_block = True
@@ -615,10 +648,10 @@ def update(dt):
                 blorp_select = 'blorp_ultimate.png'
 
     ### MOVEMENT
-    if keyboard.D:
+    if keyboard.D and possible_move(3,0):
         blorp.x += 3
 
-    if keyboard.A:
+    if keyboard.A and possible_move(-3,0):
         blorp.x -= 3
 
     # BARRIER
@@ -630,36 +663,30 @@ def update(dt):
   
     # JUMP
     if on_block == False and clock >= 0.4:
-        if clock >= 0.45:
+        if clock >= 0.45 and possible_move(0,1):
             blorp.y += 1
-        if clock >= 0.6:
+        if clock >= 0.6 and possible_move(0,2):
             blorp.y += 2
-        if clock >= 0.8:
+        if clock >= 0.8 and possible_move(0,2):
             blorp.y += 2
     if not blorp.y == min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2):
         on_block = True        
     if (keyboard.space or keyboard.w) and on_block == True:
         clock = 0
         on_block = False
-    if clock <= 0.4:
+    if clock <= 0.4 and possible_move(0,-5.5):
         blorp.y -= 5.5
-        if clock >= 0.2:
+        if clock >= 0.2 and possible_move(0,1):
             blorp.y += 1
-        if clock >= 0.3:
+        if clock >= 0.3 and possible_move(0,1):
             blorp.y += 1
-        if clock >= 0.35:
+        if clock >= 0.35 and possible_move(0,2):
             blorp.y += 2
 
     ## ON BLOCK IS TRUE OR FALSE
     # While not jumping
     if on_block == True:
             blorp.image = blorp_select
-            # Makes you jump slower / can also be adjusted to jump faster
-            if keyboard.A:
-                blorp.x += 0.25
-            if keyboard.D:
-                blorp.x -= 0.25
-            # ------------------
 
     # While jumping
     if on_block == False:

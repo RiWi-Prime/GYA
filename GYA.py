@@ -27,6 +27,7 @@ dx, dy = 50, 50
 tile_size = 50
 
 map_level = 1
+current_map = []
 
 ## CODE
 game = True
@@ -43,8 +44,7 @@ blorp = Actor('blorp_grey.png',pos = (75,575))
 blorp.image = 'blorp_grey.png'
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png',
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
-            'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
-            'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png'
+            'block_dark_grey.png'
             ]
 
 # WORLD DATA
@@ -58,8 +58,8 @@ base_map = [
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 0, 0, 0, 6, 0, 0, 0, 7, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 15, 15, 0, 15, 15, 15, 0, 15, 15, 15, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 9, 9, 9, 0, 9, 9, 9, 0, 9, 9, 9, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ]
@@ -67,16 +67,16 @@ base_map = [
 map_a = [
 [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
 [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2, 8, 0, 2], 
-[2, 0, 2, 2, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 2, 0, 2, 2, 0, 0, 0, 2, 2, 0, 2], 
-[2, 0, 0, 2, 2, 0, 0, 0, 2, 2, 0, 2, 2, 0, 2, 0, 0, 2, 2, 0, 0, 2, 0, 0, 2], 
-[2, 2, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 2, 0, 0, 2, 2, 0, 0, 0, 2, 2], 
-[2, 0, 0, 0, 2, 0, 0, 0, 2, 2, 0, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2], 
-[2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2], 
+[2, 0, 2, 2, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 2, 0, 2, 2, 0, 0, 0, 2, 2, 0, 2], 
+[2, 0, 0, 2, 2, 0, 0, 2, 2, 0, 2, 2, 0, 0, 2, 0, 0, 2, 2, 0, 0, 2, 0, 0, 2], 
+[2, 2, 0, 0, 2, 0, 0, 2, 0, 0, 0, 2, 0, 0, 2, 2, 0, 0, 2, 2, 0, 0, 0, 2, 2], 
+[2, 0, 0, 0, 2, 0, 0, 2, 2, 0, 2, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2], 
+[2, 0, 2, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2], 
 [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2], 
 [2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
 [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
 [2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 2], 
+[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
 [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
 ]
 
@@ -91,8 +91,8 @@ map_b = [
 [3, 3, 3, 0, 3, 3, 0, 3, 3, 3, 3, 3, 0, 3, 0, 3, 3, 0, 0, 3, 0, 3, 3, 0, 3], 
 [3, 3, 3, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 3, 3, 0, 3, 0, 3, 0, 0, 3], 
 [3, 3, 0, 0, 0, 3, 3, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3], 
-[3, 3, 0, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3, 3, 3], 
-[3, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 8, 3], 
+[3, 3, 0, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3, 8, 3], 
+[3, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 0, 3], 
 [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
 ]
 
@@ -108,9 +108,11 @@ map_c = [
 [4, 4, 0, 4, 4, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4, 0, 4, 4, 0, 4, 0, 4], 
 [4, 0, 0, 4, 0, 0, 4, 4, 4, 4, 4, 4, 4, 0, 4, 0, 0, 4, 0, 0, 0, 4, 0, 0, 4], 
 [4, 0, 4, 4, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 4, 0, 4, 4, 0, 4, 0, 4, 4], 
-[4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 8, 4], 
+[4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 0, 4], 
 [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 ]
+
+current_map = base_map.copy()
 
 # OTHER-FUNKTIONS
 def draw_grid():
@@ -156,9 +158,25 @@ def draw_tiles():
                 tile = pictures[map_c[row][column]]
                 screen.blit(tile, (x, y))
 
-def on_mouse_down(pos,button): 
-     if button == mouse.RIGHT and blorp.collidepoint(pos):
-          print('Du har inte råd/Köpet genomfördes') #Future shop funktion
+def possible_move(deltax,deltay):
+    global r
+    blorp.x += deltax
+    blorp.y += deltay
+    for ri,row in enumerate(current_map):
+        for ci,tile in enumerate(row):
+                if tile and not tile in [5,6,7,8]:
+                    # Smaller rect than tile 
+                    r = Rect(ci*dx+5,ri*dy+5,dx-10,dy-10)
+                    if blorp.colliderect(r):
+                        #print(r,blorp.pos,tile)
+                        blorp.x -= deltax
+                        blorp.y -= deltay
+
+                        return False
+    blorp.x -= deltax
+    blorp.y -= deltay
+    r = None
+    return True
 
 
 # FUNKTIONS
@@ -181,11 +199,6 @@ def draw():
     draw_tiles()
     
     blorp.draw()
-
-    # MENU / COULD BE CONVERTED
-    if Menu == True:
-        screen.draw.text('MENU',(WIDTH/2, 100,),fontsize=50)
-        screen.draw.text('CLOSE [X]',(WIDTH/1.2, 100,),fontsize=25)
     
     ### HOME 
     # HOME BASE TEXT
@@ -199,6 +212,7 @@ def update(dt):
     global on_block
     ### NEXT LEVEL
     global map_level
+    global current_map
     
     ## GOLDEN PORTAL
     # MAP A
@@ -209,6 +223,8 @@ def update(dt):
         if tile == "portal_black.png":
             map_level = 1
             blorp.pos = (75,575)
+            current_map.clear()
+            current_map = base_map.copy()
         if tile == "block_pink.png": #ADD BLOCK
             on_block = True
         else:
@@ -221,6 +237,8 @@ def update(dt):
         if tile == "portal_black.png":
             map_level = 1
             blorp.pos = (75,575)
+            current_map.clear()
+            current_map = base_map.copy()
         if tile == "block_green.png": #ADD BLOCK
             on_block = True
         else:
@@ -233,6 +251,8 @@ def update(dt):
         if tile == "portal_black.png":
             map_level = 1
             blorp.pos = (75,575)
+            current_map.clear()
+            current_map = base_map.copy()
         if tile == "block_purple.png": #ADD BLOCK
             on_block = True
         else:
@@ -246,14 +266,20 @@ def update(dt):
             if tile == "portal_pink.png": #CHANGE PORTAL
                 map_level = 2
                 blorp.pos = (75,575)
+                current_map.clear()
+                current_map = map_a.copy()
 
             if tile == "portal_green.png": #CHANGE PORTAL
                 map_level = 3
                 blorp.pos = (75,575)
+                current_map.clear()
+                current_map = map_b.copy()
 
             if tile == "portal_purple.png": #CHANGE PORTAL
                 map_level = 4
                 blorp.pos = (75,575)
+                current_map.clear()
+                current_map = map_c.copy()
 
             if tile == "block_grey.png" or tile == "block_dark_grey.png": #ADD BLOCK
                 on_block = True
@@ -261,10 +287,10 @@ def update(dt):
                 on_block = False
                 
     ### MOVEMENT
-    if keyboard.D:
+    if keyboard.D and possible_move(3,0):
         blorp.x += 3
 
-    if keyboard.A:
+    if keyboard.A and possible_move(-3,0):
         blorp.x -= 3
 
     # BARRIER
@@ -276,24 +302,24 @@ def update(dt):
 
     # JUMP
     if on_block == False and clock >= 0.4:
-        if clock >= 0.45:
+        if clock >= 0.45 and possible_move(0,1):
             blorp.y += 1
-        if clock >= 0.6:
+        if clock >= 0.6 and possible_move(0,2):
             blorp.y += 2
-        if clock >= 0.8:
+        if clock >= 0.8 and possible_move(0,2):
             blorp.y += 2
     if not blorp.y == min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2):
         on_block = True        
     if (keyboard.space or keyboard.w) and on_block == True:
         clock = 0
         on_block = False
-    if clock <= 0.4:
+    if clock <= 0.4 and possible_move(0,-5.5):
         blorp.y -= 5.5
-        if clock >= 0.2:
+        if clock >= 0.2 and possible_move(0,1):
             blorp.y += 1
-        if clock >= 0.3:
+        if clock >= 0.3 and possible_move(0,1):
             blorp.y += 1
-        if clock >= 0.35:
+        if clock >= 0.35 and possible_move(0,2):
             blorp.y += 2
 
 
