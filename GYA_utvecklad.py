@@ -384,7 +384,7 @@ def on_mouse_down(pos,button):
             gliched_blorp = False
             loot_box()
 
-        if money >= 50:
+        if money <= 50:
             print('You need more money!')
 
     # Select skin
