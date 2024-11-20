@@ -310,8 +310,17 @@ def draw():
             screen.draw.text('Owned',(1100,125),fontsize=25,color='silver',alpha=1)
         else:
             screen.draw.text('25 B',(1110,125),fontsize=25,color='gold',alpha=1)
+        
+        #screen.draw.text(f' {timer:.1f}',centerx=WIDTH/2,centery=100,fontsize=60,color='black')
+        if gliched_blorp == True:
+            screen.draw.text(f'You won "GLITCHED BLORP"',( 350,236),fontsize=60,color='black')
+        if ultimate_blorp == True:
+            screen.draw.text(f'You won "ULTIMATE BLORP"',( 350,236),fontsize=60,color='black')
+        if nothing == True:
+            screen.draw.text(f'You lost!',( 350,236),fontsize=60,color='black')
 
     blorp.draw()
+    
 
     # MENU
     if Menu == True and home == True:
@@ -340,16 +349,21 @@ def draw():
             blorp_preview_2.draw()
             yes_button_2.draw() #
             no_button_2.draw() #
-    #screen.draw.text(f' {timer:.1f}',centerx=WIDTH/2,centery=100,fontsize=60,color='black')
-    if gliched_blorp == True:
-        screen.draw.text(f'You won "GLITCHED BLORP"',( 350,236),fontsize=60,color='black')
-    if ultimate_blorp == True:
-        screen.draw.text(f'You won "ULTIMATE BLORP"',( 350,236),fontsize=60,color='black')
-    if nothing == True:
-        screen.draw.text(f'You lost!',( 350,236),fontsize=60,color='black')
+    
+        if difficulty == True:
+            screen.draw.text('Difficulty switch: ',(850, 400,),fontsize=25,color='black')
+            screen.draw.text('Hard',(1000, 400,),fontsize=25,color='darkred')
+            switch_hard.pos = (950,450) # Not smart but works
+            switch_hard.draw()
+            switch_easy.pos = (1,1) # Not smart but works
+        else:
+            screen.draw.text('Difficulty switch: ',(850, 400,),fontsize=25,color='black')
+            screen.draw.text('Easy',(1000, 400,),fontsize=25,color='darkgreen')
+            switch_easy.pos = (950,450) # Not smart but works
+            switch_easy.draw()
+            switch_hard.pos = (1,1) # Not smart but works
 
 def on_mouse_down(pos,button): 
-            switch_hard.pos = (950,450) # Not smart but works
      global money
      global unlock_special
      global unlock_ultimate
@@ -388,6 +402,15 @@ def on_mouse_down(pos,button):
          blorp_color = 1
          blorp_select = 'blorp_grey.png'
 
+     # DIFFICULTY SWITCH
+     global difficulty 
+     if button == mouse.LEFT and switch_easy.collidepoint(pos) and Menu == True:
+        difficulty = True
+        print('difficulty ON')
+     if button == mouse.LEFT and switch_hard.collidepoint(pos) and Menu == True:
+        difficulty = False
+        print('difficulty OFF')
+
         
 def loot_box():
     global unlock_special
@@ -412,12 +435,6 @@ def loot_box():
 
     elif spin_the_wheel != 1000 and spin_the_wheel not in [100,110,120,130,140,150,160,170,180,190,200]:
         nothing = True
-
-            screen.draw.text('Difficulty switch: ',(850, 400,),fontsize=25,color='black')
-            screen.draw.text('Easy',(1000, 400,),fontsize=25,color='darkgreen')
-            switch_easy.pos = (950,450) # Not smart but works
-            switch_easy.draw()
-            switch_hard.pos = (1,1) # Not smart but works
         
 def update(dt):
     ### COLLIDERECT
