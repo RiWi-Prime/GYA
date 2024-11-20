@@ -272,12 +272,14 @@ def on_mouse_down(pos,button):
          blorp_color = 1
          blorp_select = 'blorp_grey.png'
     # DIFFICULTY SWITCH
-     global difficulty
+     global difficulty 
      if button == mouse.LEFT and switch_easy.collidepoint(pos) and Menu == True:
         difficulty = True
-
+        print('difficulty ON')
      if button == mouse.LEFT and switch_hard.collidepoint(pos) and Menu == True:
         difficulty = False
+        print('difficulty OFF')
+
 
         
 def loot_box():
@@ -393,11 +395,15 @@ def draw():
         if difficulty == True:
             screen.draw.text('Difficulty switch: ',(850, 400,),fontsize=25,color='black')
             screen.draw.text('Hard',(1000, 400,),fontsize=25,color='darkred')
+            switch_hard.pos = (950,450) # Not smart but works
             switch_hard.draw()
+            switch_easy.pos = (1,1) # Not smart but works
         else:
             screen.draw.text('Difficulty switch: ',(850, 400,),fontsize=25,color='black')
             screen.draw.text('Easy',(1000, 400,),fontsize=25,color='darkgreen')
+            switch_easy.pos = (950,450) # Not smart but works
             switch_easy.draw()
+            switch_hard.pos = (1,1) # Not smart but works
         
 def update(dt):
     ### COLLIDERECT
