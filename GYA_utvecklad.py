@@ -362,13 +362,14 @@ def draw():
             switch_easy.pos = (950,450) # Not smart but works
             switch_easy.draw()
             switch_hard.pos = (1,1) # Not smart but works
+            
     #screen.draw.text(f' {timer:.1f}',centerx=WIDTH/2,centery=100,fontsize=60,color='black')
     if gliched_blorp == True:
-        screen.draw.text(f'You won "GLITCHED BLORP"',( 350,236),fontsize=60,color='cyan')
+        screen.draw.text(f'You won "GLITCHED BLORP"',(350,236),fontsize=60,color='cyan')
     if ultimate_blorp == True:
-        screen.draw.text(f'You won "ULTIMATE BLORP"',( 350,236),fontsize=60,color='pink')
+        screen.draw.text(f'You won "ULTIMATE BLORP"',(350,236),fontsize=60,color='pink')
     if nothing == True:
-        screen.draw.text(f'You lost!',( 350,236),fontsize=60,color='yellow')
+        screen.draw.text(f'You lost!',(150,236),fontsize=60,color='yellow')
 
 def on_mouse_down(pos,button): 
      global money
@@ -387,7 +388,8 @@ def on_mouse_down(pos,button):
             ultimate_blorp = False
             gliched_blorp = False
             loot_box()
-        else:
+
+        if money >= 50:
             print('You need more money!')
 
     # Select skin
