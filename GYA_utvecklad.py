@@ -3,7 +3,7 @@ Game Title:     The Blorp Game
 About:          GYA - Funktions spel
 Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version: v.1.6.1
+Current Version: v.1.6.2
 '''
 
 ## IMPORTS
@@ -14,6 +14,8 @@ import os
 # Variables
 HEIGHT = 650
 WIDTH = 1250
+
+difficulty = False
 
 Menu = False # KEYBOARD.I and X
 Menu_value = 0 # KEYBOARD.I and X
@@ -47,7 +49,7 @@ unlock_ultimate = False
 ## CODE
 game = True
 print("The Blorp Game")
-print("Verison V.1.6.1")
+print("Verison V.1.6.2")
 
 timer = 0
 clock = 2
@@ -66,8 +68,8 @@ no_button = Actor('no.png',pos=(360, 335))
 yes_button_2 = Actor('yes.png',pos=(290,450))
 no_button_2 = Actor('no.png',pos=(360,450))
 ## Switches
-switch_easy = Actor('switch_normal.png',pos=(875,500))
-switch_hard = Actor('switch_difficult.png',pos=(875,500))
+switch_easy = Actor('switch_normal.png',pos=(950,450))
+switch_hard = Actor('switch_difficult.png',pos=(950,450))
 ## Lock
 lock = Actor('lock.png',pos=(290,300))
 lock2 = Actor('lock.png',pos=(290,425))
@@ -269,6 +271,13 @@ def on_mouse_down(pos,button):
          unlock_ultimate = False
          blorp_color = 1
          blorp_select = 'blorp_grey.png'
+    # DIFFICULTY SWITCH
+     global difficulty
+     if button == mouse.LEFT and switch_easy.collidepoint(pos) and Menu == True:
+        difficulty = True
+
+     if button == mouse.LEFT and switch_hard.collidepoint(pos) and Menu == True:
+        difficulty = False
 
         
 def loot_box():
@@ -380,7 +389,16 @@ def draw():
             blorp_preview_2.draw()
             yes_button_2.draw() #
             no_button_2.draw() #
-
+        
+        if difficulty == True:
+            screen.draw.text('Difficulty switch: ',(850, 400,),fontsize=25,color='black')
+            screen.draw.text('Hard',(1000, 400,),fontsize=25,color='darkred')
+            switch_hard.draw()
+        else:
+            screen.draw.text('Difficulty switch: ',(850, 400,),fontsize=25,color='black')
+            screen.draw.text('Easy',(1000, 400,),fontsize=25,color='darkgreen')
+            switch_easy.draw()
+        
 def update(dt):
     ### COLLIDERECT
 
@@ -453,7 +471,8 @@ def update(dt):
             else:
                 on_block = False
 
-            ## BUY SKINS
+            ### BUY SKINS - OPTAINING SKINS
+            # Global blorps
             global blorp_select
             global blorp_color
             global unlock_blue
