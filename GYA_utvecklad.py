@@ -313,11 +313,14 @@ def draw():
         
         #screen.draw.text(f' {timer:.1f}',centerx=WIDTH/2,centery=100,fontsize=60,color='black')
         if gliched_blorp == True:
-            screen.draw.text(f'You won "GLITCHED BLORP"',( 350,236),fontsize=60,color='black')
+            screen.draw.text(f'You won "GLITCHED BLORP"',(95,275),fontsize=60,color='purple')
+            # Fix posistion when display is added
         if ultimate_blorp == True:
-            screen.draw.text(f'You won "ULTIMATE BLORP"',( 350,236),fontsize=60,color='black')
+            screen.draw.text(f'You won "ULTIMATE BLORP"',(95,275),fontsize=60,color='pink')
+            # Fix posistion when display is added
         if nothing == True:
-            screen.draw.text(f'You lost!',( 350,236),fontsize=60,color='black')
+            screen.draw.text(f'You lost!',(95,275),fontsize=60,color='red')
+            # Fix posistion when display is added
 
     blorp.draw()
     
@@ -362,14 +365,6 @@ def draw():
             switch_easy.pos = (950,450) # Not smart but works
             switch_easy.draw()
             switch_hard.pos = (1,1) # Not smart but works
-            
-    #screen.draw.text(f' {timer:.1f}',centerx=WIDTH/2,centery=100,fontsize=60,color='black')
-    if gliched_blorp == True:
-        screen.draw.text(f'You won "GLITCHED BLORP"',(350,236),fontsize=60,color='cyan')
-    if ultimate_blorp == True:
-        screen.draw.text(f'You won "ULTIMATE BLORP"',(350,236),fontsize=60,color='pink')
-    if nothing == True:
-        screen.draw.text(f'You lost!',(150,236),fontsize=60,color='yellow')
 
 def on_mouse_down(pos,button): 
      global money
@@ -380,7 +375,7 @@ def on_mouse_down(pos,button):
      global timer
      global nothing,ultimate_blorp,gliched_blorp
     # Buy loot box
-     if button == mouse.LEFT and wheel.collidepoint(pos) and home == True:
+     if button == mouse.LEFT and wheel.collidepoint(pos) and home == True and Menu == False:
         if money >= 50 and timer >= 0.1:
             money -= 50
             timer = 0
