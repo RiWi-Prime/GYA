@@ -387,7 +387,6 @@ def on_mouse_down(pos,button):
             ultimate_blorp = False
             gliched_blorp = False
             loot_box()
-            switch_easy.pos = (1,1) # Not smart but works
         else:
             print('You need more money!')
 
