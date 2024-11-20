@@ -3,7 +3,7 @@ Game Title:     The Blorp Game
 About:          GYA - Funktions spel
 Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version: v.1.6.1
+Current Version: v.1.6.2
 '''
 
 ## IMPORTS
@@ -14,6 +14,8 @@ import os
 # Variables
 HEIGHT = 650
 WIDTH = 1250
+
+difficulty = False
 
 Menu = False # KEYBOARD.I and X
 Menu_value = 0 # KEYBOARD.I and X
@@ -26,8 +28,14 @@ dx, dy = 50, 50
 tile_size = 50
 
 map_level = 1
-
+timer = 0
+gliched_blorp = False
+ultimate_blorp = False
+nothing = False
 money = 100000
+gambling = True
+
+
 
 loot = ["blorp_special.png","blorp_ulimate.png"]
 spin_the_wheel = 0
@@ -47,7 +55,7 @@ unlock_ultimate = False
 ## CODE
 game = True
 print("The Blorp Game")
-print("Verison V.1.6.1")
+print("Verison V.1.6.2")
 
 timer = 0
 clock = 2
@@ -66,8 +74,8 @@ no_button = Actor('no.png',pos=(360, 335))
 yes_button_2 = Actor('yes.png',pos=(290,450))
 no_button_2 = Actor('no.png',pos=(360,450))
 ## Switches
-switch_easy = Actor('switch_normal.png',pos=(875,500))
-switch_hard = Actor('switch_difficult.png',pos=(875,500))
+switch_easy = Actor('switch_normal.png',pos=(950,450))
+switch_hard = Actor('switch_difficult.png',pos=(950,450))
 ## Lock
 lock = Actor('lock.png',pos=(290,300))
 lock2 = Actor('lock.png',pos=(290,425))
@@ -238,55 +246,7 @@ def draw_tiles():
                 tile = pictures[map_c[row][column]]
                 screen.blit(tile, (x, y))
 
-def on_mouse_down(pos,button): 
-     global money
-     global unlock_special
-     global unlock_ultimate
-     global blorp_select
-     global blorp_color
-    # Buy loot box
-     if button == mouse.LEFT and wheel.collidepoint(pos):
-        if money >= 50:
-            loot_box()
-            money -= 50
-        else:
-            print('You need more money!')
 
-    # Select skin
-    # SPEICAL BLORP
-     if button == mouse.LEFT and yes_button.collidepoint(pos) and Menu == True and price_1 == True:
-         unlock_special = True
-         unlock_ultimate = False
-     if button == mouse.LEFT and no_button.collidepoint(pos) and Menu == True and price_1 == True:
-         unlock_special = False
-         blorp_color = 1
-         blorp_select = 'blorp_grey.png'
-    # ULTIMATE BLORP
-     if button == mouse.LEFT and yes_button_2.collidepoint(pos) and Menu == True and price_2 == True:
-         unlock_ultimate = True
-         unlock_special = False
-     if button == mouse.LEFT and no_button_2.collidepoint(pos) and Menu == True and price_2 == True:
-         unlock_ultimate = False
-         blorp_color = 1
-         blorp_select = 'blorp_grey.png'
-
-        
-def loot_box():
-    global unlock_special
-    global unlock_ultimate
-    global price_1
-    global price_2
-    spin_the_wheel = random.randint(1,1000)
-    if spin_the_wheel == 1000:
-        print('You won "GLITCHED BLORP"')
-        unlock_special = True
-        price_1 = True
-    if spin_the_wheel in [100,110,120,130,140,150,160,170,180,190,200]:
-        print(f'You won "ULTIMATE BLORP"')
-        unlock_ultimate = True
-        price_2 = True
-    elif spin_the_wheel != 1000 and spin_the_wheel not in [100,110,120,130,140,150,160,170,180,190,200]:
-        print(f'Your number was {spin_the_wheel}, You lost!')
     
 
 # FUNKTIONS
@@ -350,8 +310,17 @@ def draw():
             screen.draw.text('Owned',(1100,125),fontsize=25,color='silver',alpha=1)
         else:
             screen.draw.text('25 B',(1110,125),fontsize=25,color='gold',alpha=1)
+        
+        #screen.draw.text(f' {timer:.1f}',centerx=WIDTH/2,centery=100,fontsize=60,color='black')
+        if gliched_blorp == True:
+            screen.draw.text(f'You won "GLITCHED BLORP"',( 350,236),fontsize=60,color='black')
+        if ultimate_blorp == True:
+            screen.draw.text(f'You won "ULTIMATE BLORP"',( 350,236),fontsize=60,color='black')
+        if nothing == True:
+            screen.draw.text(f'You lost!',( 350,236),fontsize=60,color='black')
 
     blorp.draw()
+    
 
     # MENU
     if Menu == True and home == True:
@@ -380,7 +349,99 @@ def draw():
             blorp_preview_2.draw()
             yes_button_2.draw() #
             no_button_2.draw() #
+    
+        if difficulty == True:
+            screen.draw.text('Difficulty switch: ',(850, 400,),fontsize=25,color='black')
+            screen.draw.text('Hard',(1000, 400,),fontsize=25,color='darkred')
+            switch_hard.pos = (950,450) # Not smart but works
+            switch_hard.draw()
+            switch_easy.pos = (1,1) # Not smart but works
+        else:
+            screen.draw.text('Difficulty switch: ',(850, 400,),fontsize=25,color='black')
+            screen.draw.text('Easy',(1000, 400,),fontsize=25,color='darkgreen')
+            switch_easy.pos = (950,450) # Not smart but works
+            switch_easy.draw()
+            switch_hard.pos = (1,1) # Not smart but works
+    #screen.draw.text(f' {timer:.1f}',centerx=WIDTH/2,centery=100,fontsize=60,color='black')
+    if gliched_blorp == True:
+        screen.draw.text(f'You won "GLITCHED BLORP"',( 350,236),fontsize=60,color='cyan')
+    if ultimate_blorp == True:
+        screen.draw.text(f'You won "ULTIMATE BLORP"',( 350,236),fontsize=60,color='pink')
+    if nothing == True:
+        screen.draw.text(f'You lost!',( 350,236),fontsize=60,color='yellow')
 
+def on_mouse_down(pos,button): 
+     global money
+     global unlock_special
+     global unlock_ultimate
+     global blorp_select
+     global blorp_color
+     global timer
+     global nothing,ultimate_blorp,gliched_blorp
+    # Buy loot box
+     if button == mouse.LEFT and wheel.collidepoint(pos) and home == True:
+        if money >= 50 and timer >= 0.1:
+            money -= 50
+            timer = 0
+            nothing = False
+            ultimate_blorp = False
+            gliched_blorp = False
+            loot_box()
+        else:
+            print('You need more money!')
+
+    # Select skin
+    # SPEICAL BLORP
+     if button == mouse.LEFT and yes_button.collidepoint(pos) and Menu == True and price_1 == True:
+         unlock_special = True
+         unlock_ultimate = False
+     if button == mouse.LEFT and no_button.collidepoint(pos) and Menu == True and price_1 == True:
+         unlock_special = False
+         blorp_color = 1
+         blorp_select = 'blorp_grey.png'
+    # ULTIMATE BLORP
+     if button == mouse.LEFT and yes_button_2.collidepoint(pos) and Menu == True and price_2 == True:
+         unlock_ultimate = True
+         unlock_special = False
+     if button == mouse.LEFT and no_button_2.collidepoint(pos) and Menu == True and price_2 == True:
+         unlock_ultimate = False
+         blorp_color = 1
+         blorp_select = 'blorp_grey.png'
+
+     # DIFFICULTY SWITCH
+     global difficulty 
+     if button == mouse.LEFT and switch_easy.collidepoint(pos) and Menu == True:
+        difficulty = True
+        print('difficulty ON')
+     if button == mouse.LEFT and switch_hard.collidepoint(pos) and Menu == True:
+        difficulty = False
+        print('difficulty OFF')
+
+        
+def loot_box():
+    global unlock_special
+    global gliched_blorp
+    global unlock_ultimate
+    global ultimate_blorp
+    global nothing
+    global price_1
+    global price_2
+    global timer
+    spin_the_wheel = random.randint(1,1000)
+    if spin_the_wheel == 1000: 
+        gliched_blorp = True
+        unlock_special = True
+        price_1 = True
+        timer = -2.9
+    if spin_the_wheel in [100,110,120,130,140,150,160,170,180,190,200]:
+        ultimate_blorp = True
+        unlock_ultimate = True
+        price_2 = True
+        timer = -1.4
+
+    elif spin_the_wheel != 1000 and spin_the_wheel not in [100,110,120,130,140,150,160,170,180,190,200]:
+        nothing = True
+        
 def update(dt):
     ### COLLIDERECT
 
@@ -389,6 +450,13 @@ def update(dt):
     global money
     global clock
     global on_block
+    global nothing,gliched_blorp,ultimate_blorp
+    global timer
+    timer += dt
+    if timer >= 5:
+        nothing = False
+        ultimate_blorp = False
+        gliched_blorp = False
     ## GOLDEN PORTAL
     # MAP A
     if map_level == 2:
@@ -453,7 +521,8 @@ def update(dt):
             else:
                 on_block = False
 
-            ## BUY SKINS
+            ### BUY SKINS - OPTAINING SKINS
+            # Global blorps
             global blorp_select
             global blorp_color
             global unlock_blue
