@@ -342,11 +342,11 @@ def draw():
             no_button_2.draw() #
     #screen.draw.text(f' {timer:.1f}',centerx=WIDTH/2,centery=100,fontsize=60,color='black')
     if gliched_blorp == True:
-        screen.draw.text(f'You won "GLITCHED BLORP"',( 350,236),fontsize=60,color='black')
+        screen.draw.text(f'You won "GLITCHED BLORP"',( 350,236),fontsize=60,color='cyan')
     if ultimate_blorp == True:
-        screen.draw.text(f'You won "ULTIMATE BLORP"',( 350,236),fontsize=60,color='black')
+        screen.draw.text(f'You won "ULTIMATE BLORP"',( 350,236),fontsize=60,color='pink')
     if nothing == True:
-        screen.draw.text(f'You lost!',( 350,236),fontsize=60,color='black')
+        screen.draw.text(f'You lost!',( 350,236),fontsize=60,color='yellow')
 
 def on_mouse_down(pos,button): 
      global money
@@ -357,7 +357,7 @@ def on_mouse_down(pos,button):
      global timer
      global nothing,ultimate_blorp,gliched_blorp
     # Buy loot box
-     if button == mouse.LEFT and wheel.collidepoint(pos):
+     if button == mouse.LEFT and wheel.collidepoint(pos) and home == True:
         if money >= 50 and timer >= 0.1:
             money -= 50
             timer = 0
@@ -419,8 +419,13 @@ def update(dt):
     global money
     global clock
     global on_block
+    global nothing,gliched_blorp,ultimate_blorp
     global timer
     timer += dt
+    if timer >= 5:
+        nothing = False
+        ultimate_blorp = False
+        gliched_blorp = False
     ## GOLDEN PORTAL
     # MAP A
     if map_level == 2:
