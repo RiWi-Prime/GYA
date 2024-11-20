@@ -26,6 +26,7 @@ dx, dy = 50, 50
 tile_size = 50
 
 map_level = 1
+current_map = []
 
 money = 100000
 
@@ -41,6 +42,7 @@ timer = 0
 clock = 2
 on_block = True
 
+r = None
 # IMAGES/ACTORS
 blorp = Actor('blorp_grey.png',pos = (175,400))
 blorp.image = 'blorp_grey.png'
@@ -67,7 +69,7 @@ base_map = [
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 0, 0, 0, 6, 0, 0, 0, 7, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 15, 15, 0, 15, 15, 15, 0, 15, 15, 15, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 6, 0, 0, 0, 7, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ]
 
@@ -98,8 +100,8 @@ map_b = [
 [3, 3, 3, 0, 3, 3, 0, 3, 3, 3, 3, 3, 0, 3, 0, 3, 3, 0, 0, 3, 0, 3, 3, 0, 3], 
 [3, 3, 3, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 3, 3, 0, 3, 0, 3, 0, 0, 3], 
 [3, 3, 0, 0, 0, 3, 3, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3], 
-[3, 3, 0, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3, 3, 3], 
-[3, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 8, 3], 
+[3, 3, 0, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3, 8, 3], 
+[3, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 0, 3], 
 [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
 ]
 
@@ -118,6 +120,8 @@ map_c = [
 [4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 8, 4], 
 [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 ]
+
+current_map = base_map.copy()
 
 # OTHER-FUNKTIONS
 def draw_grid():
@@ -138,7 +142,6 @@ def draw_tiles():
                 y = row * tile_size
                 tile = pictures[base_map[row][column]]
                 screen.blit(tile, (x, y))
-
                 
     if map_level == 2:
         for row in range(len(map_a)):
@@ -181,21 +184,24 @@ def loot_box():
     else:
         print(f'Your number was {spin_the_wheel}, You lost!')
 
-def possible_move_x(deltax):
+def possible_move(deltax,deltay):
+    global r
     blorp.x += deltax
-    for row in range(len(base_map)):
-        for col in range(len(base_map)):
-            for tile in base_map:
-                if not tile == 0:
-
+    blorp.y += deltay
+    for ri,row in enumerate(current_map):
+        for ci,tile in enumerate(row):
+                if tile and tile != 5 and tile != 6 and tile != 7 and tile != 8 and tile != 9 and tile != 10 and tile != 11 and tile != 12 and tile != 13 and tile != 14:
                     # Smaller rect than tile 
-                    r = Rect(col*dx+5,row*dy+5,dx-10,dy-10)
+                    r = Rect(ci*dx+5,ri*dy+5,dx-10,dy-10)
                     if blorp.colliderect(r):
-                        print(r,blorp.pos)
+                        #print(r,blorp.pos,tile)
                         blorp.x -= deltax
+                        blorp.y -= deltay
 
                         return False
     blorp.x -= deltax
+    blorp.y -= deltay
+    r = None
     return True
     
 # FUNKTIONS
@@ -234,6 +240,9 @@ def draw():
         wheel.draw()
         screen.draw.text('COSMETICS',(760,60),fontsize=55,color='black',alpha=0.6)
 
+    if r:
+        screen.draw.filled_rect(r,'red')
+
 def update(dt):
     ### COLLIDERECT
 
@@ -242,7 +251,7 @@ def update(dt):
     global money
     global clock
     global on_block
-    global clear_tiles
+    global current_map
     ## GOLDEN PORTAL
     # MAP A
 
@@ -254,6 +263,8 @@ def update(dt):
             map_level = 1
             money += 10 # change value
             blorp.pos = (75,575)
+            current_map.clear()
+            current_map = base_map.copy()
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -268,6 +279,8 @@ def update(dt):
             map_level = 1
             money += 25 # change value 
             blorp.pos = (75,575)
+            current_map.clear()
+            current_map = base_map.copy()
         if tile == "block_green.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -281,6 +294,8 @@ def update(dt):
             map_level = 1
             money += 50 # change value
             blorp.pos = (75,575)
+            current_map.clear()
+            current_map = base_map.copy()
         if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -294,14 +309,20 @@ def update(dt):
             if tile == "portal_pink.png": #CHANGE PORTAL
                 map_level = 2
                 blorp.pos = (75,575)
+                current_map.clear()
+                current_map = map_a.copy()
 
             if tile == "portal_green.png": #CHANGE PORTAL
                 map_level = 3
                 blorp.pos = (75,575)
+                current_map.clear()
+                current_map = map_b.copy()
 
             if tile == "portal_purple.png": #CHANGE PORTAL
                 map_level = 4
                 blorp.pos = (75,575)
+                current_map.clear()
+                current_map = map_c.copy()
             
             if tile == "block_grey.png" or tile == "block_dark_grey.png" or tile == "block_red.png": #ADD BLOCK
                 on_block = True
@@ -309,10 +330,10 @@ def update(dt):
                 on_block = False
 
     ### MOVEMENT
-    if keyboard.D and possible_move_x(3):
+    if keyboard.D and possible_move(3,0):
         blorp.x += 3
 
-    if keyboard.A and possible_move_x(-3):
+    if keyboard.A and possible_move(-3,0):
         blorp.x -= 3
 
     # BARRIER
@@ -325,24 +346,24 @@ def update(dt):
   
         # JUMP
     if on_block == False and clock >= 0.4:
-        if clock >= 0.45:
+        if clock >= 0.45 and possible_move(0,1):
             blorp.y += 1
-        if clock >= 0.6:
+        if clock >= 0.6 and possible_move(0,2):
             blorp.y += 2
-        if clock >= 0.8:
+        if clock >= 0.8 and possible_move(0,2):
             blorp.y += 2
     if not blorp.y == min(max(blorp.y,blorp.height//2),HEIGHT-blorp.height//2):
         on_block = True        
     if (keyboard.space or keyboard.w) and on_block == True:
         clock = 0
         on_block = False
-    if clock <= 0.4:
+    if clock <= 0.4 and possible_move(0,-5.5):
         blorp.y -= 5.5
-        if clock >= 0.2:
+        if clock >= 0.2 and possible_move(0,1):
             blorp.y += 1
-        if clock >= 0.3:
+        if clock >= 0.3 and possible_move(0,1):
             blorp.y += 1
-        if clock >= 0.35:
+        if clock >= 0.35 and possible_move(0,2):
             blorp.y += 2
     if on_block == True:
             blorp.image = 'blorp_grey.png'
