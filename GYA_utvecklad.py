@@ -81,6 +81,7 @@ switch_hard = Actor('switch_difficult.png',pos=(950,450))
 lock = Actor('lock.png',pos=(290,300))
 lock2 = Actor('lock.png',pos=(290,425))
 # Other
+casino_display = Actor('casino_display.png',pos = (175,375))
 casino = Actor('sign_casino.png',pos = (300,100))
 sign = Actor('sign_wood.png',pos = (875,75))
 wheel = Actor('casino_wheel.png',pos = (175,200))
@@ -322,7 +323,6 @@ def draw():
         casino.draw()
         sign.draw()
         screen.draw.text('COSMETICS',(760,60),fontsize=55,color='black',alpha=0.6)
-        screen.draw.text('Press the wheel\nto spin!!\nChance to win \nSPECIAL blorps',(275,150),fontsize=25,color='white')
 
         ## UNLOCK GUI
         # BLUE
@@ -356,15 +356,22 @@ def draw():
         else:
             screen.draw.text('25 B',(1110,125),fontsize=25,color='gold',alpha=1)
         
-        #screen.draw.text(f' {timer:.1f}',centerx=WIDTH/2,centery=100,fontsize=60,color='black')
+                            #screen.draw.text(f' {timer:.1f}',centerx=WIDTH/2,centery=100,fontsize=60,color='black')
+        
+        ##CASINO DISPLAY
+        casino_display.draw()
+        if gliched_blorp == False and ultimate_blorp == False and nothing == False:
+            screen.draw.text('Press the wheel to spin!',(98,370),fontsize=20,color='orange',alpha = (0.9))
+        #(175,375)
+        # SCREEN OF DISPLAY
         if gliched_blorp == True:
-            screen.draw.text(f'You won "GLITCHED BLORP"',(95,275),fontsize=60,color='purple')
+            screen.draw.text(f'You won "GLITCHED BLORP"',(96,368),fontsize=17,color='purple',alpha = (0.9))
             # Fix posistion when display is added
         if ultimate_blorp == True:
-            screen.draw.text(f'You won "ULTIMATE BLORP"',(95,275),fontsize=60,color='pink')
+            screen.draw.text(f'You won "ULTIMATE BLORP"',(96,368),fontsize=17,color='pink',alpha = (0.9))
             # Fix posistion when display is added
         if nothing == True:
-            screen.draw.text(f'You lost!',(95,275),fontsize=60,color='red')
+            screen.draw.text(f'You lost!',(125,363),fontsize=35,color='red',alpha =(0.9))
             # Fix posistion when display is added
 
     blorp.draw()
