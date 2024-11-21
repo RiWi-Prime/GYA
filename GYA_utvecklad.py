@@ -280,13 +280,16 @@ def possible_move(deltax,deltay):
     blorp.y += deltay
     for ri,row in enumerate(current_map):
         for ci,tile in enumerate(row):
-                if tile and not tile in [5,6,7,8,9,10,11,12,13,14,17]:
+                if tile and not tile in [5,6,7,8,9,10,11,12,13,14]:
                     # Smaller rect than tile 
                     r = Rect(ci*dx+5,ri*dy+5,dx-10,dy-10)
                     if blorp.colliderect(r):
                         #print(r,blorp.pos,tile)
                         blorp.x -= deltax
                         blorp.y -= deltay
+                        if tile == 17:
+                            blorp.x = 75
+                            blorp.y = 575
 
                         return False
     blorp.x -= deltax
@@ -560,8 +563,8 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = base_map.copy()
-        if tile == "block_void.png":
-            blorp.pos = (75,575)
+        #if tile == "block_void.png":
+        #    blorp.pos = (75,575)
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
