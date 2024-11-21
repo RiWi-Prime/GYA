@@ -33,7 +33,7 @@ timer = 0
 gliched_blorp = False
 ultimate_blorp = False
 nothing = False
-money = 100000
+money = 0
 gambling = True
 
 
