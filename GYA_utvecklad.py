@@ -33,6 +33,7 @@ timer = 0
 gliched_blorp = False
 ultimate_blorp = False
 nothing = False
+got_money = False
 money = 0
 gambling = True
 
@@ -161,7 +162,7 @@ map_da = [
 [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
 [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17, 2, 0, 0, 0, 0, 17, 2, 2, 8, 0, 2], 
 [2, 0, 2, 2, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 2, 0, 2, 2, 0, 0, 0, 2, 2, 0, 2], 
-[2, 0, 0, 2, 2, 0, 0, 2, 2, 0, 2, 2, 0, 0, 2, 0, 0, 17, 2, 0, 0, 2, 0, 0, 2], 
+[2, 0, 0, 2, 2, 0, 0, 2, 2, 0, 2, 2, 0, 0, 2, 0, 0, 17, 2, 0, 0, 2, 0, 0, 17], 
 [2, 2, 0, 2, 2, 0, 0, 2, 0, 0, 0, 2, 0, 0, 2, 2, 0, 0, 17, 2, 0, 0, 0, 2, 2], 
 [2, 17, 0, 0, 2, 0, 0, 2, 2, 0, 2, 2, 17, 0, 2, 0, 0, 0, 0, 17, 0, 0, 2, 2, 2], 
 [2, 0, 2, 0, 0, 17, 17, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 17, 0, 17, 0, 0, 0, 2, 2], 
@@ -175,12 +176,12 @@ map_da = [
 
 map_db = [
 [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-[3, 3, 3, 3, 3, 3, 3, 17, 0, 0, 0, 3, 3, 3, 3, 17, 0, 0, 0, 3, 3, 0, 0, 0, 3], 
+[3, 3, 3, 3, 3, 3, 3, 17, 0, 0, 0, 3, 3, 3, 3, 17, 0, 0, 0, 3, 3, 0, 0, 0, 17], 
 [3, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 3], 
 [3, 3, 0, 3, 3, 3, 3, 3, 0, 3, 0, 3, 0, 3, 0, 3, 3, 3, 0, 3, 3, 3, 17, 0, 3], 
 [3, 3, 0, 3, 17, 0, 3, 3, 0, 3, 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3], 
 [3, 3, 0, 3, 3, 0, 3, 0, 0, 3, 0, 3, 3, 3, 3, 3, 3, 0, 17, 3, 3, 17, 0, 3, 3], 
-[3, 3, 0, 0, 3, 0, 0, 0, 3, 17, 0, 0, 0, 0, 0, 3, 3, 0, 3, 3, 0, 0, 0, 0, 3], 
+[3, 3, 0, 0, 3, 0, 0, 0, 3, 17, 0, 0, 0, 0, 0, 3, 3, 0, 3, 17, 0, 0, 0, 0, 3], 
 [3, 3, 17, 0, 3, 3, 0, 3, 3, 3, 3, 3, 0, 3, 0, 3, 3, 0, 0, 3, 0, 3, 3, 0, 3], 
 [3, 3, 3, 0, 17, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 17, 3, 3, 0, 3, 0, 3, 0, 0, 3], 
 [3, 3, 0, 0, 0, 17, 3, 0, 3, 3, 3, 3, 3, 17, 0, 0, 0, 3, 0, 3, 0, 3, 0, 17, 3], 
@@ -365,7 +366,7 @@ def draw():
         
         ## CASINO DISPLAY
         casino_display.draw()
-        if gliched_blorp == False and ultimate_blorp == False and nothing == False:
+        if gliched_blorp == False and ultimate_blorp == False and nothing == False and got_money == False:
             screen.draw.text('Press the wheel to spin!',(98,370),fontsize=20,color='orange',alpha = (0.9))
 
         #(175,375)
@@ -378,6 +379,9 @@ def draw():
             # Fix posistion when display is added
         if nothing == True:
             screen.draw.text(f'You lost',(125,363),fontsize=35,color='red',alpha =(0.9))
+            # Fix posistion when display is added
+        if got_money == True:
+            screen.draw.text(f'Got money',(100,363),fontsize=35,color='green',alpha =(0.9))
             # Fix posistion when display is added
 
     blorp.draw()
@@ -431,7 +435,7 @@ def on_mouse_down(pos,button):
      global blorp_select
      global blorp_color
      global timer
-     global nothing,ultimate_blorp,gliched_blorp
+     global nothing,ultimate_blorp,gliched_blorp,got_money
     # Buy loot box
      if button == mouse.LEFT and wheel.collidepoint(pos) and home == True and Menu == False:
         if money >= 50 and timer >= 0.1:
@@ -440,6 +444,7 @@ def on_mouse_down(pos,button):
             nothing = False
             ultimate_blorp = False
             gliched_blorp = False
+            got_money = False
             loot_box()
 
         if money <= 50:
@@ -479,9 +484,11 @@ def loot_box():
     global unlock_ultimate
     global ultimate_blorp
     global nothing
+    global got_money
     global price_1
     global price_2
     global timer
+    global money
     spin_the_wheel = random.randint(1,1000)
     if spin_the_wheel == 1000: 
         gliched_blorp = True
@@ -493,7 +500,10 @@ def loot_box():
         unlock_ultimate = True
         price_2 = True
         timer = -1.4
-
+    if spin_the_wheel in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]:
+        got_money = True
+        money += 1000
+        timer = -0.9
     elif spin_the_wheel != 1000 and spin_the_wheel not in [100,110,120,130,140,150,160,170,180,190,200]:
         nothing = True
         
@@ -505,11 +515,12 @@ def update(dt):
     global money
     global clock
     global on_block
-    global nothing,gliched_blorp,ultimate_blorp
+    global nothing,gliched_blorp,ultimate_blorp,got_money
     global timer
     global current_map
     timer += dt
     if timer >= 5:
+        got_money = False
         nothing = False
         ultimate_blorp = False
         gliched_blorp = False
