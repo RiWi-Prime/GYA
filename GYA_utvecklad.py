@@ -3,7 +3,7 @@ Game Title:     The Blorp Game
 About:          GYA - Funktions spel
 Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version: v.2.0.0
+Current Version: v.2.0.0 
 '''
 
 ## IMPORTS
