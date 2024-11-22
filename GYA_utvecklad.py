@@ -381,7 +381,7 @@ def draw():
             screen.draw.text(f'You lost',(125,363),fontsize=35,color='red',alpha =(0.9))
             # Fix posistion when display is added
         if got_money == True:
-            screen.draw.text(f'Got money',(100,363),fontsize=35,color='green',alpha =(0.9))
+            screen.draw.text(f'You won money',(100,366),fontsize=30,color='green',alpha =(0.9))
             # Fix posistion when display is added
 
     blorp.draw()
