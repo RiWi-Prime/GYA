@@ -326,6 +326,8 @@ def draw():
         casino.draw()
         sign.draw()
         screen.draw.text('COSMETICS',(760,60),fontsize=55,color='black',alpha=0.6)
+        screen.draw.text('Press [i] to open the Menu',(100,610),fontsize=25,color='darkgrey',alpha=0.7)
+        screen.draw.text(f'50 B',(160,75),fontsize=25,color="gold")
 
         ## UNLOCK GUI
         # BLUE
@@ -361,10 +363,11 @@ def draw():
         
                             #screen.draw.text(f' {timer:.1f}',centerx=WIDTH/2,centery=100,fontsize=60,color='black')
         
-        ##CASINO DISPLAY
+        ## CASINO DISPLAY
         casino_display.draw()
         if gliched_blorp == False and ultimate_blorp == False and nothing == False:
             screen.draw.text('Press the wheel to spin!',(98,370),fontsize=20,color='orange',alpha = (0.9))
+
         #(175,375)
         # SCREEN OF DISPLAY
         if gliched_blorp == True:
@@ -374,7 +377,7 @@ def draw():
             screen.draw.text(f'You won "ULTIMATE BLORP"',(96,368),fontsize=17,color='pink',alpha = (0.9))
             # Fix posistion when display is added
         if nothing == True:
-            screen.draw.text(f'You lost!',(125,363),fontsize=35,color='red',alpha =(0.9))
+            screen.draw.text(f'You lost',(125,363),fontsize=35,color='red',alpha =(0.9))
             # Fix posistion when display is added
 
     blorp.draw()
