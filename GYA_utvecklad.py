@@ -532,7 +532,7 @@ def update(dt):
         tile = pictures[map_a[row][column]]
         if tile == "portal_black.png":
             map_level = 1
-            money += 10 # change value
+            money += 20 # change value
             blorp.pos = (75,575)
             current_map.clear()
             current_map = base_map.copy()
@@ -548,7 +548,7 @@ def update(dt):
         tile = pictures[map_b[row][column]]
         if tile == "portal_black.png":
             map_level = 1
-            money += 25 # change value 
+            money += 50 # change value 
             blorp.pos = (75,575)
             current_map.clear()
             current_map = base_map.copy()
@@ -563,7 +563,7 @@ def update(dt):
         tile = pictures[map_c[row][column]]
         if tile == "portal_black.png":
             map_level = 1
-            money += 50 # change value
+            money += 100 # change value
             blorp.pos = (75,575)
             current_map.clear()
             current_map = base_map.copy()
@@ -580,7 +580,7 @@ def update(dt):
         tile = pictures[map_da[row][column]]
         if tile == "portal_black.png":
             map_level = 1
-            money += 200 # change value
+            money += 400 # change value
             blorp.pos = (75,575)
             current_map.clear()
             current_map = base_map.copy()
@@ -597,7 +597,7 @@ def update(dt):
         tile = pictures[map_db[row][column]]
         if tile == "portal_black.png":
             map_level = 1
-            money += 300 # change value
+            money += 600 # change value
             blorp.pos = (75,575)
             current_map.clear()
             current_map = base_map.copy()
@@ -614,7 +614,7 @@ def update(dt):
         tile = pictures[map_dc[row][column]]
         if tile == "portal_black.png":
             map_level = 1
-            money += 500 # change value
+            money += 1000 # change value
             blorp.pos = (75,575)
             current_map.clear()
             current_map = base_map.copy()
