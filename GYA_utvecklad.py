@@ -335,32 +335,32 @@ def draw():
         if unlock_blue != False:
             screen.draw.text('Owned',(600,125),fontsize=25,color='silver',alpha=1)
         else:
-            screen.draw.text('25 B',(610,125),fontsize=25,color='gold',alpha=1)
+            screen.draw.text('50 B',(610,125),fontsize=25,color='gold',alpha=1)
         # LIGHT BLUE
         if unlock_light_blue != False:
             screen.draw.text('Owned',(700,125),fontsize=25,color='silver',alpha=1)
         else:
-            screen.draw.text('25 B',(710,125),fontsize=25,color='gold',alpha=1)
+            screen.draw.text('50 B',(710,125),fontsize=25,color='gold',alpha=1)
         # GREEN
         if unlock_green != False:
             screen.draw.text('Owned',(800,125),fontsize=25,color='silver',alpha=1)
         else:
-            screen.draw.text('25 B',(810,125),fontsize=25,color='gold',alpha=1)
+            screen.draw.text('50 B',(810,125),fontsize=25,color='gold',alpha=1)
         # YELLOW
         if unlock_yellow != False:
             screen.draw.text('Owned',(900,125),fontsize=25,color='silver',alpha=1)
         else:
-            screen.draw.text('25 B',(910,125),fontsize=25,color='gold',alpha=1)
+            screen.draw.text('50 B',(910,125),fontsize=25,color='gold',alpha=1)
         # RED
         if unlock_red != False:
             screen.draw.text('Owned',(1000,125),fontsize=25,color='silver',alpha=1)
         else:
-            screen.draw.text('25 B',(1010,125),fontsize=25,color='gold',alpha=1)
+            screen.draw.text('50 B',(1010,125),fontsize=25,color='gold',alpha=1)
         # MEGENTA
         if unlock_megenta != False:
             screen.draw.text('Owned',(1100,125),fontsize=25,color='silver',alpha=1)
         else:
-            screen.draw.text('25 B',(1110,125),fontsize=25,color='gold',alpha=1)
+            screen.draw.text('50 B',(1110,125),fontsize=25,color='gold',alpha=1)
         
                             #screen.draw.text(f' {timer:.1f}',centerx=WIDTH/2,centery=100,fontsize=60,color='black')
         
