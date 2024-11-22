@@ -3,7 +3,7 @@ Game Title:     The Blorp Game
 About:          GYA - Funktions spel
 Creators:       Rikard W, Sebastian B and Oscar K
 
-Current Version: v.1.7.0
+Current Version: v.2.0.0
 '''
 
 ## IMPORTS
@@ -57,7 +57,7 @@ unlock_ultimate = False
 ## CODE
 game = True
 print("The Blorp Game")
-print("Verison V.1.7.0")
+print("Verison V.2.0.0")
 
 timer = 0
 clock = 2
@@ -382,6 +382,7 @@ def draw():
             # Fix posistion when display is added
         if got_money == True:
             screen.draw.text(f'You won money',(100,366),fontsize=30,color='green',alpha =(0.9))
+            screen.draw.text(f'+ 1000 B',(65,30),fontsize=25,color="gold")
             # Fix posistion when display is added
 
     blorp.draw()
