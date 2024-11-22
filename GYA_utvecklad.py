@@ -34,7 +34,7 @@ gliched_blorp = False
 ultimate_blorp = False
 nothing = False
 got_money = False
-money = 10000
+money = 0
 gambling = True
 
 
