@@ -315,9 +315,13 @@ def draw():
         screen.blit('background_purple',(0,0))
         # ADD MORE UNDER
 
-    #draw_grid()
+    #draw_grid()  
     draw_tiles()
-    
+
+    # Display exit button
+    if home != True:
+        screen.draw.text('Exit [B]',(20,15),color="darkred",alpha=(0.8)) 
+
     ### HOME 
     # HOME BASE TEXT
     if home == True:
@@ -386,7 +390,6 @@ def draw():
             # Fix posistion when display is added
 
     blorp.draw()
-    
 
     # MENU
     if Menu == True and home == True:
@@ -860,6 +863,12 @@ def update(dt):
         home = True
     else:
         home = False
+
+    if keyboard.B and home == False:
+        blorp.pos = (75,575)
+        current_map.clear()
+        current_map = base_map.copy()
+        map_level = 1
 
     ### LOOT BOXES
     global loot
