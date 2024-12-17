@@ -305,14 +305,7 @@ def draw():
     screen.clear()
 
     # MAP . DRAW
-    if map_level == 1:
-        screen.blit('background_grey',(0,0))
-    if map_level == 2 or map_level == 5:
-        screen.blit('background_pink',(0,0))
-    if map_level == 3 or map_level == 6:
-        screen.blit('background_green',(0,0))
-    if map_level == 4 or map_level == 7:
-        screen.blit('background_purple',(0,0))
+    screen.blit(backgrounds[map_level-1],(0,0))
         # ADD MORE UNDER
 
     #draw_grid()
