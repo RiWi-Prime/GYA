@@ -308,9 +308,13 @@ def draw():
     screen.blit(backgrounds[map_level-1],(0,0))
         # ADD MORE UNDER
 
-    #draw_grid()
+    #draw_grid()  
     draw_tiles()
-    
+
+    # Display exit button
+    if home != True:
+        screen.draw.text('Exit [B]',(20,15),color="darkred",alpha=(0.8)) 
+
     ### HOME 
     # HOME BASE TEXT
     if home == True:
@@ -379,7 +383,6 @@ def draw():
             # Fix posistion when display is added
 
     blorp.draw()
-    
 
     # MENU
     if Menu == True and home == True:
@@ -494,7 +497,7 @@ def loot_box():
         unlock_ultimate = True
         price_2 = True
         timer = -1.4
-    if spin_the_wheel in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]:
+    if spin_the_wheel in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]:
         got_money = True
         money += 1000
         timer = -0.9
@@ -853,6 +856,12 @@ def update(dt):
         home = True
     else:
         home = False
+
+    if keyboard.B and home == False:
+        blorp.pos = (75,575)
+        current_map.clear()
+        current_map = base_map.copy()
+        map_level = 1
 
     ### LOOT BOXES
     global loot
