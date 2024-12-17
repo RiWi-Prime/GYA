@@ -26,7 +26,7 @@ dx, dy = 50, 50
 
 tile_size = 50
 
-map_level = 1
+map_level = 0
 current_map = []
 timer = 0
 gliched_blorp = False
@@ -90,6 +90,8 @@ pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','blo
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
             'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png','block_red.png', 'block_void.png'
             ]
+backgrounds = ['background_grey.png','background_pink.png','background_green.png','background_purple.png',
+               'background_pink.png','background_green.png','background_purple.png']
 
 # WORLD DATA
 maps = [
@@ -139,9 +141,9 @@ maps = [
 [3, 3, 0, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3, 8, 3], 
 [3, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 0, 3], 
 [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-]
+],
 
-map_c = [
+[
 [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 [4, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 4, 0, 8, 4], 
 [4, 0, 4, 4, 4, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 4, 4, 0, 4, 0, 4, 4], 
@@ -155,9 +157,9 @@ map_c = [
 [4, 0, 4, 4, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 4, 0, 4, 4, 0, 4, 0, 4, 4], 
 [4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 0, 4], 
 [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-]
+],
 
-map_da = [
+[
 [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
 [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17, 2, 0, 0, 0, 0, 17, 2, 2, 8, 0, 2], 
 [2, 0, 2, 2, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 2, 0, 2, 2, 0, 0, 0, 2, 2, 0, 2], 
@@ -171,9 +173,9 @@ map_da = [
 [2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
 [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
 [2, 2, 2, 2, 2, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17],
-]
+],
 
-map_db = [
+[
 [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
 [3, 3, 3, 3, 3, 3, 3, 17, 0, 0, 0, 3, 3, 3, 3, 17, 0, 0, 0, 3, 3, 0, 0, 0, 17], 
 [3, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 3], 
@@ -187,9 +189,9 @@ map_db = [
 [3, 3, 0, 3, 0, 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3, 8, 3], 
 [3, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 0, 3], 
 [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-]
+],
 
-map_dc = [
+[
 [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 [4, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 4, 0, 8, 4], 
 [4, 0, 4, 4, 4, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 4, 4, 0, 17, 0, 4, 4], 
@@ -204,9 +206,10 @@ map_dc = [
 [4, 0, 4, 17, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 17, 0, 0, 0, 0, 4], 
 [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 ]
+]
 '''
 my map do not touch
-map_s = [
+[
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
@@ -222,7 +225,7 @@ map_s = [
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ]
 '''
-current_map = base_map.copy()
+current_map = maps[0].copy()
 
 # OTHER-FUNKTIONS
 def draw_grid():
@@ -243,30 +246,6 @@ def draw_tiles():
             y = row * tile_size
             tile = pictures[selected_map[row][column]]
             screen.blit(tile, (x, y))
-
-    if map_level == 5:
-        for row in range(len(map_da)):
-            for column in range(len(map_da[row])):
-                x = column * tile_size
-                y = row * tile_size
-                tile = pictures[map_da[row][column]]
-                screen.blit(tile, (x, y))
-    
-    if map_level == 6:
-        for row in range(len(map_db)):
-            for column in range(len(map_db[row])):
-                x = column * tile_size
-                y = row * tile_size
-                tile = pictures[map_db[row][column]]
-                screen.blit(tile, (x, y))
-    
-    if map_level == 7:
-        for row in range(len(map_dc)):
-            for column in range(len(map_dc[row])):
-                x = column * tile_size
-                y = row * tile_size
-                tile = pictures[map_dc[row][column]]
-                screen.blit(tile, (x, y))
 
 def possible_move(deltax,deltay):
     global r
@@ -297,15 +276,7 @@ def draw():
     screen.clear()
 
     # MAP . DRAW
-    if map_level == 1:
-        screen.blit('background_grey',(0,0))
-    if map_level == 2 or map_level == 5:
-        screen.blit('background_pink',(0,0))
-    if map_level == 3 or map_level == 6:
-        screen.blit('background_green',(0,0))
-    if map_level == 4 or map_level == 7:
-        screen.blit('background_purple',(0,0))
-        # ADD MORE UNDER
+    screen.blit(backgrounds[map_level],(0,0))
 
     #draw_grid()  
     draw_tiles()
@@ -521,47 +492,47 @@ def update(dt):
         gliched_blorp = False
     ## GOLDEN PORTAL
     # MAP A
-    if map_level == 2:
+    if map_level == 1:
         row = int((blorp.y + 25)/ tile_size)
         column = int(blorp.x / tile_size)
-        tile = pictures[map_a[row][column]]
+        tile = pictures[maps[1][row][column]]
         if tile == "portal_black.png":
-            map_level = 1
+            map_level = 0
             money += 25 # change value
             blorp.pos = (75,575)
             current_map.clear()
-            current_map = base_map.copy()
+            current_map = maps[0].copy()
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
             on_block = False
 
     # MAP B
-    if map_level == 3:
+    if map_level == 2:
         row = int((blorp.y + 25)/ tile_size)
         column = int(blorp.x / tile_size)
-        tile = pictures[map_b[row][column]]
+        tile = pictures[maps[2][row][column]]
         if tile == "portal_black.png":
-            map_level = 1
+            map_level = 0
             money += 50 # change value 
             blorp.pos = (75,575)
             current_map.clear()
-            current_map = base_map.copy()
+            current_map = maps[0].copy()
         if tile == "block_green.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
             on_block = False    
     # MAP C
-    if map_level == 4:
+    if map_level == 3:
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
-        tile = pictures[map_c[row][column]]
+        tile = pictures[maps[3][row][column]]
         if tile == "portal_black.png":
-            map_level = 1
+            map_level = 0
             money += 100 # change value
             blorp.pos = (75,575)
             current_map.clear()
-            current_map = base_map.copy()
+            current_map = maps[0].copy()
         if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -569,16 +540,16 @@ def update(dt):
 
     ## Difficulty MAPS
     # DA
-    if map_level == 5:
+    if map_level == 4:
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
-        tile = pictures[map_da[row][column]]
+        tile = pictures[maps[4][row][column]]
         if tile == "portal_black.png":
-            map_level = 1
+            map_level = 0
             money += 400 # change value
             blorp.pos = (75,575)
             current_map.clear()
-            current_map = base_map.copy()
+            current_map = maps[0].copy()
         #if tile == "block_void.png":
         #    blorp.pos = (75,575)
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -586,16 +557,16 @@ def update(dt):
         else:
             on_block = False   
     # DB
-    if map_level == 6:
+    if map_level == 5:
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
-        tile = pictures[map_db[row][column]]
+        tile = pictures[maps[5][row][column]]
         if tile == "portal_black.png":
-            map_level = 1
+            map_level = 0
             money += 600 # change value
             blorp.pos = (75,575)
             current_map.clear()
-            current_map = base_map.copy()
+            current_map = maps[0].copy()
         if tile == "block_void.png":
             blorp.pos = (75,575)
         if tile == "block_green.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -603,16 +574,16 @@ def update(dt):
         else:
             on_block = False   
     # DC
-    if map_level == 7:
+    if map_level == 6:
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
-        tile = pictures[map_dc[row][column]]
+        tile = pictures[maps[6][row][column]]
         if tile == "portal_black.png":
-            map_level = 1
+            map_level = 0
             money += 1000 # change value
             blorp.pos = (75,575)
             current_map.clear()
-            current_map = base_map.copy()
+            current_map = maps[0].copy()
         if tile == "block_void.png":
             blorp.pos = (75,575)
         if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -621,50 +592,50 @@ def update(dt):
             on_block = False   
             
     ## PORTALS BASE MAP / where you enter from 'HOME'
-    if map_level == 1:
+    if map_level == 0:
             # Checking if hard mode is true or false
             if difficulty != True:
                 row = int((blorp.y + 25) / tile_size)
                 column = int(blorp.x / tile_size)
-                tile = pictures[base_map[row][column]]
+                tile = pictures[maps[0][row][column]]
                 if tile == "portal_pink.png": #CHANGE PORTAL
+                    map_level = 1
+                    blorp.pos = (75,575)
+                    current_map.clear()
+                    current_map = maps[1].copy()
+
+                if tile == "portal_green.png": #CHANGE PORTAL
                     map_level = 2
                     blorp.pos = (75,575)
                     current_map.clear()
-                    current_map = map_a.copy()
+                    current_map = maps[2].copy()
 
-                if tile == "portal_green.png": #CHANGE PORTAL
+                if tile == "portal_purple.png": #CHANGE PORTAL
                     map_level = 3
                     blorp.pos = (75,575)
                     current_map.clear()
-                    current_map = map_b.copy()
-
-                if tile == "portal_purple.png": #CHANGE PORTAL
-                    map_level = 4
-                    blorp.pos = (75,575)
-                    current_map.clear()
-                    current_map = map_c.copy()
+                    current_map = maps[3].copy()
             else: 
                 row = int((blorp.y + 25) / tile_size)
                 column = int(blorp.x / tile_size)
-                tile = pictures[base_map[row][column]]
+                tile = pictures[maps[0][row][column]]
                 if tile == "portal_pink.png": #CHANGE PORTAL
+                    map_level = 4
+                    blorp.pos = (75,575)
+                    current_map.clear()
+                    current_map = maps[4].copy()
+
+                if tile == "portal_green.png": #CHANGE PORTAL
                     map_level = 5
                     blorp.pos = (75,575)
                     current_map.clear()
-                    current_map = map_da.copy()
+                    current_map = maps[5].copy()
 
-                if tile == "portal_green.png": #CHANGE PORTAL
+                if tile == "portal_purple.png": #CHANGE PORTAL
                     map_level = 6
                     blorp.pos = (75,575)
                     current_map.clear()
-                    current_map = map_db.copy()
-
-                if tile == "portal_purple.png": #CHANGE PORTAL
-                    map_level = 7
-                    blorp.pos = (75,575)
-                    current_map.clear()
-                    current_map = map_dc.copy()
+                    current_map = maps[6].copy()
 
             
             if tile == "block_grey.png" or tile == "block_dark_grey.png" or tile == "block_red.png": #ADD BLOCK
@@ -850,7 +821,7 @@ def update(dt):
     
     ### HOME
     global home
-    if map_level == 1:
+    if map_level == 0:
         home = True
     else:
         home = False
@@ -858,8 +829,8 @@ def update(dt):
     if keyboard.B and home == False:
         blorp.pos = (75,575)
         current_map.clear()
-        current_map = base_map.copy()
-        map_level = 1
+        current_map = maps[0].copy()
+        map_level = 0
 
     ### LOOT BOXES
     global loot
