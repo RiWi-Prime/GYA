@@ -66,7 +66,6 @@ on_block = True
 ### IMAGES/ACTORS
 blorp_select = 'blorp_grey.png'
 blorp = Actor(f'{blorp_select}',pos = (75,575))
-#blorp.image = 'blorp_grey.png'
 blorp_color = 1
 # Yes and No + blorp preview
 blorp_preview_1 = Actor('blorp_glitch',pos=(325,270)) #230, 200
@@ -373,8 +372,7 @@ def draw():
         if gliched_blorp == False and ultimate_blorp == False and nothing == False and got_money == False:
             screen.draw.text('Press the wheel to spin!',(98,370),fontsize=20,color='orange',alpha = (0.9))
 
-        #(175,375)
-        # SCREEN OF DISPLAY
+        # SCREEN OF DISPLAY         x-y = (175,375)
         if gliched_blorp == True:
             screen.draw.text(f'You won "GLITCHED BLORP"',(96,368),fontsize=17,color='purple',alpha = (0.9))
             # Fix posistion when display is added
@@ -504,7 +502,7 @@ def loot_box():
         unlock_ultimate = True
         price_2 = True
         timer = -1.4
-    if spin_the_wheel in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]:
+    if spin_the_wheel in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]: 
         got_money = True
         money += 1000
         timer = -0.9
