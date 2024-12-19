@@ -86,12 +86,13 @@ sign = Actor('sign_wood.png',pos = (875,75))
 wheel = Actor('casino_wheel.png',pos = (175,200))
 menu_background = Actor('menu.png',pos = (650,300))
 backgrounds = ['background_grey.png','background_pink.png','background_green.png','background_purple.png',
-               'background_pink.png','background_green.png','background_purple.png','background_red.png']
+               'background_pink.png','background_green.png','background_purple.png','background_red.png',
+               'background_blue.png']
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png',
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
             'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png','block_red.png', 'block_void.png',
-            'block_lava.png','portal_red.png',
+            'block_lava.png','portal_red.png','block_blue.png','portal_blue.png',
             ]
 
 # WORLD DATA
@@ -105,7 +106,7 @@ maps = [
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 16, 16, 16, 16, 16, 16, 16, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 0, 19, 0, 6, 0, 0, 0, 7, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 0, 19, 0, 6, 0, 21, 0, 7, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 15, 15, 0, 15, 15, 15, 0, 15, 15, 15, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
@@ -223,25 +224,24 @@ maps = [
 [18, 0, 0, 18, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 18], 
 [18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18],
 ],
-]
-'''
-my map do not touch
+
 [
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1], 
+[1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 1], 
+[1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1], 
+[1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1], 
+[1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1], 
+[1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1], 
+[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+[1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1], 
+[1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1], 
+[1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1], 
+[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1], 
+[1, 1, 1, 1, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 1, 1, 1, 1, 1, 1, 1, 1, 17, 17, 17],
+],
 ]
-'''
+
 current_map = maps[0].copy()
 
 # OTHER-FUNKTIONS
@@ -270,7 +270,7 @@ def possible_move(deltax,deltay):
     blorp.y += deltay
     for ri,row in enumerate(current_map):
         for ci,tile in enumerate(row):
-                if tile and not tile in [5,6,7,8,9,10,11,12,13,14,19]:
+                if tile and not tile in [5,6,7,8,9,10,11,12,13,14,19,21]:
                     # Smaller rect than tile 
                     r = Rect(ci*dx+5,ri*dy+5,dx-10,dy-10)
                     if blorp.colliderect(r):
@@ -566,7 +566,23 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
-        if tile == "block_red.png": #ADD BLOCK
+        if tile == "block_lava.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False  
+
+    #MAP BLUE
+    if map_level == 8:
+        row = int((blorp.y + 25) / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[maps[8][row][column]]
+        if tile == "portal_black.png":
+            map_level = 0
+            money += 100 # change value
+            blorp.pos = (75,575)
+            current_map.clear()
+            current_map = maps[0].copy()
+        if tile == "block_blue.png": #ADD BLOCK
             on_block = True
         else:
             on_block = False  
@@ -654,6 +670,12 @@ def update(dt):
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[7].copy()
+
+                if tile == "portal_blue.png": #CHANGE PORTAL
+                    map_level = 8
+                    blorp.pos = (75,575)
+                    current_map.clear()
+                    current_map = maps[8].copy()
             else: 
                 row = int((blorp.y + 25) / tile_size)
                 column = int(blorp.x / tile_size)
