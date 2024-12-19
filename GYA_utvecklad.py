@@ -85,6 +85,8 @@ casino = Actor('sign_casino.png',pos = (300,100))
 sign = Actor('sign_wood.png',pos = (875,75))
 wheel = Actor('casino_wheel.png',pos = (175,200))
 menu_background = Actor('menu.png',pos = (650,300))
+backgrounds = ['background_grey.png','background_pink.png','background_green.png','background_purple.png',
+               'background_pink.png','background_green.png','background_purple.png']
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png',
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
