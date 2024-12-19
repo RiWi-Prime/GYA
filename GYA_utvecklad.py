@@ -86,14 +86,13 @@ sign = Actor('sign_wood.png',pos = (875,75))
 wheel = Actor('casino_wheel.png',pos = (175,200))
 menu_background = Actor('menu.png',pos = (650,300))
 backgrounds = ['background_grey.png','background_pink.png','background_green.png','background_purple.png',
-               'background_pink.png','background_green.png','background_purple.png']
+               'background_pink.png','background_green.png','background_purple.png','background_red.png']
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png',
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
-            'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png','block_red.png', 'block_void.png'
+            'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png','block_red.png', 'block_void.png',
+            'block_lava.png','portal_red.png',
             ]
-backgrounds = ['background_grey.png','background_pink.png','background_green.png','background_purple.png',
-               'background_pink.png','background_green.png','background_purple.png']
 
 # WORLD DATA
 maps = [
@@ -106,7 +105,7 @@ maps = [
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 16, 16, 16, 16, 16, 16, 16, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 0, 0, 0, 6, 0, 0, 0, 7, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 0, 19, 0, 6, 0, 0, 0, 7, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 15, 15, 0, 15, 15, 15, 0, 15, 15, 15, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
@@ -223,7 +222,7 @@ maps = [
 [2, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2], 
 [2, 0, 0, 2, 0, 2, 2, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
 [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-]
+],
 ]
 '''
 my map do not touch
@@ -271,7 +270,7 @@ def possible_move(deltax,deltay):
     blorp.y += deltay
     for ri,row in enumerate(current_map):
         for ci,tile in enumerate(row):
-                if tile and not tile in [5,6,7,8,9,10,11,12,13,14]:
+                if tile and not tile in [5,6,7,8,9,10,11,12,13,14,19]:
                     # Smaller rect than tile 
                     r = Rect(ci*dx+5,ri*dy+5,dx-10,dy-10)
                     if blorp.colliderect(r):
@@ -540,7 +539,7 @@ def update(dt):
             on_block = True
         else:
             on_block = False    
-    # MAP C
+    # MAP PURPLE
     if map_level == 3:
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
@@ -555,6 +554,22 @@ def update(dt):
             on_block = True
         else:
             on_block = False    
+
+    #MAP RED
+    if map_level == 7:
+        row = int((blorp.y + 25) / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[maps[7][row][column]]
+        if tile == "portal_black.png":
+            map_level = 0
+            money += 100 # change value
+            blorp.pos = (75,575)
+            current_map.clear()
+            current_map = maps[0].copy()
+        if tile == "block_red.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False  
 
     ## Difficulty MAPS
     # DA
@@ -633,6 +648,12 @@ def update(dt):
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[3].copy()
+
+                if tile == "portal_red.png": #CHANGE PORTAL
+                    map_level = 7
+                    blorp.pos = (75,575)
+                    current_map.clear()
+                    current_map = maps[7].copy()
             else: 
                 row = int((blorp.y + 25) / tile_size)
                 column = int(blorp.x / tile_size)
