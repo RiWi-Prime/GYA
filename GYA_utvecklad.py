@@ -92,7 +92,7 @@ pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','blo
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
             'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png','block_red.png', 'block_void.png',
-            'block_lava.png','portal_red.png','block_blue.png','portal_blue.png',
+            'block_lava.png','portal_red.png','block_blue.png','portal_blue.png','chain.png'
             ]
 
 # WORLD DATA
@@ -105,12 +105,12 @@ maps = [
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 16, 16, 16, 16, 16, 16, 16, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 0, 19, 0, 6, 0, 21, 0, 7, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 22, 0, 22, 0, 22, 0, 22, 0, 22, 0, 22, 1, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 22, 0, 22, 21, 22, 0, 22, 19, 22, 0, 22, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 22, 6, 22, 0, 22, 7, 22, 0, 22, 5, 22, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 15, 15, 0, 15, 15, 15, 0, 15, 15, 15, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 1],
 ],
 
 [
@@ -270,7 +270,7 @@ def possible_move(deltax,deltay):
     blorp.y += deltay
     for ri,row in enumerate(current_map):
         for ci,tile in enumerate(row):
-                if tile and not tile in [5,6,7,8,9,10,11,12,13,14,19,21]:
+                if tile and not tile in [5,6,7,8,9,10,11,12,13,14,19,21,22]:
                     # Smaller rect than tile 
                     r = Rect(ci*dx+5,ri*dy+5,dx-10,dy-10)
                     if blorp.colliderect(r):
