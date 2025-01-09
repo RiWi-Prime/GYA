@@ -761,7 +761,7 @@ def update(dt):
                     map_level = 9
                     blorp.pos = (75,575)
                     current_map.clear()
-                    current_map = maps[10].copy()
+                    current_map = maps[9].copy()
 
             
             if tile == "block_grey.png" or tile == "block_dark_grey.png" or tile == "block_red.png": #ADD BLOCK
