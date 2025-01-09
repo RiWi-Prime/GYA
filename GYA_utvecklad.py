@@ -763,7 +763,6 @@ def update(dt):
                     current_map.clear()
                     current_map = maps[9].copy()
 
-            
             if tile == "block_grey.png" or tile == "block_dark_grey.png" or tile == "block_red.png": #ADD BLOCK
                 on_block = True
             else:
