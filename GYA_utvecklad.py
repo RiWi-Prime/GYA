@@ -604,7 +604,7 @@ def update(dt):
             on_block = False  
 
     ## Difficulty MAPS
-    # DA
+    # pink
     if map_level == 4:
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
@@ -621,7 +621,7 @@ def update(dt):
             on_block = True
         else:
             on_block = False   
-    # DB
+    # green
     if map_level == 5:
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
@@ -638,7 +638,7 @@ def update(dt):
             on_block = True
         else:
             on_block = False   
-    # DC
+    # purple
     if map_level == 6:
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
@@ -655,6 +655,43 @@ def update(dt):
             on_block = True
         else:
             on_block = False   
+
+    # Dif.blue
+    if map_level == 10:
+        row = int((blorp.y + 25) / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[maps[10][row][column]]
+        if tile == "portal_black.png":
+            map_level = 0
+            money += 1500 # change value
+            blorp.pos = (75,575)
+            current_map.clear()
+            current_map = maps[0].copy()
+        if tile == "block_void.png":
+            blorp.pos = (75,575)
+        if tile == "block_blue.png" or tile == "block_dark_grey.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False   
+
+    # Dif.red
+    if map_level == 9:
+        row = int((blorp.y + 25) / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[maps[9][row][column]]
+        if tile == "portal_black.png":
+            map_level = 0
+            money += 2500 # change value
+            blorp.pos = (75,575)
+            current_map.clear()
+            current_map = maps[0].copy()
+        if tile == "block_void.png":
+            blorp.pos = (75,575)
+        if tile == "block_lava.png" or tile == "block_dark_grey.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False   
+
             
     ## PORTALS BASE MAP / where you enter from 'HOME'
     if map_level == 0:
@@ -713,6 +750,18 @@ def update(dt):
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[6].copy()
+
+                if tile == "portal_blue.png": #CHANGE PORTAL
+                    map_level = 10
+                    blorp.pos = (75,575)
+                    current_map.clear()
+                    current_map = maps[9].copy()
+                
+                if tile == "portal_red.png": #CHANGE PORTAL
+                    map_level = 9
+                    blorp.pos = (75,575)
+                    current_map.clear()
+                    current_map = maps[10].copy()
 
             
             if tile == "block_grey.png" or tile == "block_dark_grey.png" or tile == "block_red.png": #ADD BLOCK
