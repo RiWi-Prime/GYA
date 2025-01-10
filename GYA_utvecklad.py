@@ -35,6 +35,22 @@ nothing = False
 got_money = False
 money = 0
 gambling = True
+# Record time / speedruns
+record = False
+best_time = 0
+current_time = 0
+## Checkmarks
+green_checkmark = False
+purple_checkmark = False
+pink_checkmark = False
+blue_checkmark = False
+red_checkmark = False
+# Difficulty checkmarks
+d_green_checkmark = False
+d_purple_checkmark = False
+d_pink_checkmark = False
+d_blue_checkmark = False
+d_red_checkmark = False
 
 
 
@@ -346,6 +362,13 @@ def draw():
         screen.draw.text('Press [i] to open the Menu',(100,610),fontsize=25,color='darkgrey',alpha=0.7)
         screen.draw.text(f'50 B',(160,75),fontsize=25,color="gold")
 
+        ## Hard mode display
+        '''
+        We might add this, right now it's on hold.
+
+        if difficulty == True and Menu != True:
+            screen.draw.text('Hard mode active',(850,610),fontsize=45,color="darkred")
+        '''
         ## UNLOCK GUI
         # BLUE
         if unlock_blue != False:
@@ -410,6 +433,15 @@ def draw():
         screen.draw.text('SPEICAL BLORPS',(230, 170,),fontsize=35,color='black')
         screen.draw.text('Info: Speical blorps are unlocked by\nspinning the wheel at the casino.',(230, 200,),fontsize=20,color='darkgrey')
         
+        # Records!
+        '''
+        Beginning of records, however this will be moved to a later date.
+        if record != False:
+            screen.draw.text(f'Best time: {best_time}',(750,250))
+        else:
+            screen.draw.text('Best time: N/A',(750,250))
+        '''
+
         if price_1 == False:
             screen.draw.text('Not owned',(285, 315,),fontsize=25,color='black')
             lock.draw() # 290,300
@@ -540,7 +572,7 @@ def update(dt):
         ultimate_blorp = False
         gliched_blorp = False
     ## GOLDEN PORTAL
-    # MAP A
+    # MAP PINK
     if map_level == 1:
         row = int((blorp.y + 25)/ tile_size)
         column = int(blorp.x / tile_size)
@@ -551,12 +583,15 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            #checkmark
+            global pink_checkmark
+            pink_checkmark = True
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
             on_block = False
 
-    # MAP B
+    # MAP GREEN
     if map_level == 2:
         row = int((blorp.y + 25)/ tile_size)
         column = int(blorp.x / tile_size)
@@ -567,6 +602,9 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            # checkmark
+            global green_checkmark
+            green_checkmark = True
         if tile == "block_green.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -582,6 +620,9 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            # checkmark
+            global purple_checkmark
+            purple_checkmark = True
         if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -598,6 +639,9 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            # checkmark
+            global red_checkmark
+            red_checkmark = True
         if tile == "block_lava.png": #ADD BLOCK
             on_block = True
         else:
@@ -614,6 +658,9 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            # checkmark
+            global blue_checkmark
+            blue_checkmark = True
         if tile == "block_blue.png": #ADD BLOCK
             on_block = True
         else:
@@ -631,6 +678,9 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            # checkmark
+            global d_pink_checkmark
+            d_pink_checkmark = True
         #if tile == "block_void.png":
         #    blorp.pos = (75,575)
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -648,6 +698,9 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            # checkmark
+            global d_green_checkmark
+            d_green_checkmark = True
         if tile == "block_void.png":
             blorp.pos = (75,575)
         if tile == "block_green.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -665,6 +718,9 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            # checkmark
+            global d_purple_checkmark
+            d_purple_checkmark = True
         if tile == "block_void.png":
             blorp.pos = (75,575)
         if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -683,6 +739,9 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            # checkmark
+            global d_blue_checkmark
+            d_blue_checkmark = True
         if tile == "block_void.png":
             blorp.pos = (75,575)
         if tile == "block_blue.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -701,6 +760,9 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            # checkmark
+            global d_red_checkmark
+            d_red_checkmark = True
         if tile == "block_void.png":
             blorp.pos = (75,575)
         if tile == "block_lava.png" or tile == "block_dark_grey.png": #ADD BLOCK
