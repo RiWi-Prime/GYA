@@ -291,6 +291,10 @@ maps = [
 current_map = maps[0].copy()
 
 # OTHER-FUNKTIONS
+
+def background_music():
+    sounds.background.play(-1)
+
 def draw_grid():
     '''draw a nXn grid'''
     x,y = 0,0
@@ -326,6 +330,7 @@ def possible_move(deltax,deltay):
                         if tile == 17:
                             blorp.x = 75
                             blorp.y = 575
+                            sounds.death.play()
 
                         return False
     blorp.x -= deltax
@@ -518,9 +523,11 @@ def on_mouse_down(pos,button):
      if button == mouse.LEFT and switch_easy.collidepoint(pos) and Menu == True:
         difficulty = True
         print('difficulty ON')
+        sounds.switch.play()
      if button == mouse.LEFT and switch_hard.collidepoint(pos) and Menu == True:
         difficulty = False
         print('difficulty OFF')
+        sounds.switch.play()
 
         
 def loot_box():
@@ -540,15 +547,18 @@ def loot_box():
         unlock_special = True
         price_1 = True
         timer = -2.9
+        sounds.win.play()
     if spin_the_wheel in [100,110,120,130,140,150,160,170,180,190,200]:
         ultimate_blorp = True
         unlock_ultimate = True
         price_2 = True
         timer = -1.4
+        sounds.win.play()
     if spin_the_wheel in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]: 
         got_money = True
         money += 1000
         timer = -0.9
+        sounds.win.play()
     elif spin_the_wheel != 1000 and spin_the_wheel not in [100,110,120,130,140,150,160,170,180,190,200]:
         nothing = True
         
@@ -584,6 +594,7 @@ def update(dt):
             #checkmark
             global pink_checkmark
             pink_checkmark = True
+            sounds.complete_level.play()
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -603,6 +614,7 @@ def update(dt):
             # checkmark
             global green_checkmark
             green_checkmark = True
+            sounds.complete_level.play()
         if tile == "block_green.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -621,6 +633,7 @@ def update(dt):
             # checkmark
             global purple_checkmark
             purple_checkmark = True
+            sounds.complete_level.play()
         if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -640,6 +653,7 @@ def update(dt):
             # checkmark
             global red_checkmark
             red_checkmark = True
+            sounds.complete_level.play()
         if tile == "block_lava.png": #ADD BLOCK
             on_block = True
         else:
@@ -659,6 +673,7 @@ def update(dt):
             # checkmark
             global blue_checkmark
             blue_checkmark = True
+            sounds.complete_level.play()
         if tile == "block_blue.png": #ADD BLOCK
             on_block = True
         else:
@@ -679,8 +694,9 @@ def update(dt):
             # checkmark
             global d_pink_checkmark
             d_pink_checkmark = True
-        #if tile == "block_void.png":
-        #    blorp.pos = (75,575)
+            sounds.complete_level.play()
+        if tile == "block_void.png":
+            blorp.pos = (75,575)
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -699,6 +715,7 @@ def update(dt):
             # checkmark
             global d_green_checkmark
             d_green_checkmark = True
+            sounds.complete_level.play()
         if tile == "block_void.png":
             blorp.pos = (75,575)
         if tile == "block_green.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -719,6 +736,7 @@ def update(dt):
             # checkmark
             global d_purple_checkmark
             d_purple_checkmark = True
+            sounds.complete_level.play()
         if tile == "block_void.png":
             blorp.pos = (75,575)
         if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -740,6 +758,7 @@ def update(dt):
             # checkmark
             global d_blue_checkmark
             d_blue_checkmark = True
+            sounds.complete_level.play()
         if tile == "block_void.png":
             blorp.pos = (75,575)
         if tile == "block_blue.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -761,6 +780,7 @@ def update(dt):
             # checkmark
             global d_red_checkmark
             d_red_checkmark = True
+            sounds.complete_level.play()
         if tile == "block_void.png":
             blorp.pos = (75,575)
         if tile == "block_lava.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -781,30 +801,35 @@ def update(dt):
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[1].copy()
+                    sounds.teleport.play()
 
                 if tile == "portal_green.png": #CHANGE PORTAL
                     map_level = 2
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[2].copy()
+                    sounds.teleport.play()
 
                 if tile == "portal_purple.png": #CHANGE PORTAL
                     map_level = 3
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[3].copy()
+                    sounds.teleport.play()
 
                 if tile == "portal_red.png": #CHANGE PORTAL
                     map_level = 7
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[7].copy()
+                    sounds.teleport.play()
 
                 if tile == "portal_blue.png": #CHANGE PORTAL
                     map_level = 8
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[8].copy()
+                    sounds.teleport.play()
             else: 
                 row = int((blorp.y + 25) / tile_size)
                 column = int(blorp.x / tile_size)
@@ -814,30 +839,35 @@ def update(dt):
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[4].copy()
+                    sounds.teleport.play()
 
                 if tile == "portal_green.png": #CHANGE PORTAL
                     map_level = 5
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[5].copy()
+                    sounds.teleport.play()
 
                 if tile == "portal_purple.png": #CHANGE PORTAL
                     map_level = 6
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[6].copy()
+                    sounds.teleport.play()
 
                 if tile == "portal_blue.png": #CHANGE PORTAL
                     map_level = 10
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[10].copy()
+                    sounds.teleport.play()
                 
                 if tile == "portal_red.png": #CHANGE PORTAL
                     map_level = 9
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[9].copy()
+                    sounds.teleport.play()
 
             if tile == "block_grey.png" or tile == "block_dark_grey.png" or tile == "block_red.png": #ADD BLOCK
                 on_block = True
@@ -864,6 +894,7 @@ def update(dt):
                         blorp_select = 'blorp_blue.png'
                         money -= 50
                         unlock_blue = True
+                        sounds.buy.play()
                 elif unlock_blue == True:
                     if tile == "blorp_blue.png":
                         blorp_color = 2
@@ -876,6 +907,7 @@ def update(dt):
                         blorp_select = 'blorp_light_blue.png'
                         money -= 50
                         unlock_light_blue = True
+                        sounds.buy.play()
                 elif unlock_light_blue == True:
                     if tile == "blorp_light_blue.png":
                         blorp_color = 3
@@ -888,6 +920,7 @@ def update(dt):
                         blorp_select = 'blorp_green.png'
                         money -= 50
                         unlock_green = True
+                        sounds.buy.play()
                 elif unlock_green == True:
                     if tile == "blorp_green.png":
                         blorp_color = 4
@@ -900,6 +933,7 @@ def update(dt):
                         blorp_select = 'blorp_yellow.png'
                         money -= 50
                         unlock_yellow = True
+                        sounds.buy.play()
                 elif unlock_yellow == True:
                     if tile == "blorp_yellow.png":
                         blorp_color = 5
@@ -912,6 +946,7 @@ def update(dt):
                         blorp_select = 'blorp_red.png'
                         money -= 50
                         unlock_red = True
+                        sounds.buy.play()
                 elif unlock_red == True:
                     if tile == "blorp_red.png":
                         blorp_color = 6
@@ -924,6 +959,7 @@ def update(dt):
                         blorp_select = 'blorp_magenta.png'
                         money -= 50
                         unlock_megenta = True
+                        sounds.buy.play()
                 elif unlock_megenta == True:
                     if tile == "blorp_magenta.png":
                         blorp_color = 7
@@ -964,6 +1000,7 @@ def update(dt):
     if (keyboard.space or keyboard.w) and on_block == True:
         clock = 0
         on_block = False
+        sounds.jump.play()
     if clock <= 0.4 and possible_move(0,-5.5):
         blorp.y -= 5.5
         if clock >= 0.2 and possible_move(0,1):
@@ -1041,5 +1078,5 @@ def update(dt):
 
 #SCREEN
 os.environ['SDL_VIDEO_CENTERED'] = '1'
-
+background_music()
 pgzrun.go()
