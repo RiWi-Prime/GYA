@@ -4,7 +4,6 @@ Currently testing: Map teleport rework
 '''
 
 
-
 ## IMPORTS
 import random
 import pgzrun
@@ -51,7 +50,6 @@ d_purple_checkmark = False
 d_pink_checkmark = False
 d_blue_checkmark = False
 d_red_checkmark = False
-
 
 
 loot = ["blorp_special.png","blorp_ulimate.png"]
