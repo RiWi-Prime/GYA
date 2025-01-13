@@ -544,15 +544,18 @@ def loot_box():
         unlock_special = True
         price_1 = True
         timer = -2.9
+        sounds.win.play()
     if spin_the_wheel in [100,110,120,130,140,150,160,170,180,190,200]:
         ultimate_blorp = True
         unlock_ultimate = True
         price_2 = True
         timer = -1.4
+        sounds.win.play()
     if spin_the_wheel in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]: 
         got_money = True
         money += 700
         timer = -0.9
+        sounds.win.play()
     elif spin_the_wheel != 1000 and spin_the_wheel not in [100,110,120,130,140,150,160,170,180,190,200]:
         nothing = True
         
@@ -800,30 +803,35 @@ def update(dt):
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[1].copy()
+                    sounds.teleport.play()
 
                 if tile == "portal_green.png": #CHANGE PORTAL
                     map_level = 2
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[2].copy()
+                    sounds.teleport.play()
 
                 if tile == "portal_purple.png": #CHANGE PORTAL
                     map_level = 3
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[3].copy()
+                    sounds.teleport.play()
 
                 if tile == "portal_red.png": #CHANGE PORTAL
                     map_level = 7
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[7].copy()
+                    sounds.teleport.play()
 
                 if tile == "portal_blue.png": #CHANGE PORTAL
                     map_level = 8
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[8].copy()
+                    sounds.teleport.play()
             else: 
                 row = int((blorp.y + 25) / tile_size)
                 column = int(blorp.x / tile_size)
@@ -833,30 +841,35 @@ def update(dt):
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[4].copy()
+                    sounds.teleport.play()
 
                 if tile == "portal_green.png": #CHANGE PORTAL
                     map_level = 5
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[5].copy()
+                    sounds.teleport.play()
 
                 if tile == "portal_purple.png": #CHANGE PORTAL
                     map_level = 6
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[6].copy()
+                    sounds.teleport.play()
 
                 if tile == "portal_blue.png": #CHANGE PORTAL
                     map_level = 10
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[10].copy()
+                    sounds.teleport.play()
                 
                 if tile == "portal_red.png": #CHANGE PORTAL
                     map_level = 9
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[9].copy()
+                    sounds.teleport.play()
 
             if tile == "block_grey.png" or tile == "block_dark_grey.png" or tile == "block_red.png": #ADD BLOCK
                 on_block = True
