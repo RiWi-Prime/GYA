@@ -397,7 +397,7 @@ def draw():
             # Fix posistion when display is added
         if got_money == True:
             screen.draw.text(f'You won money',(100,366),fontsize=30,color='green',alpha =(0.9))
-            screen.draw.text(f'+ 700 B',(65,30),fontsize=25,color="gold")
+            screen.draw.text(f'+ 1000 B',(65,30),fontsize=25,color="gold")
             # Fix posistion when display is added
 
     blorp.draw()
@@ -517,7 +517,7 @@ def loot_box():
         timer = -1.4
     if spin_the_wheel in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]: 
         got_money = True
-        money += 700
+        money += 1000
         timer = -0.9
     elif spin_the_wheel != 1000 and spin_the_wheel not in [100,110,120,130,140,150,160,170,180,190,200]:
         nothing = True
