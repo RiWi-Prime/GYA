@@ -526,9 +526,6 @@ def on_mouse_down(pos,button):
             got_money = False
             loot_box()
 
-        if money <= 50:
-            print('You need more money!')
-
     # Select skin
     # SPEICAL BLORP
      if button == mouse.LEFT and yes_button.collidepoint(pos) and Menu == True and price_1 == True:
@@ -551,11 +548,9 @@ def on_mouse_down(pos,button):
      global difficulty 
      if button == mouse.LEFT and switch_easy.collidepoint(pos) and Menu == True:
         difficulty = True
-        print('difficulty ON')
         sounds.switch.play()
      if button == mouse.LEFT and switch_hard.collidepoint(pos) and Menu == True:
         difficulty = False
-        print('difficulty OFF')
         sounds.switch.play()
 
         
