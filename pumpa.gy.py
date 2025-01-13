@@ -35,6 +35,22 @@ nothing = False
 got_money = False
 money = 0
 gambling = True
+# Record time / speedruns
+record = False
+best_time = 0
+current_time = 0
+## Checkmarks
+green_checkmark = False
+purple_checkmark = False
+pink_checkmark = False
+blue_checkmark = False
+red_checkmark = False
+# Difficulty checkmarks
+d_green_checkmark = False
+d_purple_checkmark = False
+d_pink_checkmark = False
+d_blue_checkmark = False
+d_red_checkmark = False
 
 
 
@@ -85,13 +101,15 @@ casino = Actor('sign_casino.png',pos = (300,100))
 sign = Actor('sign_wood.png',pos = (875,75))
 wheel = Actor('casino_wheel.png',pos = (175,200))
 menu_background = Actor('menu.png',pos = (650,300))
+backgrounds = ['background_grey.png','background_pink.png','background_green.png','background_purple.png',
+               'background_pink.png','background_green.png','background_purple.png','background_red.png',
+               'background_blue.png','background_red.png','background_blue.png']
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png',
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
-            'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png','block_red.png', 'block_void.png'
+            'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png','block_red.png', 'block_void.png',
+            'block_lava.png','portal_red.png','block_blue.png','portal_blue.png','chain.png'
             ]
-backgrounds = ['background_grey.png','background_pink.png','background_green.png','background_purple.png',
-               'background_pink.png','background_green.png','background_purple.png']
 
 # WORLD DATA
 maps = [
@@ -103,28 +121,12 @@ maps = [
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 16, 16, 16, 16, 16, 16, 16, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 0, 0, 0, 6, 0, 0, 0, 7, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 22, 0, 22, 0, 22, 0, 22, 0, 22, 0, 22, 1, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 22, 0, 22, 21, 22, 0, 22, 19, 22, 0, 22, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 22, 6, 22, 0, 22, 7, 22, 0, 22, 5, 22, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 15, 15, 0, 15, 15, 15, 0, 15, 15, 15, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-],
-# MY MAP DO NOT TOUCH
-[
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 1], 
-[1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1], 
-[1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1], 
-[1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1], 
-[1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1], 
-[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1], 
-[1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1], 
-[1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1], 
-[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1], 
-[1, 1, 1, 1, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 1, 1, 1, 1, 1, 1, 1, 1, 17, 17, 17],
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 1],
 ],
 
 [
@@ -221,43 +223,73 @@ maps = [
 [4, 0, 4, 4, 0, 4, 0, 0, 0, 17, 0, 0, 0, 4, 0, 0, 4, 0, 4, 4, 0, 17, 0, 4, 4], 
 [4, 0, 4, 17, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 17, 0, 0, 0, 0, 4], 
 [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-]
-# MY DIFFICULTY MAP
-[
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1], 
-[1, 0, 0, 17, 0, 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 1], 
-[1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 17, 0, 0, 1, 1, 1, 0, 17, 0, 1, 1, 1, 0, 0, 1], 
-[1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 17, 0, 0, 0, 1, 0, 17, 0, 0, 0, 1, 0, 0, 1, 1], 
-[1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 17, 1, 0, 0, 1, 0, 0, 0, 0, 17, 1, 0, 0, 0, 1], 
-[1, 1, 0, 1, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 1, 0, 17, 0, 1, 0, 0, 1, 1, 0, 1], 
-[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 17, 0, 0, 0, 1, 0, 1, 1], 
-[1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1], 
-[1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 17, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1], 
-[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1], 
-[1, 1, 1, 1, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 1, 1, 1, 1, 1, 1, 1, 1, 17, 17, 17],
 ],
 
-]
-'''
-my map do not touch
 [
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+[18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18],
+[18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 18], 
+[18, 0, 0, 18, 18, 0, 0, 18, 0, 0, 18, 0, 0, 18, 18, 0, 0, 18, 0, 0, 0, 18, 18, 0, 18], 
+[18, 0, 18, 18, 0, 0, 18, 0, 0, 18, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 18], 
+[18, 0, 0, 18, 18, 0, 0, 0, 0, 18, 18, 0, 0, 0, 0, 18, 0, 0, 0, 18, 0, 0, 0, 18, 18], 
+[18, 0, 0, 0, 18, 0, 18, 0, 0, 0, 18, 0, 18, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 18, 18], 
+[18, 0, 0, 0, 18, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 18, 0, 0, 0, 18], 
+[18, 18, 0, 18, 18, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 18], 
+[18, 0, 0, 18, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18], 
+[18, 8, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 18, 0, 0, 18, 18], 
+[18, 18, 0, 0, 0, 18, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 18], 
+[18, 0, 0, 18, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18], 
+[18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18],
+],
+
+[
+[20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
+[20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 20, 20, 0, 0, 0, 20, 20], 
+[20, 20, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 20, 8, 0, 0, 0, 20], 
+[20, 0, 0, 20, 20, 0, 0, 0, 0, 0, 20, 0, 0, 20, 20, 20, 0, 0, 0, 20, 20, 20, 0, 0, 20], 
+[20, 0, 20, 20, 0, 0, 0, 0, 20, 0, 20, 0, 0, 0, 20, 0, 0, 0, 0, 0, 20, 0, 0, 20, 20], 
+[20, 0, 0, 20, 0, 0, 0, 0, 20, 0, 20, 20, 0, 0, 20, 0, 0, 0, 0, 0, 20, 0, 0, 0, 20], 
+[20, 20, 0, 20, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 20, 20, 0, 20], 
+[20, 0, 0, 20, 0, 0, 0, 0, 20, 0, 0, 0, 0, 20, 20, 20, 0, 0, 0, 0, 0, 0, 0, 0, 20], 
+[20, 0, 20, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 20, 0, 0, 0, 0, 0, 20, 0, 20, 20], 
+[20, 0, 0, 20, 0, 0, 0, 0, 20, 0, 0, 0, 20, 0, 20, 20, 20, 0, 0, 0, 0, 20, 0, 0, 20], 
+[20, 20, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 20, 20, 20, 0, 20, 0, 0, 20, 0, 0, 20], 
+[20, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 20, 20, 20, 20, 0, 0, 0, 0, 0, 20], 
+[20, 20, 20, 20, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 20, 20, 20, 20, 20, 17, 17, 17, 17, 17, 17],
+], 
+
+[
+[18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18],
+[18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 18], 
+[18, 0, 0, 18, 18, 0, 0, 17, 0, 0, 18, 0, 0, 17, 18, 0, 0, 17, 0, 0, 0, 18, 18, 0, 18], 
+[18, 0, 17, 18, 0, 0, 18, 0, 0, 18, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 17, 0, 0, 0, 18], 
+[18, 0, 0, 17, 18, 0, 0, 0, 0, 18, 18, 0, 0, 0, 0, 18, 0, 0, 0, 17, 0, 0, 0, 18, 18], 
+[18, 0, 0, 0, 18, 0, 18, 0, 0, 0, 17, 0, 18, 0, 0, 0, 0, 0, 0, 17, 0, 0, 0, 18, 18], 
+[18, 0, 0, 0, 18, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 18, 0, 0, 0, 18], 
+[18, 17, 0, 17, 18, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 18], 
+[18, 0, 0, 18, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18], 
+[18, 8, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 18, 0, 0, 18, 18], 
+[18, 18, 0, 0, 0, 18, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 18], 
+[18, 0, 0, 18, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18], 
+[18, 18, 18, 18, 17, 17, 17, 17, 17, 18, 17, 17, 17, 17, 18, 17, 17, 17, 17, 17, 17, 17, 17, 17, 18],
+],
+
+[
+[20, 20, 20, 17, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 17, 17, 20, 20, 20, 20, 20, 20],
+[20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 20, 20], 
+[20, 20, 0, 0, 0, 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 20, 8, 0, 0, 0, 20], 
+[20, 0, 0, 17, 20, 0, 0, 0, 0, 0, 17, 0, 0, 20, 20, 20, 0, 17, 0, 20, 20, 0, 0, 17, 20], 
+[20, 0, 20, 20, 0, 0, 0, 0, 20, 0, 17, 0, 0, 0, 20, 17, 17, 0, 0, 0, 20, 0, 0, 0, 20], 
+[20, 0, 0, 20, 0, 0, 17, 0, 17, 0, 20, 20, 0, 0, 20, 17, 0, 0, 0, 17, 20, 20, 0, 0, 20], 
+[20, 20, 0, 20, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 20, 17, 17, 0, 20, 0, 0, 0, 0, 20, 20], 
+[17, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 20, 20, 17, 0, 0, 0, 0, 0, 0, 0, 20], 
+[17, 0, 20, 20, 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 20, 20, 17, 0, 0, 0, 0, 20, 0, 0, 20], 
+[17, 0, 0, 20, 0, 0, 0, 0, 20, 0, 0, 0, 20, 0, 20, 20, 20, 0, 0, 0, 0, 20, 0, 0, 20], 
+[20, 20, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 17, 0, 20, 20, 20, 17, 20, 17, 17, 20, 0, 0, 20], 
+[20, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 20, 20, 20, 20, 17, 17, 20, 0, 0, 20], 
+[20, 20, 20, 20, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 20, 20, 20, 20, 20, 20, 20, 20, 17, 17, 17],
 ]
-'''
+]
+
 current_map = maps[0].copy()
 
 # OTHER-FUNKTIONS
@@ -286,7 +318,7 @@ def possible_move(deltax,deltay):
     blorp.y += deltay
     for ri,row in enumerate(current_map):
         for ci,tile in enumerate(row):
-                if tile and not tile in [5,6,7,8,9,10,11,12,13,14]:
+                if tile and not tile in [5,6,7,8,9,10,11,12,13,14,19,21,22]:
                     # Smaller rect than tile 
                     r = Rect(ci*dx+5,ri*dy+5,dx-10,dy-10)
                     if blorp.colliderect(r):
@@ -330,6 +362,13 @@ def draw():
         screen.draw.text('Press [i] to open the Menu',(100,610),fontsize=25,color='darkgrey',alpha=0.7)
         screen.draw.text(f'50 B',(160,75),fontsize=25,color="gold")
 
+        ## Hard mode display
+        '''
+        We might add this, right now it's on hold.
+
+        if difficulty == True and Menu != True:
+            screen.draw.text('Hard mode active',(850,610),fontsize=45,color="darkred")
+        '''
         ## UNLOCK GUI
         # BLUE
         if unlock_blue != False:
@@ -381,7 +420,7 @@ def draw():
             # Fix posistion when display is added
         if got_money == True:
             screen.draw.text(f'You won money',(100,366),fontsize=30,color='green',alpha =(0.9))
-            screen.draw.text(f'+ 1000 B',(65,30),fontsize=25,color="gold")
+            screen.draw.text(f'+ 700 B',(65,30),fontsize=25,color="gold")
             # Fix posistion when display is added
 
     blorp.draw()
@@ -394,6 +433,15 @@ def draw():
         screen.draw.text('SPEICAL BLORPS',(230, 170,),fontsize=35,color='black')
         screen.draw.text('Info: Speical blorps are unlocked by\nspinning the wheel at the casino.',(230, 200,),fontsize=20,color='darkgrey')
         
+        # Records!
+        '''
+        Beginning of records, however this will be moved to a later date.
+        if record != False:
+            screen.draw.text(f'Best time: {best_time}',(750,250))
+        else:
+            screen.draw.text('Best time: N/A',(750,250))
+        '''
+
         if price_1 == False:
             screen.draw.text('Not owned',(285, 315,),fontsize=25,color='black')
             lock.draw() # 290,300
@@ -472,9 +520,11 @@ def on_mouse_down(pos,button):
      if button == mouse.LEFT and switch_easy.collidepoint(pos) and Menu == True:
         difficulty = True
         print('difficulty ON')
+        sounds.switch.play()
      if button == mouse.LEFT and switch_hard.collidepoint(pos) and Menu == True:
         difficulty = False
         print('difficulty OFF')
+        sounds.switch.play()
 
         
 def loot_box():
@@ -501,7 +551,7 @@ def loot_box():
         timer = -1.4
     if spin_the_wheel in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]: 
         got_money = True
-        money += 1000
+        money += 700
         timer = -0.9
     elif spin_the_wheel != 1000 and spin_the_wheel not in [100,110,120,130,140,150,160,170,180,190,200]:
         nothing = True
@@ -524,7 +574,7 @@ def update(dt):
         ultimate_blorp = False
         gliched_blorp = False
     ## GOLDEN PORTAL
-    # MAP A
+    # MAP PINK
     if map_level == 1:
         row = int((blorp.y + 25)/ tile_size)
         column = int(blorp.x / tile_size)
@@ -535,12 +585,16 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            #checkmark
+            global pink_checkmark
+            pink_checkmark = True
+            sounds.complete_level.play()
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
             on_block = False
 
-    # MAP B
+    # MAP GREEN
     if map_level == 2:
         row = int((blorp.y + 25)/ tile_size)
         column = int(blorp.x / tile_size)
@@ -551,11 +605,15 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            # checkmark
+            global green_checkmark
+            green_checkmark = True
+            sounds.complete_level.play()
         if tile == "block_green.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
             on_block = False    
-    # MAP C
+    # MAP PURPLE
     if map_level == 3:
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
@@ -566,13 +624,57 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            # checkmark
+            global purple_checkmark
+            purple_checkmark = True
+            sounds.complete_level.play()
         if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
             on_block = False    
 
+    #MAP RED
+    if map_level == 7:
+        row = int((blorp.y + 25) / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[maps[7][row][column]]
+        if tile == "portal_black.png":
+            map_level = 0
+            money += 100 # change value
+            blorp.pos = (75,575)
+            current_map.clear()
+            current_map = maps[0].copy()
+            # checkmark
+            global red_checkmark
+            red_checkmark = True
+            sounds.complete_level.play()
+        if tile == "block_lava.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False  
+
+    #MAP BLUE
+    if map_level == 8:
+        row = int((blorp.y + 25) / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[maps[8][row][column]]
+        if tile == "portal_black.png":
+            map_level = 0
+            money += 100 # change value
+            blorp.pos = (75,575)
+            current_map.clear()
+            current_map = maps[0].copy()
+            # checkmark
+            global blue_checkmark
+            blue_checkmark = True
+            sounds.complete_level.play()
+        if tile == "block_blue.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False  
+
     ## Difficulty MAPS
-    # DA
+    # pink
     if map_level == 4:
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
@@ -583,13 +685,18 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
-        #if tile == "block_void.png":
-        #    blorp.pos = (75,575)
+            # checkmark
+            global d_pink_checkmark
+            d_pink_checkmark = True
+            sounds.complete_level.play()
+        if tile == "block_void.png":
+            blorp.pos = (75,575)
+            sounds.death.play()
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
             on_block = False   
-    # DB
+    # green
     if map_level == 5:
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
@@ -600,13 +707,18 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            # checkmark
+            global d_green_checkmark
+            d_green_checkmark = True
+            sounds.complete_level.play()
         if tile == "block_void.png":
             blorp.pos = (75,575)
+            sounds.death.play()
         if tile == "block_green.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
             on_block = False   
-    # DC
+    # purple
     if map_level == 6:
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
@@ -617,12 +729,64 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            # checkmark
+            global d_purple_checkmark
+            d_purple_checkmark = True
+            sounds.complete_level.play()
         if tile == "block_void.png":
             blorp.pos = (75,575)
+            sounds.death.play()
         if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
             on_block = False   
+
+    # Dif.blue
+    if map_level == 10:
+        row = int((blorp.y + 25) / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[maps[10][row][column]]
+        if tile == "portal_black.png":
+            map_level = 0
+            money += 1500 # change value
+            blorp.pos = (75,575)
+            current_map.clear()
+            current_map = maps[0].copy()
+            # checkmark
+            global d_blue_checkmark
+            d_blue_checkmark = True
+            sounds.complete_level.play()
+        if tile == "block_void.png":
+            blorp.pos = (75,575)
+            sounds.death.play()
+        if tile == "block_blue.png" or tile == "block_dark_grey.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False   
+
+    # Dif.red
+    if map_level == 9:
+        row = int((blorp.y + 25) / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[maps[9][row][column]]
+        if tile == "portal_black.png":
+            map_level = 0
+            money += 2500 # change value
+            blorp.pos = (75,575)
+            current_map.clear()
+            current_map = maps[0].copy()
+            # checkmark
+            global d_red_checkmark
+            d_red_checkmark = True
+            sounds.complete_level.play()
+        if tile == "block_void.png":
+            blorp.pos = (75,575)
+            sounds.death.play()
+        if tile == "block_lava.png" or tile == "block_dark_grey.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False   
+
             
     ## PORTALS BASE MAP / where you enter from 'HOME'
     if map_level == 0:
@@ -648,6 +812,18 @@ def update(dt):
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[3].copy()
+
+                if tile == "portal_red.png": #CHANGE PORTAL
+                    map_level = 7
+                    blorp.pos = (75,575)
+                    current_map.clear()
+                    current_map = maps[7].copy()
+
+                if tile == "portal_blue.png": #CHANGE PORTAL
+                    map_level = 8
+                    blorp.pos = (75,575)
+                    current_map.clear()
+                    current_map = maps[8].copy()
             else: 
                 row = int((blorp.y + 25) / tile_size)
                 column = int(blorp.x / tile_size)
@@ -670,7 +846,18 @@ def update(dt):
                     current_map.clear()
                     current_map = maps[6].copy()
 
-            
+                if tile == "portal_blue.png": #CHANGE PORTAL
+                    map_level = 10
+                    blorp.pos = (75,575)
+                    current_map.clear()
+                    current_map = maps[10].copy()
+                
+                if tile == "portal_red.png": #CHANGE PORTAL
+                    map_level = 9
+                    blorp.pos = (75,575)
+                    current_map.clear()
+                    current_map = maps[9].copy()
+
             if tile == "block_grey.png" or tile == "block_dark_grey.png" or tile == "block_red.png": #ADD BLOCK
                 on_block = True
             else:
@@ -696,6 +883,7 @@ def update(dt):
                         blorp_select = 'blorp_blue.png'
                         money -= 50
                         unlock_blue = True
+                        sounds.buy.play()
                 elif unlock_blue == True:
                     if tile == "blorp_blue.png":
                         blorp_color = 2
@@ -708,6 +896,7 @@ def update(dt):
                         blorp_select = 'blorp_light_blue.png'
                         money -= 50
                         unlock_light_blue = True
+                        sounds.buy.play()
                 elif unlock_light_blue == True:
                     if tile == "blorp_light_blue.png":
                         blorp_color = 3
@@ -720,6 +909,7 @@ def update(dt):
                         blorp_select = 'blorp_green.png'
                         money -= 50
                         unlock_green = True
+                        sounds.buy.play()
                 elif unlock_green == True:
                     if tile == "blorp_green.png":
                         blorp_color = 4
@@ -732,6 +922,7 @@ def update(dt):
                         blorp_select = 'blorp_yellow.png'
                         money -= 50
                         unlock_yellow = True
+                        sounds.buy.play()
                 elif unlock_yellow == True:
                     if tile == "blorp_yellow.png":
                         blorp_color = 5
@@ -744,6 +935,7 @@ def update(dt):
                         blorp_select = 'blorp_red.png'
                         money -= 50
                         unlock_red = True
+                        sounds.buy.play()
                 elif unlock_red == True:
                     if tile == "blorp_red.png":
                         blorp_color = 6
@@ -756,6 +948,7 @@ def update(dt):
                         blorp_select = 'blorp_magenta.png'
                         money -= 50
                         unlock_megenta = True
+                        sounds.buy.play()
                 elif unlock_megenta == True:
                     if tile == "blorp_magenta.png":
                         blorp_color = 7
@@ -796,6 +989,7 @@ def update(dt):
     if (keyboard.space or keyboard.w) and on_block == True:
         clock = 0
         on_block = False
+        sounds.jump.play()
     if clock <= 0.4 and possible_move(0,-5.5):
         blorp.y -= 5.5
         if clock >= 0.2 and possible_move(0,1):
