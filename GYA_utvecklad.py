@@ -36,7 +36,11 @@ money = 0
 gambling = True
 # Record time / speedruns
 record = False
-best_time = 0
+best_time_4 = 0
+best_time_5 = 0
+best_time_6 = 0
+best_time_9 = 0
+best_time_10 = 0
 current_time = 0
 ## Checkmarks
 green_checkmark = False
@@ -351,7 +355,11 @@ def draw():
 
     # Display exit button
     if home != True:
-        screen.draw.text('Exit [B]',(20,15),color="darkred",alpha=(0.8)) 
+        screen.draw.text('Exit [B]',(20,15),color="darkred",alpha=(0.8))
+    
+    # records
+    if map_level == 4 or map_level == 5 or map_level == 6 or map_level == 9 or map_level == 10:
+        screen.draw.text(f'{current_time:.3f}',centerx=WIDTH/2,centery=20,fontsize=40,color="black")
 
     ### HOME 
     # HOME BASE TEXT
@@ -579,6 +587,12 @@ def update(dt):
         nothing = False
         ultimate_blorp = False
         gliched_blorp = False
+    ### Records
+    global current_time,best_time_4,best_time_5,best_time_6,best_time_9,best_time_10,record
+    current_time += dt
+    if map_level == 0:
+        current_time = 0
+
     ## GOLDEN PORTAL
     # MAP PINK
     if map_level == 1:
@@ -694,9 +708,14 @@ def update(dt):
             # checkmark
             global d_pink_checkmark
             d_pink_checkmark = True
-            sounds.complete_level.play()
-        if tile == "block_void.png":
-            blorp.pos = (75,575)
+            # records
+            if current_time < best_time_4 and not best_time_4 == 0:
+                best_time_4 = current_time
+            elif best_time_4 == 0:
+                best_time_4 = current_time
+            print(best_time_4)
+        #if tile == "block_void.png":
+        #    blorp.pos = (75,575)
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -715,7 +734,13 @@ def update(dt):
             # checkmark
             global d_green_checkmark
             d_green_checkmark = True
-            sounds.complete_level.play()
+            # records
+            if current_time < best_time_5 and not best_time_5 == 0:
+                best_time_5 = current_time
+            elif best_time_5 == 0:
+                best_time_5 = current_time
+                print(current_time)
+            print(best_time_5)
         if tile == "block_void.png":
             blorp.pos = (75,575)
         if tile == "block_green.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -736,7 +761,13 @@ def update(dt):
             # checkmark
             global d_purple_checkmark
             d_purple_checkmark = True
-            sounds.complete_level.play()
+            # records
+            if current_time < best_time_6 and not best_time_6 == 0:
+                best_time_6 = current_time
+            elif best_time_6 == 0:
+                best_time_6 = current_time
+                print(current_time)
+            print(best_time_6)
         if tile == "block_void.png":
             blorp.pos = (75,575)
         if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -758,7 +789,12 @@ def update(dt):
             # checkmark
             global d_blue_checkmark
             d_blue_checkmark = True
-            sounds.complete_level.play()
+            # records
+            if current_time < best_time_10 and not best_time_10 == 0:
+                best_time_10 = current_time
+            elif best_time_10 == 0:
+                best_time_10 = current_time
+            print(best_time_10)
         if tile == "block_void.png":
             blorp.pos = (75,575)
         if tile == "block_blue.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -780,7 +816,12 @@ def update(dt):
             # checkmark
             global d_red_checkmark
             d_red_checkmark = True
-            sounds.complete_level.play()
+            # records
+            if current_time < best_time_9 and not best_time_9 == 0:
+                best_time_9 = current_time
+            elif best_time_9 == 0:
+                best_time_9 = current_time
+            print(best_time_9)
         if tile == "block_void.png":
             blorp.pos = (75,575)
         if tile == "block_lava.png" or tile == "block_dark_grey.png": #ADD BLOCK
