@@ -447,30 +447,31 @@ def draw():
         # Records!
         global best_time_4,best_time_5,best_time_6,best_time_9,best_time_10
         screen.draw.text('All records',(750, 170,),fontsize=25,color='black')
+        screen.draw.text('Hard mode only',(750, 135,),fontsize=30,color='darkred')
         if best_time_5 == 0:
-            screen.draw.text(f'Green map : Time N/A',(750, 190,),fontsize=25,color='black')
+            screen.draw.text(f'Green map | Time : N/A',(750, 190,),fontsize=25,color='black')
         else:
-            screen.draw.text(f'Green map : Time {best_time_5:.3f} seconds',(750, 190,),fontsize=25,color='black')
+            screen.draw.text(f'Green map | Time : {best_time_5:.3f} seconds',(750, 190,),fontsize=25,color='black')
         
         if best_time_6 == 0:
-            screen.draw.text(f'Purple map : Time N/A',(750, 210,),fontsize=25,color='black')
+            screen.draw.text(f'Purple map | Time : N/A',(750, 210,),fontsize=25,color='black')
         else:
-            screen.draw.text(f'Purple map : Time {best_time_6:.3f} seconds',(750, 210,),fontsize=25,color='black')
+            screen.draw.text(f'Purple map | Time : {best_time_6:.3f} seconds',(750, 210,),fontsize=25,color='black')
 
         if best_time_4 == 0:
-            screen.draw.text(f'Pink map : Time N/A',(750, 230,),fontsize=25,color='black')
+            screen.draw.text(f'Pink map | Time : N/A',(750, 230,),fontsize=25,color='black')
         else:
-            screen.draw.text(f'Pink map : Time {best_time_4:.3f} seconds',(750, 230,),fontsize=25,color='black')
+            screen.draw.text(f'Pink map | Time : {best_time_4:.3f} seconds',(750, 230,),fontsize=25,color='black')
 
         if best_time_10 == 0:
-            screen.draw.text(f'Blue map : Time N/A',(750, 250,),fontsize=25,color='black')
+            screen.draw.text(f'Blue map | Time : N/A',(750, 250,),fontsize=25,color='black')
         else:
-            screen.draw.text(f'Blue map : Time {best_time_10:.3f} seconds',(750, 250,),fontsize=25,color='black')
+            screen.draw.text(f'Blue map | Time : {best_time_10:.3f} seconds',(750, 250,),fontsize=25,color='black')
 
         if best_time_9 == 0:
-            screen.draw.text(f'Red map : Time N/A',(750, 270,),fontsize=25,color='black')
+            screen.draw.text(f'Red map | Time : N/A',(750, 270,),fontsize=25,color='black')
         else:
-            screen.draw.text(f'Red map : Time {best_time_9:.3f} seconds',(750, 270,),fontsize=25,color='black')
+            screen.draw.text(f'Red map | Time : {best_time_9:.3f} seconds',(750, 270,),fontsize=25,color='black')
 
 
 
