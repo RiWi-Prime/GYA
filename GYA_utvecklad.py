@@ -91,9 +91,10 @@ yes_button = Actor('yes.png',pos=(290, 335))
 no_button = Actor('no.png',pos=(360, 335))
 yes_button_2 = Actor('yes.png',pos=(290,450))
 no_button_2 = Actor('no.png',pos=(360,450))
-# Switches
+# Difficulties
 switch_easy = Actor('switch_normal.png',pos=(950,450))
 switch_hard = Actor('switch_difficult.png',pos=(950,450))
+skull = Actor('skull.png',pos=(875,625))
 # Lock
 lock = Actor('lock.png',pos=(290,300))
 lock2 = Actor('lock.png',pos=(290,425))
@@ -375,12 +376,13 @@ def draw():
         screen.draw.text(f'50 B',(160,75),fontsize=25,color="gold")
 
         ## Hard mode display
-        '''
-        We might add this, right now it's on hold.
+        
+        #We might add this, right now it's on hold.
 
-        if difficulty == True and Menu != True:
-            screen.draw.text('Hard mode active',(850,610),fontsize=45,color="darkred")
-        '''
+        if difficulty == True:
+            skull.draw()
+            #screen.draw.text('Hard mode active',(850,610),fontsize=45,color="darkred")
+        
         ## UNLOCK GUI
         # BLUE
         if unlock_blue != False:
