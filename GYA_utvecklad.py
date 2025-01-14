@@ -319,7 +319,7 @@ def draw_tiles():
             screen.blit(tile, (x, y))
 
 def possible_move(deltax,deltay):
-    global r
+    global r,current_time
     blorp.x += deltax
     blorp.y += deltay
     for ri,row in enumerate(current_map):
@@ -335,6 +335,7 @@ def possible_move(deltax,deltay):
                             blorp.x = 75
                             blorp.y = 575
                             sounds.death.play()
+                            current_time = 0
 
                         return False
     blorp.x -= deltax
@@ -451,27 +452,27 @@ def draw():
         if best_time_5 == 0:
             screen.draw.text(f'Green map | Time : N/A',(750, 190,),fontsize=25,color='black')
         else:
-            screen.draw.text(f'Green map | Time : {best_time_5:.3f} seconds',(750, 190,),fontsize=25,color='black')
+            screen.draw.text(f'Green map | Time : {best_time_5:.3f} seconds',(750, 190,),fontsize=25,color='green')
         
         if best_time_6 == 0:
             screen.draw.text(f'Purple map | Time : N/A',(750, 210,),fontsize=25,color='black')
         else:
-            screen.draw.text(f'Purple map | Time : {best_time_6:.3f} seconds',(750, 210,),fontsize=25,color='black')
+            screen.draw.text(f'Purple map | Time : {best_time_6:.3f} seconds',(750, 210,),fontsize=25,color='purple')
 
         if best_time_4 == 0:
             screen.draw.text(f'Pink map | Time : N/A',(750, 230,),fontsize=25,color='black')
         else:
-            screen.draw.text(f'Pink map | Time : {best_time_4:.3f} seconds',(750, 230,),fontsize=25,color='black')
+            screen.draw.text(f'Pink map | Time : {best_time_4:.3f} seconds',(750, 230,),fontsize=25,color='pink')
 
         if best_time_10 == 0:
             screen.draw.text(f'Blue map | Time : N/A',(750, 250,),fontsize=25,color='black')
         else:
-            screen.draw.text(f'Blue map | Time : {best_time_10:.3f} seconds',(750, 250,),fontsize=25,color='black')
+            screen.draw.text(f'Blue map | Time : {best_time_10:.3f} seconds',(750, 250,),fontsize=25,color='blue')
 
         if best_time_9 == 0:
             screen.draw.text(f'Red map | Time : N/A',(750, 270,),fontsize=25,color='black')
         else:
-            screen.draw.text(f'Red map | Time : {best_time_9:.3f} seconds',(750, 270,),fontsize=25,color='black')
+            screen.draw.text(f'Red map | Time : {best_time_9:.3f} seconds',(750, 270,),fontsize=25,color='red')
 
 
 
@@ -760,6 +761,7 @@ def update(dt):
             print(best_time_5)
         if tile == "block_void.png":
             blorp.pos = (75,575)
+            current_time = 0
         if tile == "block_green.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
