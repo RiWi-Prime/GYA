@@ -757,7 +757,6 @@ def update(dt):
                 best_time_5 = current_time
             elif best_time_5 == 0:
                 best_time_5 = current_time
-                print(current_time)
             print(best_time_5)
         if tile == "block_void.png":
             blorp.pos = (75,575)
@@ -785,7 +784,6 @@ def update(dt):
                 best_time_6 = current_time
             elif best_time_6 == 0:
                 best_time_6 = current_time
-                print(current_time)
             print(best_time_6)
         if tile == "block_void.png":
             blorp.pos = (75,575)
