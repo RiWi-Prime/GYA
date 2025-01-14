@@ -297,7 +297,7 @@ current_map = maps[0].copy()
 # OTHER-FUNKTIONS
 
 def background_music():
-    sounds.background.play(-1)
+    pass
 
 def draw_grid():
     '''draw a nXn grid'''
