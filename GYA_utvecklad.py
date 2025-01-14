@@ -733,9 +733,10 @@ def update(dt):
                 best_time_4 = current_time
             elif best_time_4 == 0:
                 best_time_4 = current_time
-            print(best_time_4)
-        #if tile == "block_void.png":
-        #    blorp.pos = (75,575)
+            print(current_time)
+        if tile == "block_void.png":
+            blorp.pos = (75,575)
+            current_time = 0
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -759,7 +760,7 @@ def update(dt):
                 best_time_5 = current_time
             elif best_time_5 == 0:
                 best_time_5 = current_time
-            print(best_time_5)
+            print(current_time)
         if tile == "block_void.png":
             blorp.pos = (75,575)
             current_time = 0
@@ -786,9 +787,10 @@ def update(dt):
                 best_time_6 = current_time
             elif best_time_6 == 0:
                 best_time_6 = current_time
-            print(best_time_6)
+            print(current_time)
         if tile == "block_void.png":
             blorp.pos = (75,575)
+            current_time = 0
         if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -813,9 +815,10 @@ def update(dt):
                 best_time_10 = current_time
             elif best_time_10 == 0:
                 best_time_10 = current_time
-            print(best_time_10)
+            print(current_time)
         if tile == "block_void.png":
             blorp.pos = (75,575)
+            current_time = 0
         if tile == "block_blue.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -840,9 +843,10 @@ def update(dt):
                 best_time_9 = current_time
             elif best_time_9 == 0:
                 best_time_9 = current_time
-            print(best_time_9)
+            print(current_time)
         if tile == "block_void.png":
             blorp.pos = (75,575)
+            current_time = 0
         if tile == "block_lava.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
