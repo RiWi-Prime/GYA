@@ -296,9 +296,6 @@ current_map = maps[0].copy()
 
 # OTHER-FUNKTIONS
 
-def background_music():
-    pass
-
 def draw_grid():
     '''draw a nXn grid'''
     x,y = 0,0
@@ -610,6 +607,10 @@ def update(dt):
     current_time += dt
     if map_level == 0:
         current_time = 0
+    ## Music
+    if map_level != 0:
+        music.stop()
+
 
     ## GOLDEN PORTAL
     # MAP PINK
@@ -1136,5 +1137,4 @@ def update(dt):
 
 #SCREEN
 os.environ['SDL_VIDEO_CENTERED'] = '1'
-background_music()
 pgzrun.go()
