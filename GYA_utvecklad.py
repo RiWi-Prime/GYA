@@ -91,9 +91,10 @@ yes_button = Actor('yes.png',pos=(290, 335))
 no_button = Actor('no.png',pos=(360, 335))
 yes_button_2 = Actor('yes.png',pos=(290,450))
 no_button_2 = Actor('no.png',pos=(360,450))
-# Switches
+# Difficulties
 switch_easy = Actor('switch_normal.png',pos=(950,450))
 switch_hard = Actor('switch_difficult.png',pos=(950,450))
+skull = Actor('skull.png',pos=(875,625))
 # Lock
 lock = Actor('lock.png',pos=(290,300))
 lock2 = Actor('lock.png',pos=(290,425))
@@ -372,12 +373,13 @@ def draw():
         screen.draw.text(f'50 B',(160,75),fontsize=25,color="gold")
 
         ## Hard mode display
-        '''
-        We might add this, right now it's on hold.
+        
+        #We might add this, right now it's on hold.
 
-        if difficulty == True and Menu != True:
-            screen.draw.text('Hard mode active',(850,610),fontsize=45,color="darkred")
-        '''
+        if difficulty == True:
+            skull.draw()
+            #screen.draw.text('Hard mode active',(850,610),fontsize=45,color="darkred")
+        
         ## UNLOCK GUI
         # BLUE
         if unlock_blue != False:
@@ -732,9 +734,10 @@ def update(dt):
                 best_time_4 = current_time
             elif best_time_4 == 0:
                 best_time_4 = current_time
-            print(best_time_4)
-        #if tile == "block_void.png":
-        #    blorp.pos = (75,575)
+            print(current_time)
+        if tile == "block_void.png":
+            blorp.pos = (75,575)
+            current_time = 0
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -758,7 +761,7 @@ def update(dt):
                 best_time_5 = current_time
             elif best_time_5 == 0:
                 best_time_5 = current_time
-            print(best_time_5)
+            print(current_time)
         if tile == "block_void.png":
             blorp.pos = (75,575)
             current_time = 0
@@ -785,9 +788,10 @@ def update(dt):
                 best_time_6 = current_time
             elif best_time_6 == 0:
                 best_time_6 = current_time
-            print(best_time_6)
+            print(current_time)
         if tile == "block_void.png":
             blorp.pos = (75,575)
+            current_time = 0
         if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -812,9 +816,10 @@ def update(dt):
                 best_time_10 = current_time
             elif best_time_10 == 0:
                 best_time_10 = current_time
-            print(best_time_10)
+            print(current_time)
         if tile == "block_void.png":
             blorp.pos = (75,575)
+            current_time = 0
         if tile == "block_blue.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
@@ -839,9 +844,10 @@ def update(dt):
                 best_time_9 = current_time
             elif best_time_9 == 0:
                 best_time_9 = current_time
-            print(best_time_9)
+            print(current_time)
         if tile == "block_void.png":
             blorp.pos = (75,575)
+            current_time = 0
         if tile == "block_lava.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
