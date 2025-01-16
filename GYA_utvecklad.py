@@ -98,6 +98,18 @@ skull = Actor('skull.png',pos=(875,625))
 # Lock
 lock = Actor('lock.png',pos=(290,300))
 lock2 = Actor('lock.png',pos=(290,425))
+# checkmark
+show_green_checkmark = Actor('checkmark.png',pos= (675,475))
+show_purple_checkmark = Actor('checkmark.png',pos= (875,475))
+show_pink_checkmark = Actor('checkmark.png',pos= (1075,475))
+show_blue_checkmark = Actor('checkmark.png',pos= (775,425))
+show_red_checkmark = Actor('checkmark.png',pos= (975,425))
+# hard checkmarks
+d_show_green_checkmark = Actor('checkmark.png',pos= (675,475))
+d_show_purple_checkmark = Actor('checkmark.png',pos= (875,475))
+d_show_pink_checkmark = Actor('checkmark.png',pos= (1075,475))
+d_show_blue_checkmark = Actor('checkmark.png',pos= (775,425))
+d_show_red_checkmark = Actor('checkmark.png',pos= (975,425))
 # Other
 casino_display = Actor('casino_display.png',pos = (175,375))
 casino = Actor('sign_casino.png',pos = (300,100))
@@ -375,9 +387,30 @@ def draw():
         ## Hard mode display
         
         #We might add this, right now it's on hold.
+        if difficulty == False:
+            if green_checkmark == True:
+                show_green_checkmark.draw()
+            if purple_checkmark == True:
+                show_purple_checkmark.draw()
+            if pink_checkmark == True:
+                show_pink_checkmark.draw()
+            if blue_checkmark == True:
+                show_blue_checkmark.draw()
+            if red_checkmark == True:
+                show_red_checkmark.draw()
 
         if difficulty == True:
             skull.draw()
+            if d_green_checkmark == True:
+                d_show_green_checkmark.draw()
+            if d_purple_checkmark == True:
+                d_show_purple_checkmark.draw()
+            if d_pink_checkmark == True:
+                d_show_pink_checkmark.draw()
+            if d_blue_checkmark == True:
+                d_show_blue_checkmark.draw()
+            if d_red_checkmark == True:
+                d_show_red_checkmark.draw()
             #screen.draw.text('Hard mode active',(850,610),fontsize=45,color="darkred")
         
         ## UNLOCK GUI
