@@ -94,6 +94,7 @@ no_button_2 = Actor('no.png',pos=(360,450))
 # Switches
 switch_easy = Actor('switch_normal.png',pos=(950,450))
 switch_hard = Actor('switch_difficult.png',pos=(950,450))
+skull = Actor('skull.png',pos=(875,625))
 # Lock
 lock = Actor('lock.png',pos=(290,300))
 lock2 = Actor('lock.png',pos=(290,425))
