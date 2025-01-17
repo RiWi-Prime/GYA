@@ -308,18 +308,24 @@ maps = [
 current_map = maps[0].copy()
 
 # OTHER-FUNKTIONS
-
+#music
+musics_sound = 0
 def musics():
-    music_sound = 0
-    music_stop = False
+    if map_level == 0 or map_level == 1 or map_level == 2 or map_level == 3 or map_level == 7 or map_level == 8:
+        music_sound = 0
+        music.stop()
+    if map_level == 1 or map_level == 2 or map_level == 3 or map_level == 7 or map_level == 8:
+        music_sound = 0
+        music.stop()
+    if map_level == 4 or map_level == 5 or map_level == 6 or map_level == 9 or map_level == 10:
+        music_sound = 2
+        music.stop()
     if music_sound == 0 and music_stop == False:
         music.play("home.wav")
-    if music_sound == 1 and music_stop == False:
+
+    if music_sound == 2 and music_stop == False:
         music.play("hard.wav")
-    if map_level == 0:
-        music_sound = 0
-    if map_level != 0:
-        music_sound = 1
+
 
 def draw_grid():
     '''draw a nXn grid'''
@@ -669,6 +675,8 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            #music
+            musics()
             #checkmark
             global pink_checkmark
             pink_checkmark = True
@@ -689,6 +697,8 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            #music
+            musics()
             # checkmark
             global green_checkmark
             green_checkmark = True
@@ -709,6 +719,8 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            #music
+            musics()
             # checkmark
             global purple_checkmark
             purple_checkmark = True
@@ -729,6 +741,8 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            #music
+            musics()
             # checkmark
             global red_checkmark
             red_checkmark = True
@@ -749,6 +763,8 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            #music
+            musics()
             # checkmark
             global blue_checkmark
             blue_checkmark = True
@@ -770,6 +786,8 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            #music
+            musics()
             # checkmark
             global d_pink_checkmark
             d_pink_checkmark = True
@@ -796,6 +814,8 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            #music
+            musics()
             # checkmark
             global d_green_checkmark
             d_green_checkmark = True
@@ -823,6 +843,8 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            #music
+            musics()
             # checkmark
             global d_purple_checkmark
             d_purple_checkmark = True
@@ -850,6 +872,8 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            #music
+            musics()
             # checkmark
             global d_blue_checkmark
             d_blue_checkmark = True
@@ -877,6 +901,8 @@ def update(dt):
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
+            #music
+            musics()
             # checkmark
             global d_red_checkmark
             d_red_checkmark = True
@@ -907,6 +933,8 @@ def update(dt):
                     current_map.clear()
                     current_map = maps[1].copy()
                     sounds.teleport.play()
+                    #music
+                    musics()
 
                 if tile == "portal_green.png": #CHANGE PORTAL
                     map_level = 2
@@ -914,6 +942,8 @@ def update(dt):
                     current_map.clear()
                     current_map = maps[2].copy()
                     sounds.teleport.play()
+                    #music
+                    musics()
 
                 if tile == "portal_purple.png": #CHANGE PORTAL
                     map_level = 3
@@ -921,6 +951,8 @@ def update(dt):
                     current_map.clear()
                     current_map = maps[3].copy()
                     sounds.teleport.play()
+                    #music
+                    musics()
 
                 if tile == "portal_red.png": #CHANGE PORTAL
                     map_level = 7
@@ -928,6 +960,8 @@ def update(dt):
                     current_map.clear()
                     current_map = maps[7].copy()
                     sounds.teleport.play()
+                    #music
+                    musics()
 
                 if tile == "portal_blue.png": #CHANGE PORTAL
                     map_level = 8
@@ -935,6 +969,8 @@ def update(dt):
                     current_map.clear()
                     current_map = maps[8].copy()
                     sounds.teleport.play()
+                    #music
+                    musics()
             else: 
                 row = int((blorp.y + 25) / tile_size)
                 column = int(blorp.x / tile_size)
@@ -945,6 +981,8 @@ def update(dt):
                     current_map.clear()
                     current_map = maps[4].copy()
                     sounds.teleport.play()
+                    #music
+                    musics()
 
                 if tile == "portal_green.png": #CHANGE PORTAL
                     map_level = 5
@@ -952,6 +990,8 @@ def update(dt):
                     current_map.clear()
                     current_map = maps[5].copy()
                     sounds.teleport.play()
+                    #music
+                    musics()
 
                 if tile == "portal_purple.png": #CHANGE PORTAL
                     map_level = 6
@@ -959,6 +999,8 @@ def update(dt):
                     current_map.clear()
                     current_map = maps[6].copy()
                     sounds.teleport.play()
+                    #music
+                    musics()
 
                 if tile == "portal_blue.png": #CHANGE PORTAL
                     map_level = 10
@@ -966,6 +1008,8 @@ def update(dt):
                     current_map.clear()
                     current_map = maps[10].copy()
                     sounds.teleport.play()
+                    #music
+                    musics()
                 
                 if tile == "portal_red.png": #CHANGE PORTAL
                     map_level = 9
@@ -973,6 +1017,8 @@ def update(dt):
                     current_map.clear()
                     current_map = maps[9].copy()
                     sounds.teleport.play()
+                    #music
+                    musics()
 
             if tile == "block_grey.png" or tile == "block_dark_grey.png" or tile == "block_red.png": #ADD BLOCK
                 on_block = True
@@ -1174,6 +1220,7 @@ def update(dt):
         current_map.clear()
         current_map = maps[0].copy()
         map_level = 0
+        musics()
 
     ### LOOT BOXES
     global loot
@@ -1181,7 +1228,11 @@ def update(dt):
 
 ## END-CODE
 #MUSIC
-musics()
+music_stop = False
+music_true = True
+if music_true == True:
+    music.play("home.wav")
+    music_true = False
 #SCREEN
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 pgzrun.go()
