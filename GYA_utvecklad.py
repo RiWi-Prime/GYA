@@ -1131,15 +1131,18 @@ def update(dt):
        Menu is True or False'''
     global Menu
     global Menu_value
+    if keyboard.Q and Menu_value == False: 
+        Menu = True
+    if keyboard.Q and Menu_value == True:
+        Menu = False
+    if keyboard.X:
+        Menu_value = 2
+
     if Menu_value == 1:
         Menu = True
     if Menu_value >= 2:
         Menu = False
         Menu_value = 0
-    if keyboard.I: 
-        Menu_value = 1
-    if keyboard.X:
-        Menu_value = 2
     
     ### HOME
     global home
