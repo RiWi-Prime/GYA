@@ -17,6 +17,7 @@ difficulty = False
 
 Menu = False # KEYBOARD.I and X
 Menu_value = 0 # KEYBOARD.I and X
+q_timer = 0
 
 home = False
 
@@ -399,7 +400,7 @@ def draw():
         casino.draw()
         sign.draw()
         screen.draw.text('COSMETICS',(760,60),fontsize=55,color='black',alpha=0.6)
-        screen.draw.text('Press [i] to open the Menu',(100,610),fontsize=25,color='darkgrey',alpha=0.7)
+        screen.draw.text('Press [Q] to open the Menu',(100,610),fontsize=25,color='darkgrey',alpha=0.7)
         screen.draw.text(f'50 B',(160,75),fontsize=25,color="gold")
 
         ## Hard mode display
@@ -491,7 +492,7 @@ def draw():
     if Menu == True and home == True:
         menu_background.draw()
         screen.draw.text('MENU',(625, 85,),fontsize=50,color='black')
-        screen.draw.text('CLOSE [X]',(WIDTH/1.2, 85,),fontsize=25,color='red')
+        screen.draw.text('CLOSE [Q]',(WIDTH/1.2, 85,),fontsize=25,color='red')
         screen.draw.text('SPEICAL BLORPS',(230, 170,),fontsize=35,color='black')
         screen.draw.text('Info: Speical blorps are unlocked by\nspinning the wheel at the casino.',(230, 200,),fontsize=20,color='darkgrey')
         
@@ -1198,18 +1199,14 @@ def update(dt):
        Menu is True or False'''
     global Menu
     global Menu_value
-    if keyboard.Q and Menu_value == False: 
+    global q_timer
+    q_timer += dt
+    if keyboard.Q and Menu != True and q_timer > 0.3:
         Menu = True
-    if keyboard.Q and Menu_value == True:
+        q_timer = 0
+    if keyboard.Q and Menu != False and q_timer > 0.5:
         Menu = False
-    if keyboard.X:
-        Menu_value = 2
-
-    if Menu_value == 1:
-        Menu = True
-    if Menu_value >= 2:
-        Menu = False
-        Menu_value = 0
+        q_timer = 0
     
     ### HOME
     global home
