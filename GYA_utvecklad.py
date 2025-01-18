@@ -96,6 +96,7 @@ no_button_2 = Actor('no.png',pos=(360,450))
 switch_easy = Actor('switch_normal.png',pos=(950,450))
 switch_hard = Actor('switch_difficult.png',pos=(950,450))
 skull = Actor('skull.png',pos=(875,625))
+hard_red_blocks = Actor('blocks_hard.png',pos=(925,575))
 # Lock
 lock = Actor('lock.png',pos=(290,300))
 lock2 = Actor('lock.png',pos=(290,425))
@@ -419,6 +420,7 @@ def draw():
                 show_red_checkmark.draw()
 
         if difficulty == True:
+            hard_red_blocks.draw()
             skull.draw()
             if d_green_checkmark == True:
                 d_show_green_checkmark.draw()
