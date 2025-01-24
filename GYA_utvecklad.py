@@ -919,6 +919,7 @@ def update(dt):
             print(best_time_9)
         if tile == "block_void.png":
             blorp.pos = (75,575)
+            current_time = 0
         if tile == "block_lava.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
         else:
