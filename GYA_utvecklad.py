@@ -1,7 +1,11 @@
-''' Pumpa - Test game for The Blorp Game
+''' 
+Game Title:     The Blorp Game  
+About:          GYA - Funktions spel utvecklade, denna 
+                version har alla funktioner och är fullt
+                utvecklad som vi vill ha det.
+Creators:       Rikard W, Sebastian B and Oscar K
 
-Currently testing: Map teleport rework
-'''
+Current Version: v.2.1.0 '''
 
 
 ## IMPORTS
@@ -75,7 +79,7 @@ unlock_ultimate = False
 ## CODE
 game = True
 print("The Blorp Game")
-print("Verison V.2.0.0")
+print("Verison V.2.1.0")
 
 timer = 0
 clock = 2
