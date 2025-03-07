@@ -1,7 +1,11 @@
-''' Pumpa - Test game for The Blorp Game
+''' 
+Game Title:     The Blorp Game  
+About:          GYA - Funktions spel utvecklade, denna 
+                version har alla funktioner och är fullt
+                utvecklad som vi vill ha det.
+Creators:       Rikard W, Sebastian B and Oscar K
 
-Currently testing: Map teleport rework
-'''
+Current Version: v.2.1.0 '''
 
 
 ## IMPORTS
@@ -75,7 +79,7 @@ unlock_ultimate = False
 ## CODE
 game = True
 print("The Blorp Game")
-print("Verison V.2.0.0")
+print("Verison V.2.1.0")
 
 timer = 0
 clock = 2
@@ -492,17 +496,17 @@ def draw():
         # SCREEN OF DISPLAY         x-y = (175,375)
         if gliched_blorp == True:
             screen.draw.text(f'You won "GLITCHED BLORP"',(96,368),fontsize=17,color='purple',alpha = (0.9))
-            # Fix posistion when display is added
+            
         if ultimate_blorp == True:
-            screen.draw.text(f'You won "ULTIMATE BLORP"',(96,368),fontsize=17,color='pink',alpha = (0.9))
-            # Fix posistion when display is added
+            screen.draw.text(f'You won "ULTIMATE BLORP"',(96,368),fontsize=17,color='pink',alpha = (0.9)) 
+            
         if nothing == True:
             screen.draw.text(f'You lost',(125,363),fontsize=35,color='red',alpha =(0.9))
-            # Fix posistion when display is added
+            
         if got_money == True:
             screen.draw.text(f'You won money',(100,366),fontsize=30,color='green',alpha =(0.9))
             screen.draw.text(f'+ 1000 B',(65,30),fontsize=25,color="gold")
-            # Fix posistion when display is added
+            
 
     blorp.draw()
 
@@ -1228,7 +1232,7 @@ def update(dt):
     if keyboard.Q and Menu != False and q_timer > 0.5:
         Menu = False
         q_timer = 0
-    
+
     ### HOME
     global home
     if map_level == 0:
@@ -1241,7 +1245,7 @@ def update(dt):
         current_map.clear()
         current_map = maps[0].copy()
         map_level = 0
-        musics()
+        musics()    
 
     ### LOOT BOXES
     global loot
