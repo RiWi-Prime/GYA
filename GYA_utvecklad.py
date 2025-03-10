@@ -19,8 +19,8 @@ WIDTH = 1250
 
 difficulty = False
 
-Menu = False # KEYBOARD.I and X
-Menu_value = 0 # KEYBOARD.I and X
+Menu = False 
+Menu_value = 0
 q_timer = 0
 
 home = False
