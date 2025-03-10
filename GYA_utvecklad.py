@@ -124,7 +124,7 @@ wheel = Actor('casino_wheel.png',pos = (175,200))
 menu_background = Actor('menu.png',pos = (650,300))
 backgrounds = ['background_grey.png','background_pink.png','background_green.png','background_purple.png',
                'background_pink.png','background_green.png','background_purple.png','background_red.png',
-               'background_blue.png','background_red.png','background_blue.png']
+               'background_blue.png','background_red.png','background_blue.png','background_cloud.png']
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png',
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
@@ -339,7 +339,7 @@ def musics():
     if map_level == 1 or map_level == 2 or map_level == 3 or map_level == 7 or map_level == 8:
         music_sound = 0
         music.stop()
-    if map_level == 4 or map_level == 5 or map_level == 6 or map_level == 9 or map_level == 10:
+    if map_level == 4 or map_level == 5 or map_level == 6 or map_level == 9 or map_level == 10 or map_level == 11:
         music_sound = 2
         music.stop()
     if music_sound == 0 and music_stop == False:
@@ -374,7 +374,7 @@ def possible_move(deltax,deltay):
     blorp.y += deltay
     for ri,row in enumerate(current_map):
         for ci,tile in enumerate(row):
-                if tile and not tile in [5,6,7,8,9,10,11,12,13,14,19,21,22,23]:
+                if tile and not tile in [5,6,7,8,9,10,11,12,13,14,19,21,22,24]:
                     # Smaller rect than tile 
                     r = Rect(ci*dx+5,ri*dy+5,dx-10,dy-10)
                     if blorp.colliderect(r):
@@ -949,7 +949,7 @@ def update(dt):
     if map_level == 11:
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
-        tile = pictures[maps[9][row][column]]
+        tile = pictures[maps[11][row][column]]
         if tile == "portal_black.png":
             map_level = 0
             money += 2500 # change value
@@ -970,7 +970,7 @@ def update(dt):
         if tile == "block_void.png":
             blorp.pos = (75,575)
             current_time = 0
-        if tile == "block_cloud.png" or tile == "block_dark_grey.png": #ADD BLOCK
+        if tile == "block_cloud.png":
             on_block = True
         else:
             on_block = False 
