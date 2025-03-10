@@ -129,7 +129,7 @@ pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','blo
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
             'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png','block_red.png', 'block_void.png',
-            'block_lava.png','portal_red.png','block_blue.png','portal_blue.png','chain.png'
+            'block_lava.png','portal_red.png','block_blue.png','portal_blue.png','chain.png','block_cloud.png','portal_cloud.png'
             ]
 
 # WORLD DATA
@@ -142,7 +142,7 @@ maps = [
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 16, 16, 16, 16, 16, 16, 16, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 22, 0, 22, 0, 22, 0, 22, 0, 22, 0, 22, 1, 1], 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 22, 0, 22, 0, 22, 24, 22, 0, 22, 0, 22, 1, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 22, 0, 22, 21, 22, 0, 22, 19, 22, 0, 22, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 22, 6, 22, 0, 22, 7, 22, 0, 22, 5, 22, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 15, 15, 0, 15, 15, 15, 0, 15, 15, 15, 0, 1], 
@@ -308,6 +308,22 @@ maps = [
 [20, 20, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 17, 0, 20, 20, 20, 17, 20, 17, 17, 20, 0, 0, 20], 
 [20, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 20, 20, 20, 20, 17, 17, 20, 0, 0, 20], 
 [20, 20, 20, 20, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 20, 20, 20, 20, 20, 20, 20, 20, 17, 17, 17],
+],
+
+[
+[23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23],
+[17, 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17], 
+[17, 0, 0, 23, 0, 0, 23, 0, 0, 0, 0, 23, 0, 0, 0, 23, 0, 0, 0, 23, 0, 0, 0, 0, 17], 
+[17, 0, 0, 23, 0, 0, 17, 0, 23, 17, 17, 17, 23, 17, 17, 17, 23, 17, 17, 17, 23, 17, 17, 8, 23], 
+[23, 23, 0, 0, 17, 0, 17, 0, 0, 17, 0, 0, 0, 17, 0, 0, 0, 17, 0, 0, 0, 17, 23, 23, 23], 
+[17, 0, 0, 23, 17, 0, 0, 23, 0, 17, 0, 23, 0, 17, 0, 23, 0, 17, 0, 23, 0, 17, 23, 17, 23], 
+[23, 23, 0, 0, 17, 0, 0, 17, 0, 0, 0, 17, 0, 0, 0, 17, 0, 0, 0, 17, 0, 0, 0, 0, 23], 
+[17, 0, 0, 23, 17, 0, 0, 17, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 0, 0, 23], 
+[23, 23, 0, 0, 17, 17, 0, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23], 
+[17, 0, 0, 23, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 23], 
+[23, 23, 0, 0, 17, 0, 0, 0, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 23], 
+[23, 0, 0, 0, 17, 0, 0, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23], 
+[23, 23, 23, 17, 23, 23, 17, 17, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23],
 ]
 ]
 
@@ -358,7 +374,7 @@ def possible_move(deltax,deltay):
     blorp.y += deltay
     for ri,row in enumerate(current_map):
         for ci,tile in enumerate(row):
-                if tile and not tile in [5,6,7,8,9,10,11,12,13,14,19,21,22]:
+                if tile and not tile in [5,6,7,8,9,10,11,12,13,14,19,21,22,23]:
                     # Smaller rect than tile 
                     r = Rect(ci*dx+5,ri*dy+5,dx-10,dy-10)
                     if blorp.colliderect(r):
@@ -929,6 +945,35 @@ def update(dt):
         else:
             on_block = False   
 
+    # Dif.cloud
+    if map_level == 11:
+        row = int((blorp.y + 25) / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[maps[9][row][column]]
+        if tile == "portal_black.png":
+            map_level = 0
+            money += 2500 # change value
+            blorp.pos = (75,575)
+            current_map.clear()
+            current_map = maps[0].copy()
+            #music
+            musics()
+            # checkmark
+            #global d_cloud_checkmark
+            #d_cloud_checkmark = True   
+            # records
+            #if current_time < best_time_11 and not best_time_11 == 0:
+            #    best_time_11 = current_time
+            #elif best_time_11 == 0:
+            #    best_time_11 = current_time
+            #print(best_time_11)
+        if tile == "block_void.png":
+            blorp.pos = (75,575)
+            current_time = 0
+        if tile == "block_cloud.png" or tile == "block_dark_grey.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False 
             
     ## PORTALS BASE MAP / where you enter from 'HOME'
     if map_level == 0:
@@ -1026,6 +1071,15 @@ def update(dt):
                     blorp.pos = (75,575)
                     current_map.clear()
                     current_map = maps[9].copy()
+                    sounds.teleport.play()
+                    #music
+                    musics()
+
+                if tile == "portal_cloud.png": #CHANGE PORTAL
+                    map_level = 11
+                    blorp.pos = (75,575)
+                    current_map.clear()
+                    current_map = maps[11].copy()
                     sounds.teleport.play()
                     #music
                     musics()
