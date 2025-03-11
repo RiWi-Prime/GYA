@@ -325,6 +325,22 @@ maps = [
 [23, 23, 0, 0, 17, 0, 0, 0, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 23], 
 [23, 0, 0, 0, 17, 0, 0, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23], 
 [23, 23, 23, 17, 23, 23, 17, 17, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23],
+],
+
+[ #easy mode for cloud
+[23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23],
+[17, 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17], 
+[17, 0, 0, 23, 0, 0, 23, 0, 0, 0, 0, 23, 0, 0, 0, 23, 0, 0, 0, 23, 0, 0, 0, 0, 17], 
+[17, 0, 0, 23, 0, 0, 17, 0, 23, 17, 17, 17, 23, 17, 17, 17, 23, 17, 17, 17, 23, 17, 17, 8, 23], 
+[23, 23, 0, 0, 17, 0, 17, 0, 0, 17, 0, 0, 0, 17, 0, 0, 0, 17, 0, 0, 0, 17, 23, 23, 23], 
+[17, 0, 0, 23, 17, 0, 0, 23, 0, 17, 0, 23, 0, 17, 0, 23, 0, 17, 0, 23, 0, 17, 23, 17, 23], 
+[23, 23, 0, 0, 17, 0, 0, 17, 0, 0, 0, 17, 0, 0, 0, 17, 0, 0, 0, 17, 0, 0, 0, 0, 23], 
+[17, 0, 0, 23, 17, 0, 0, 17, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 0, 0, 23], 
+[23, 23, 0, 0, 17, 17, 0, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23], 
+[17, 0, 0, 23, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 23], 
+[23, 23, 0, 0, 17, 0, 0, 0, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 23], 
+[23, 0, 0, 0, 17, 0, 0, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23, 0, 23], 
+[23, 23, 23, 17, 23, 23, 17, 17, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23],
 ]
 ]
 
@@ -334,10 +350,10 @@ current_map = maps[0].copy()
 #music
 musics_sound = 0
 def musics():
-    if map_level == 0 or map_level == 1 or map_level == 2 or map_level == 3 or map_level == 7 or map_level == 8:
+    if map_level == 0 or map_level == 1 or map_level == 2 or map_level == 3 or map_level == 7 or map_level == 8 or map_level == 12:
         music_sound = 0
         music.stop()
-    if map_level == 1 or map_level == 2 or map_level == 3 or map_level == 7 or map_level == 8:
+    if map_level == 1 or map_level == 2 or map_level == 3 or map_level == 7 or map_level == 8 or map_level == 12:
         music_sound = 0
         music.stop()
     if map_level == 4 or map_level == 5 or map_level == 6 or map_level == 9 or map_level == 10 or map_level == 11:
@@ -797,6 +813,28 @@ def update(dt):
             on_block = True
         else:
             on_block = False  
+    #MAP CLOUD
+    if map_level == 12:
+        row = int((blorp.y + 25) / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[maps[12][row][column]]
+        if tile == "portal_black.png":
+            map_level = 0
+            money += 450 # change value
+            blorp.pos = (75,575)
+            current_map.clear()
+            current_map = maps[0].copy()
+            #music
+            musics()
+            # checkmark
+            #global blue_checkmark
+            blue_checkmark = True
+            sounds.complete_level.play()
+        if tile == "block_cloud.png": #ADD BLOCK
+            on_block = True
+        else:
+            on_block = False  
+
 
     ## Difficulty MAPS
     # pink
@@ -953,7 +991,7 @@ def update(dt):
         tile = pictures[maps[11][row][column]]
         if tile == "portal_black.png":
             map_level = 0
-            money += 10000 # change value
+            money += 2500 # change value
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
@@ -1027,6 +1065,16 @@ def update(dt):
                     sounds.teleport.play()
                     #music
                     musics()
+                
+                if tile == "portal_cloud.png": #CHANGE PORTAL
+                    map_level = 12
+                    blorp.pos = (75,575)
+                    current_map.clear()
+                    current_map = maps[12].copy()
+                    sounds.teleport.play()
+                    #music
+                    musics()
+
             else: 
                 row = int((blorp.y + 25) / tile_size)
                 column = int(blorp.x / tile_size)
