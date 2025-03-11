@@ -124,13 +124,14 @@ wheel = Actor('casino_wheel.png',pos = (175,200))
 menu_background = Actor('menu.png',pos = (650,300))
 backgrounds = ['background_grey.png','background_pink.png','background_green.png','background_purple.png',
                'background_pink.png','background_green.png','background_purple.png','background_red.png',
-               'background_blue.png','background_red.png','background_blue.png','background_cloud.png']
+               'background_blue.png','background_red.png','background_blue.png','background_cloud.png','background_cloud.png'
+               ,'background_temple.png','background_temple.png','background_temple.png','background_boss.png']
 pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','block_purple.png',
             'portal_pink.png','portal_green.png','portal_purple.png','portal_black.png',
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
             'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png','block_red.png', 'block_void.png',
             'block_lava.png','portal_red.png','block_blue.png','portal_blue.png','chain.png','block_cloud.png','portal_cloud.png'
-            ]
+            ,'block_temple_1.png','block_temple_2.png','block_temple_3.png']
 
 # WORLD DATA
 maps = [
