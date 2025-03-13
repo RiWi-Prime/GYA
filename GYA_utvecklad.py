@@ -46,6 +46,7 @@ best_time_5 = 0
 best_time_6 = 0
 best_time_9 = 0
 best_time_10 = 0
+best_time_11 = 0
 current_time = 0
 ## Checkmarks
 green_checkmark = False
@@ -430,7 +431,7 @@ def draw():
         screen.draw.text('Exit [B]',(20,15),color="darkred",alpha=(0.8))
     
     # records
-    if map_level == 4 or map_level == 5 or map_level == 6 or map_level == 9 or map_level == 10:
+    if map_level == 4 or map_level == 5 or map_level == 6 or map_level == 9 or map_level == 10 or map_level == 11:
         screen.draw.text(f'{current_time:.3f}',centerx=WIDTH/2,centery=20,fontsize=40,color="black")
 
     ### HOME 
@@ -544,7 +545,7 @@ def draw():
         screen.draw.text('Info: Speical blorps are unlocked by\nspinning the wheel at the casino.',(230, 200,),fontsize=20,color='darkgrey')
         
         # Records!
-        global best_time_4,best_time_5,best_time_6,best_time_9,best_time_10
+        global best_time_4,best_time_5,best_time_6,best_time_9,best_time_10,best_time_11
         screen.draw.text('All records',(750, 170,),fontsize=25,color='black')
         screen.draw.text('Hard mode only',(750, 135,),fontsize=30,color='darkred')
         if best_time_5 == 0:
@@ -572,6 +573,10 @@ def draw():
         else:
             screen.draw.text(f'Red map | Time : {best_time_9:.3f} seconds',(750, 270,),fontsize=25,color='red')
 
+        if best_time_11 == 0:
+            screen.draw.text(f'Cloud map | Time : N/A',(750, 290,),fontsize=25,color='black')
+        else:
+            screen.draw.text(f'Cloud map | Time : {best_time_9:.3f} seconds',(750, 290,),fontsize=25,color='white')
 
 
         if price_1 == False:
@@ -704,7 +709,7 @@ def update(dt):
         ultimate_blorp = False
         gliched_blorp = False
     ### Records
-    global current_time,best_time_4,best_time_5,best_time_6,best_time_9,best_time_10,record
+    global current_time,best_time_4,best_time_5,best_time_6,best_time_9,best_time_10,best_time_11,record
     current_time += dt
     if map_level == 0:
         current_time = 0
@@ -1002,18 +1007,18 @@ def update(dt):
             money += 2500 # change value
             blorp.pos = (75,575)
             current_map.clear()
-            current_map = maps[0].copy()
+            current_map = maps[11].copy()
             #music
             musics()
             # checkmark
             global d_cloud_checkmark
             d_cloud_checkmark = True   
             # records
-            #if current_time < best_time_11 and not best_time_11 == 0:
-            #    best_time_11 = current_time
-            #elif best_time_11 == 0:
-            #    best_time_11 = current_time
-            #print(best_time_11)
+            if current_time < best_time_11 and not best_time_11 == 0:
+                best_time_11 = current_time
+            elif best_time_11 == 0:
+                best_time_11 = current_time
+            print(best_time_11)
         if tile == "block_void.png":
             blorp.pos = (75,575)
             current_time = 0
