@@ -112,14 +112,14 @@ show_purple_checkmark = Actor('checkmark_green.png',pos= (878,472))
 show_pink_checkmark = Actor('checkmark_green.png',pos= (1078,472))
 show_blue_checkmark = Actor('checkmark_green.png',pos= (778,422))
 show_red_checkmark = Actor('checkmark_green.png',pos= (978,422))
-show_red_checkmark = Actor('checkmark_green.png',pos=(878,372))
+show_cloud_checkmark = Actor('checkmark_green.png',pos= (978,422))
 # hard checkmarks
 d_show_green_checkmark = Actor('checkmark_red.png',pos= (678,472))
 d_show_purple_checkmark = Actor('checkmark_red.png',pos= (878,472))
 d_show_pink_checkmark = Actor('checkmark_red.png',pos= (1078,472))
 d_show_blue_checkmark = Actor('checkmark_red.png',pos= (778,422))
 d_show_red_checkmark = Actor('checkmark_red.png',pos= (978,422))
-d_show_red_checkmark = Actor('checkmark_red.png',pos=(878,372))
+d_show_cloud_checkmark = Actor('checkmark_red.png',pos= (978,422))
 # Other
 casino_display = Actor('casino_display.png',pos = (175,375))
 casino = Actor('sign_casino.png',pos = (300,100))
@@ -135,7 +135,7 @@ pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','blo
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
             'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png','block_red.png', 'block_void.png',
             'block_lava.png','portal_red.png','block_blue.png','portal_blue.png','chain.png','block_cloud.png','portal_cloud.png'
-            ,'block_temple_1.png','block_temple_2.png','block_temple_3.png']
+            ,'block_temple_1.png','block_temple_2.png','block_temple_3.png','portal_temple.png']
 
 # WORLD DATA
 maps = [
@@ -150,7 +150,7 @@ maps = [
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 22, 0, 22, 0, 22, 24, 22, 0, 22, 0, 22, 1, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 22, 0, 22, 21, 22, 0, 22, 19, 22, 0, 22, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 22, 6, 22, 0, 22, 7, 22, 0, 22, 5, 22, 0, 1], 
-[1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 15, 15, 0, 15, 15, 15, 0, 15, 15, 15, 0, 1], 
+[1, 0, 28, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 15, 15, 0, 15, 15, 15, 0, 15, 15, 15, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 1],
 ],
@@ -459,8 +459,6 @@ def draw():
                 show_blue_checkmark.draw()
             if red_checkmark == True:
                 show_red_checkmark.draw()
-            if cloud_checkmark == True:
-                show_cloud_checkmark.draw()
 
         if difficulty == True:
             hard_red_blocks.draw()
