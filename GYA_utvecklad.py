@@ -39,6 +39,7 @@ nothing = False
 got_money = False
 money = 0
 gambling = True
+level_complete = 0
 # Record time / speedruns
 record = False
 best_time_4 = 0
@@ -113,14 +114,14 @@ show_purple_checkmark = Actor('checkmark_green.png',pos= (878,472))
 show_pink_checkmark = Actor('checkmark_green.png',pos= (1078,472))
 show_blue_checkmark = Actor('checkmark_green.png',pos= (778,422))
 show_red_checkmark = Actor('checkmark_green.png',pos= (978,422))
-show_cloud_checkmark = Actor('checkmark_green.png',pos= (978,422))
+show_cloud_checkmark = Actor('checkmark_green.png',pos= (878,372))
 # hard checkmarks
 d_show_green_checkmark = Actor('checkmark_red.png',pos= (678,472))
 d_show_purple_checkmark = Actor('checkmark_red.png',pos= (878,472))
 d_show_pink_checkmark = Actor('checkmark_red.png',pos= (1078,472))
 d_show_blue_checkmark = Actor('checkmark_red.png',pos= (778,422))
 d_show_red_checkmark = Actor('checkmark_red.png',pos= (978,422))
-d_show_cloud_checkmark = Actor('checkmark_red.png',pos= (978,422))
+d_show_cloud_checkmark = Actor('checkmark_red.png',pos= (878,372))
 # Other
 casino_display = Actor('casino_display.png',pos = (175,375))
 casino = Actor('sign_casino.png',pos = (300,100))
@@ -1314,6 +1315,15 @@ def update(dt):
             if unlock_ultimate == True:
                 blorp_color = 10
                 blorp_select = 'blorp_ultimate.png'
+            # Portal to temple
+            if blorp.pos == crack.pos and level_complete == 12:
+                map_level = 16
+                blorp.pos = (75,75)
+                current_map.clear()
+                current_map = maps[16].copy()
+                sounds.teleport.play()
+                #music
+                musics()
 
     ### MOVEMENT
     if keyboard.D and possible_move(3,0):
