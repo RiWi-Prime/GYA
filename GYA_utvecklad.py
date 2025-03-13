@@ -127,6 +127,7 @@ casino = Actor('sign_casino.png',pos = (300,100))
 sign = Actor('sign_wood.png',pos = (875,75))
 wheel = Actor('casino_wheel.png',pos = (175,200))
 menu_background = Actor('menu.png',pos = (650,300))
+crack = Actor('empty.png',pos = (550,100))
 backgrounds = ['background_grey.png','background_pink.png','background_green.png','background_purple.png',
                'background_pink.png','background_green.png','background_purple.png','background_red.png',
                'background_blue.png','background_red.png','background_blue.png','background_cloud.png','background_cloud.png'
@@ -151,7 +152,7 @@ maps = [
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 22, 0, 22, 0, 22, 24, 22, 0, 22, 0, 22, 1, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 22, 0, 22, 21, 22, 0, 22, 19, 22, 0, 22, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 22, 6, 22, 0, 22, 7, 22, 0, 22, 5, 22, 0, 1], 
-[1, 0, 28, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 15, 15, 0, 15, 15, 15, 0, 15, 15, 15, 0, 1], 
+[1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 15, 15, 15, 0, 15, 15, 15, 0, 15, 15, 15, 0, 1], 
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 1],
 ],
