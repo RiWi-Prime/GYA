@@ -840,8 +840,8 @@ def update(dt):
             #music
             musics()
             # checkmark
-            global blue_checkmark
-            blue_checkmark = True
+            global cloud_checkmark
+            cloud_checkmark = True
             sounds.complete_level.play()
         if tile == "block_cloud.png": #ADD BLOCK
             on_block = True
