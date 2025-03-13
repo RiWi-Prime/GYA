@@ -53,12 +53,14 @@ purple_checkmark = False
 pink_checkmark = False
 blue_checkmark = False
 red_checkmark = False
+cloud_checkmark = False
 # Difficulty checkmarks
 d_green_checkmark = False
 d_purple_checkmark = False
 d_pink_checkmark = False
 d_blue_checkmark = False
 d_red_checkmark = False
+d_cloud_checkmark = False
 
 
 loot = ["blorp_special.png","blorp_ulimate.png"]
@@ -110,12 +112,14 @@ show_purple_checkmark = Actor('checkmark_green.png',pos= (878,472))
 show_pink_checkmark = Actor('checkmark_green.png',pos= (1078,472))
 show_blue_checkmark = Actor('checkmark_green.png',pos= (778,422))
 show_red_checkmark = Actor('checkmark_green.png',pos= (978,422))
+show_red_checkmark = Actor('checkmark_green.png',pos=(878,372))
 # hard checkmarks
 d_show_green_checkmark = Actor('checkmark_red.png',pos= (678,472))
 d_show_purple_checkmark = Actor('checkmark_red.png',pos= (878,472))
 d_show_pink_checkmark = Actor('checkmark_red.png',pos= (1078,472))
 d_show_blue_checkmark = Actor('checkmark_red.png',pos= (778,422))
 d_show_red_checkmark = Actor('checkmark_red.png',pos= (978,422))
+d_show_red_checkmark = Actor('checkmark_red.png',pos=(878,372))
 # Other
 casino_display = Actor('casino_display.png',pos = (175,375))
 casino = Actor('sign_casino.png',pos = (300,100))
@@ -455,6 +459,8 @@ def draw():
                 show_blue_checkmark.draw()
             if red_checkmark == True:
                 show_red_checkmark.draw()
+            if cloud_checkmark == True:
+                show_cloud_checkmark.draw()
 
         if difficulty == True:
             hard_red_blocks.draw()
@@ -469,6 +475,8 @@ def draw():
                 d_show_blue_checkmark.draw()
             if d_red_checkmark == True:
                 d_show_red_checkmark.draw()
+            if d_cloud_checkmark == True:
+                d_show_cloud_checkmark.draw()
             #screen.draw.text('Hard mode active',(850,610),fontsize=45,color="darkred")
         
         ## UNLOCK GUI
@@ -998,8 +1006,8 @@ def update(dt):
             #music
             musics()
             # checkmark
-            #global d_cloud_checkmark
-            #d_cloud_checkmark = True   
+            global d_cloud_checkmark
+            d_cloud_checkmark = True   
             # records
             #if current_time < best_time_11 and not best_time_11 == 0:
             #    best_time_11 = current_time
