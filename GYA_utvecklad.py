@@ -460,6 +460,8 @@ def draw():
                 show_blue_checkmark.draw()
             if red_checkmark == True:
                 show_red_checkmark.draw()
+            if cloud_checkmark == True:
+                show_cloud_checkmark.draw()
 
         if difficulty == True:
             hard_red_blocks.draw()
@@ -838,7 +840,7 @@ def update(dt):
             #music
             musics()
             # checkmark
-            #global blue_checkmark
+            global blue_checkmark
             blue_checkmark = True
             sounds.complete_level.play()
         if tile == "block_cloud.png": #ADD BLOCK
