@@ -140,7 +140,7 @@ pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','blo
             'block_lava.png','portal_red.png','block_blue.png','portal_blue.png','chain.png','block_cloud.png','portal_cloud.png'
             ,'block_temple_1.png','block_temple_2.png','block_temple_3.png']
 
-# WORLD DATA
+# WORLD DATAcc
 maps = [
 [
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], #25w, 13h 
@@ -783,7 +783,6 @@ def update(dt):
     ## Music
 
 
-    ## GOLDEN PORTAL
     # MAP PINK
     if map_level == 1:
         row = int((blorp.y + 25)/ tile_size)
@@ -1094,22 +1093,16 @@ def update(dt):
         else:
             on_block = False 
 
-
-
-
-    ### BOSS [part 1]      #part two found at line {1239} 1176
+    ### BOSS [part 1]
     #
     if map_level == 16:
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
         tile = pictures[maps[16][row][column]]
-        if tile == "block_pink.png" or "block_tempel_1.png" or "block_tempel_2.png" or "block_tempel_3.png":
+        if tile == ["block_temple_1.png" or "block_tempel_2.png" or "block_tempel_3.png"]:
             on_block = True
         else:
-            on_block = False 
-
-        
-
+            on_block = False
 
 
 
@@ -1173,15 +1166,6 @@ def update(dt):
                     sounds.teleport.play()
                     #music
                     musics()
-    
-                if blorp.colliderect(crack) and level_complete == 12:
-                    map_level = 16
-                    blorp.pos = (75,75)
-                    current_map.clear()
-                    current_map = maps[16].copy()
-                    sounds.teleport.play()
-                #music
-                #musics()
 
             else: 
                 row = int((blorp.y + 25) / tile_size)
@@ -1240,6 +1224,15 @@ def update(dt):
                     sounds.teleport.play()
                     #music
                     musics() 
+
+            if blorp.colliderect(crack) and level_complete == 12:
+                map_level = 16
+                blorp.pos = (500,500)
+                current_map.clear()
+                current_map = maps[16].copy()
+                sounds.teleport.play()
+                #music
+                #musics()
 
 
 
