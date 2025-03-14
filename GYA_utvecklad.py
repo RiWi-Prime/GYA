@@ -146,7 +146,7 @@ pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','blo
             'blorp_blue.png','blorp_light_blue.png','blorp_green.png','blorp_yellow.png',
             'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png','block_red.png', 'block_void.png',
             'block_lava.png','portal_red.png','block_blue.png','portal_blue.png','chain.png','block_cloud.png','portal_cloud.png'
-            ,'block_temple_1.png','block_temple_2.png','block_temple_3.png','portal_temple.png']
+            ,'block_temple_1.png','block_temple_2.png','block_temple_3.png']
 
 # WORLD DATA
 maps = [
@@ -407,19 +407,19 @@ maps = [
 ],
 
 [ #boss room
-[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+[27, 26, 25, 27, 26, 26, 27, 26, 27, 26, 27, 26, 26, 27, 26, 27, 25, 26, 27, 26, 27, 27, 27, 26, 26],
+[26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26], 
+[26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26], 
+[26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26], 
+[27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27], 
+[26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27], 
+[26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27], 
+[26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25], 
+[27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26], 
+[27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26], 
+[26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27], 
+[27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27], 
+[27, 25, 27, 26, 27, 26, 27, 26, 27, 27, 27, 26, 27, 27, 27, 26, 25, 27, 27, 26, 26, 27, 27, 27, 26],
 ],
 ]
 
@@ -1124,7 +1124,26 @@ def update(dt):
             on_block = True
         else:
             on_block = False 
-            
+
+
+
+
+    ### BOSS [part 1]      #part two found at line {1239} 1176
+    #
+    if map_level == 16:
+        row = int((blorp.y + 25) / tile_size)
+        column = int(blorp.x / tile_size)
+        tile = pictures[maps[16][row][column]]
+        if tile == "block_pink.png" or "block_tempel_1.png" or "block_tempel_2.png" or "block_tempel_3.png":
+            on_block = True
+        else:
+            on_block = False 
+
+        
+
+
+
+
     ## PORTALS BASE MAP / where you enter from 'HOME'
     if map_level == 0:
             # Checking if hard mode is true or false
@@ -1185,6 +1204,15 @@ def update(dt):
                     sounds.teleport.play()
                     #music
                     musics()
+    
+                if blorp.colliderect(crack) and level_complete == 12:
+                    map_level = 16
+                    blorp.pos = (75,75)
+                    current_map.clear()
+                    current_map = maps[16].copy()
+                    sounds.teleport.play()
+                #music
+                #musics()
 
             else: 
                 row = int((blorp.y + 25) / tile_size)
@@ -1242,7 +1270,9 @@ def update(dt):
                     current_map = maps[11].copy()
                     sounds.teleport.play()
                     #music
-                    musics()
+                    musics() 
+
+
 
             if tile == "block_grey.png" or tile == "block_dark_grey.png" or tile == "block_red.png": #ADD BLOCK
                 on_block = True
@@ -1360,6 +1390,7 @@ def update(dt):
                 sounds.teleport.play()
                 #music
                 #musics()
+
 
     ### MOVEMENT
     if keyboard.D and possible_move(3,0):
