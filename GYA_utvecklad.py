@@ -1071,7 +1071,7 @@ def update(dt):
         tile = pictures[maps[11][row][column]]
         if tile == "portal_black.png":
             map_level = 0
-            money += 2500 # change value
+            money += 10000 # change value
             blorp.pos = (75,575)
             current_map.clear()
             current_map = maps[0].copy()
