@@ -1198,7 +1198,7 @@ def update(dt):
         row = int((blorp.y + 25) / tile_size)
         column = int(blorp.x / tile_size)
         tile = pictures[maps[16][row][column]]
-        if tile == ["block_temple_1.png" or "block_tempel_2.png" or "block_tempel_3.png"]:
+        if tile == "block_temple_1.png" or tile == "block_temple_2.png" or tile == "block_temple_3.png":
             on_block = True
         else:
             on_block = False
