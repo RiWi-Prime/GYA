@@ -35,6 +35,8 @@ current_map = []
 timer = 0
 gliched_blorp = False
 ultimate_blorp = False
+legendary_blorp = False
+bird_blorp = False
 nothing = False
 got_money = False
 money = 0
@@ -70,6 +72,7 @@ loot = ["blorp_special.png","blorp_ulimate.png"]
 spin_the_wheel = 0
 price_1 = False
 price_2 = False
+cloud_map_completed = False
 # unlock color
 unlock_blue = False
 unlock_light_blue = False
@@ -80,6 +83,7 @@ unlock_megenta= False
 # unlock special and ultimate
 unlock_special = False
 unlock_ultimate = False
+unlock_bird = False
 
 ## CODE
 game = True
@@ -97,10 +101,13 @@ blorp_color = 1
 # Yes and No + blorp preview
 blorp_preview_1 = Actor('blorp_glitch',pos=(325,270)) #230, 200
 blorp_preview_2 = Actor('blorp_ultimate',pos=(325,385))
+blorp_preview_3 = Actor('blorp_bird',pos=(425,270))
 yes_button = Actor('yes.png',pos=(290, 335))
 no_button = Actor('no.png',pos=(360, 335))
 yes_button_2 = Actor('yes.png',pos=(290,450))
 no_button_2 = Actor('no.png',pos=(360,450))
+yes_button_3 = Actor('yes.png',pos=(390,335))
+no_button_3 = Actor('no.png',pos=(460,335))
 # Switches
 switch_easy = Actor('switch_normal.png',pos=(950,450))
 switch_hard = Actor('switch_difficult.png',pos=(950,450))
@@ -109,6 +116,7 @@ hard_red_blocks = Actor('blocks_hard.png',pos=(925,575))
 # Lock
 lock = Actor('lock.png',pos=(290,300))
 lock2 = Actor('lock.png',pos=(290,425))
+lock3 = Actor('lock.png',pos=(390,300))
 # checkmark
 show_green_checkmark = Actor('checkmark_green.png',pos= (678,472))
 show_purple_checkmark = Actor('checkmark_green.png',pos= (878,472))
@@ -668,6 +676,16 @@ def draw():
             blorp_preview_2.draw()
             yes_button_2.draw()
             no_button_2.draw()
+
+        if cloud_map_completed == False:
+            screen.draw.text('Not owned',(385, 315,),fontsize=25,color='black')
+            lock3.draw() # 390,300
+            blorp_preview_3.draw()
+        else:
+            screen.draw.text('Equip',(402, 296,),fontsize=25,color='silver')
+            blorp_preview_3.draw()
+            yes_button_3.draw()
+            no_button_3.draw()
     
         if difficulty == True:
             screen.draw.text('Difficulty switch: ',(850, 400,),fontsize=25,color='black')
@@ -684,8 +702,7 @@ def draw():
 
 def on_mouse_down(pos,button): 
      global money
-     global unlock_special
-     global unlock_ultimate
+     global unlock_special, unlock_ultimate, unlock_bird
      global blorp_select
      global blorp_color
      global timer
@@ -706,6 +723,7 @@ def on_mouse_down(pos,button):
      if button == mouse.LEFT and yes_button.collidepoint(pos) and Menu == True and price_1 == True:
          unlock_special = True
          unlock_ultimate = False
+         unlock_bird = False
      if button == mouse.LEFT and no_button.collidepoint(pos) and Menu == True and price_1 == True:
          unlock_special = False
          blorp_color = 1
@@ -714,8 +732,18 @@ def on_mouse_down(pos,button):
      if button == mouse.LEFT and yes_button_2.collidepoint(pos) and Menu == True and price_2 == True:
          unlock_ultimate = True
          unlock_special = False
+         unlock_bird = False
      if button == mouse.LEFT and no_button_2.collidepoint(pos) and Menu == True and price_2 == True:
          unlock_ultimate = False
+         blorp_color = 1
+         blorp_select = 'blorp_grey.png'
+    # bird_blorp
+     if button == mouse.LEFT and yes_button_3.collidepoint(pos) and Menu == True and cloud_map_completed == True:
+         unlock_ultimate = False
+         unlock_special = False
+         unlock_bird = True
+     if button == mouse.LEFT and no_button_3.collidepoint(pos) and Menu == True and cloud_map_completed == True:
+         unlock_bird = False
          blorp_color = 1
          blorp_select = 'blorp_grey.png'
 
@@ -1153,6 +1181,9 @@ def update(dt):
             elif best_time_11 == 0:
                 best_time_11 = current_time
             print(best_time_11)
+            # Get Bird_blorp
+            global cloud_map_completed
+            cloud_map_completed = True
         if tile == "block_void.png":
             blorp.pos = (75,575)
             current_time = 0
@@ -1413,6 +1444,19 @@ def update(dt):
             if unlock_ultimate == True:
                 blorp_color = 10
                 blorp_select = 'blorp_ultimate.png'
+            # Bird
+            if unlock_bird == True:
+                blorp_color = 11
+                blorp_select = 'blorp_bird.png'
+            # Portal to temple
+            if blorp.colliderect(crack) and level_complete == 12:
+                map_level = 16
+                blorp.pos = (75,75)
+                current_map.clear()
+                current_map = maps[16].copy()
+                sounds.teleport.play()
+                #music
+                #musics()
 
 
     ### MOVEMENT
@@ -1477,6 +1521,8 @@ def update(dt):
                 blorp.image = 'blorp_glitch_jump.png' # CHANGE HERE TO JUMP
             if blorp_color == 10:
                 blorp.image = 'blorp_ultimate_jump.png' # CHANGE HERE TO JUMP
+            if blorp_color == 11:
+                blorp.image = 'blorp_bird_jump.png' # CHANGE HERE TO JUMP
 
     ## KEYSBOARD BUTTONS
     # MENU
