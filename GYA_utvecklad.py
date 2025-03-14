@@ -1379,7 +1379,7 @@ def update(dt):
                 blorp_select = 'blorp_ultimate.png'
             # Bird
             if unlock_bird == True:
-                blorp_color = 10
+                blorp_color = 11
                 blorp_select = 'blorp_bird.png'
             # Portal to temple
             if blorp.colliderect(crack) and level_complete == 12:
@@ -1454,6 +1454,8 @@ def update(dt):
                 blorp.image = 'blorp_glitch_jump.png' # CHANGE HERE TO JUMP
             if blorp_color == 10:
                 blorp.image = 'blorp_ultimate_jump.png' # CHANGE HERE TO JUMP
+            if blorp_color == 11:
+                blorp.image = 'blorp_bird_jump.png' # CHANGE HERE TO JUMP
 
     ## KEYSBOARD BUTTONS
     # MENU
