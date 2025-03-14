@@ -40,6 +40,7 @@ got_money = False
 money = 0
 gambling = True
 level_complete = 12
+level_complete_placeholder = 0
 # Record time / speedruns
 record = False
 best_time_4 = 0
@@ -129,6 +130,7 @@ sign = Actor('sign_wood.png',pos = (875,75))
 wheel = Actor('casino_wheel.png',pos = (175,200))
 menu_background = Actor('menu.png',pos = (650,300))
 crack = Actor('portal_temple.png',pos = (125,525))
+crack_placeholder = Actor('empty.png',pos = (150,550)) # NAME THIS CRACK WHEN TESTING IS COMEPLETE
 backgrounds = ['background_grey.png','background_pink.png','background_green.png','background_purple.png',
                'background_pink.png','background_green.png','background_purple.png','background_red.png',
                'background_blue.png','background_red.png','background_blue.png','background_cloud.png','background_cloud.png'
@@ -139,6 +141,7 @@ pictures = ['empty.png','block_grey.png','block_pink.png','block_green.png','blo
             'blorp_red.png','blorp_magenta.png', 'block_dark_grey.png','block_red.png', 'block_void.png',
             'block_lava.png','portal_red.png','block_blue.png','portal_blue.png','chain.png','block_cloud.png','portal_cloud.png'
             ,'block_temple_1.png','block_temple_2.png','block_temple_3.png']
+
 
 # WORLD DATA
 maps = [
@@ -505,17 +508,17 @@ def draw():
     if home == True:
         screen.draw.text('ENTER A PORTAL TO BEGIN!',(600,310),fontsize=55,color="darkgrey",alpha=0.4)
         screen.draw.text(f'Money : {money} B',(10,10),fontsize=25,color="gold")
+        crack.draw()
+        crack_placeholder.draw()
         wheel.draw()
         casino.draw()
         sign.draw()
-        crack.draw()
         screen.draw.text('COSMETICS',(760,60),fontsize=55,color='black',alpha=0.6)
         screen.draw.text('Press [Q] to open the Menu',(100,610),fontsize=25,color='darkgrey',alpha=0.7)
         screen.draw.text(f'50 B',(160,75),fontsize=25,color="gold")
 
         ## Hard mode display
-        
-        #We might add this, right now it's on hold.
+    
         if difficulty == False:
             if green_checkmark == True:
                 show_green_checkmark.draw()
@@ -759,7 +762,35 @@ def loot_box():
         nothing = True
         
 def update(dt):
-    ### COLLIDERECT
+
+    ### BOSS FIGHT
+    global crack_placeholder
+    global level_complete_placeholder
+    if level_complete_placeholder == 1:
+        crack_placeholder = Actor("crack_1.png",pos = (170,550))
+    elif level_complete_placeholder == 2:
+        crack_placeholder = Actor("crack_2.png",pos = (170,550))
+    elif level_complete_placeholder == 3:
+        crack_placeholder = Actor("crack_3.png",pos = (170,550))
+    elif level_complete_placeholder == 4:
+        crack_placeholder = Actor("crack_4.png",pos = (170,550))
+    elif level_complete_placeholder == 5:
+        crack_placeholder = Actor("crack_5.png",pos = (170,550))
+    elif level_complete_placeholder == 6:
+        crack_placeholder = Actor("crack_6.png",pos = (170,550))
+    elif level_complete_placeholder == 7:
+        crack_placeholder = Actor("crack_7.png",pos = (170,550))
+    elif level_complete_placeholder == 8:
+        crack_placeholder = Actor("crack_8.png",pos = (170,550))
+    elif level_complete_placeholder == 9:
+        crack_placeholder = Actor("crack_9.png",pos = (170,550))
+    elif level_complete_placeholder == 10:
+        crack_placeholder = Actor("crack_10.png",pos = (170,550))
+    elif level_complete_placeholder == 11:
+        crack_placeholder = Actor("crack_11.png",pos = (170,550))
+    elif level_complete_placeholder == 12:
+        crack_placeholder = Actor("portal_temple.png",pos = (170,550))
+
 
     ### NEXT LEVEL
     global map_level
@@ -799,7 +830,10 @@ def update(dt):
             musics()
             #checkmark
             global pink_checkmark
-            pink_checkmark = True
+            if pink_checkmark == False:
+                level_complete_placeholder += 1
+                print(f'{level_complete_placeholder}')
+            pink_checkmark = True 
             sounds.complete_level.play()
         if tile == "block_pink.png" or tile == "block_dark_grey.png": #ADD BLOCK
             on_block = True
@@ -821,6 +855,9 @@ def update(dt):
             musics()
             # checkmark
             global green_checkmark
+            if green_checkmark == False:
+                level_complete_placeholder += 1
+                print(f'{level_complete_placeholder}')
             green_checkmark = True
             sounds.complete_level.play()
             music.stop()
@@ -843,6 +880,9 @@ def update(dt):
             musics()
             # checkmark
             global purple_checkmark
+            if purple_checkmark == False:
+                level_complete_placeholder += 1
+                print(f'{level_complete_placeholder}')
             purple_checkmark = True
             sounds.complete_level.play()
         if tile == "block_purple.png" or tile == "block_dark_grey.png": #ADD BLOCK
@@ -865,6 +905,9 @@ def update(dt):
             musics()
             # checkmark
             global red_checkmark
+            if red_checkmark == False:
+                level_complete_placeholder += 1
+                print(f'{level_complete_placeholder}')
             red_checkmark = True
             sounds.complete_level.play()
         if tile == "block_lava.png": #ADD BLOCK
@@ -887,6 +930,9 @@ def update(dt):
             musics()
             # checkmark
             global blue_checkmark
+            if blue_checkmark == False:
+                level_complete_placeholder += 1
+                print(f'{level_complete_placeholder}')
             blue_checkmark = True
             sounds.complete_level.play()
         if tile == "block_blue.png": #ADD BLOCK
@@ -908,6 +954,9 @@ def update(dt):
             musics()
             # checkmark
             global cloud_checkmark
+            if cloud_checkmark == False:
+                level_complete_placeholder += 1
+                print(f'{level_complete_placeholder}')
             cloud_checkmark = True
             sounds.complete_level.play()
         if tile == "block_cloud.png": #ADD BLOCK
@@ -932,6 +981,9 @@ def update(dt):
             musics()
             # checkmark
             global d_pink_checkmark
+            if d_pink_checkmark == False:
+                level_complete_placeholder += 1
+                print(f'{level_complete_placeholder}')
             d_pink_checkmark = True
             # records
             if current_time < best_time_4 and not best_time_4 == 0:
@@ -960,6 +1012,9 @@ def update(dt):
             musics()
             # checkmark
             global d_green_checkmark
+            if d_green_checkmark == False:
+                level_complete_placeholder += 1
+                print(f'{level_complete_placeholder}')
             d_green_checkmark = True
             # records
             if current_time < best_time_5 and not best_time_5 == 0:
@@ -989,6 +1044,9 @@ def update(dt):
             musics()
             # checkmark
             global d_purple_checkmark
+            if d_purple_checkmark == False:
+                level_complete_placeholder += 1
+                print(f'{level_complete_placeholder}')
             d_purple_checkmark = True
             # records
             if current_time < best_time_6 and not best_time_6 == 0:
@@ -1019,6 +1077,9 @@ def update(dt):
             musics()
             # checkmark
             global d_blue_checkmark
+            if d_blue_checkmark == False:
+                level_complete_placeholder += 1
+                print(f'{level_complete_placeholder}')
             d_blue_checkmark = True
             # records
             if current_time < best_time_10 and not best_time_10 == 0:
@@ -1049,6 +1110,9 @@ def update(dt):
             musics()
             # checkmark
             global d_red_checkmark
+            if d_red_checkmark == False:
+                level_complete_placeholder += 1
+                print(f'{level_complete_placeholder}')
             d_red_checkmark = True
             # records
             if current_time < best_time_9 and not best_time_9 == 0:
@@ -1079,6 +1143,9 @@ def update(dt):
             musics()
             # checkmark
             global d_cloud_checkmark
+            if d_cloud_checkmark == False:
+                level_complete_placeholder += 1
+                print(f'{level_complete_placeholder}')
             d_cloud_checkmark = True   
             # records
             if current_time < best_time_11 and not best_time_11 == 0:
