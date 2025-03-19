@@ -137,7 +137,7 @@ casino = Actor('sign_casino.png',pos = (300,100))
 sign = Actor('sign_wood.png',pos = (875,75))
 wheel = Actor('casino_wheel.png',pos = (175,200))
 menu_background = Actor('menu.png',pos = (650,300))
-crack = Actor('portal_temple.png',pos = (125,525))
+crack = Actor('crack_12.png',pos = (125,525))
 crack_placeholder = Actor('empty.png',pos = (150,550)) # NAME THIS CRACK WHEN TESTING IS COMEPLETE
 backgrounds = ['background_grey.png','background_pink.png','background_green.png','background_purple.png',
                'background_pink.png','background_green.png','background_purple.png','background_red.png',
@@ -818,7 +818,7 @@ def update(dt):
     elif level_complete_placeholder == 11:
         crack_placeholder = Actor("crack_11.png",pos = (170,550))
     elif level_complete_placeholder == 12:
-        crack_placeholder = Actor("portal_temple.png",pos = (170,550))
+        crack_placeholder = Actor("crack_12.png",pos = (170,550))
 
 
     ### NEXT LEVEL
