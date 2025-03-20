@@ -1492,7 +1492,7 @@ def update(dt):
                 blorp_select = 'blorp_bird.png'
             # Legendary
             if unlock_legendary == True:
-                blorp_color= 11
+                blorp_color= 12
                 blorp_select = 'blorp_legendary.png'
 
             # Portal to temple
