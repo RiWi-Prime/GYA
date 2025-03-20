@@ -1570,6 +1570,8 @@ def update(dt):
                 blorp.image = 'blorp_ultimate_jump.png' # CHANGE HERE TO JUMP
             if blorp_color == 11:
                 blorp.image = 'blorp_bird_jump.png' # CHANGE HERE TO JUMP
+            if blorp_color == 12:
+                blorp.image = 'blorp_legendary_jump.png' # CHANGE HERE TO JUMP    
 
     ## KEYSBOARD BUTTONS
     # MENU
