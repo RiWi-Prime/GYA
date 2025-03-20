@@ -73,6 +73,7 @@ spin_the_wheel = 0
 price_1 = False
 price_2 = False
 cloud_map_completed = False
+boss_defeated = False
 # unlock color
 unlock_blue = False
 unlock_light_blue = False
@@ -84,6 +85,7 @@ unlock_megenta= False
 unlock_special = False
 unlock_ultimate = False
 unlock_bird = False
+unlock_legendary = False
 
 ## CODE
 game = True
@@ -102,12 +104,15 @@ blorp_color = 1
 blorp_preview_1 = Actor('blorp_glitch',pos=(325,270)) #230, 200
 blorp_preview_2 = Actor('blorp_ultimate',pos=(325,385))
 blorp_preview_3 = Actor('blorp_bird',pos=(425,270))
+blorp_preview_4 = Actor('blorp_legendary',pos=(425,385))
 yes_button = Actor('yes.png',pos=(290, 335))
 no_button = Actor('no.png',pos=(360, 335))
 yes_button_2 = Actor('yes.png',pos=(290,450))
 no_button_2 = Actor('no.png',pos=(360,450))
 yes_button_3 = Actor('yes.png',pos=(390,335))
 no_button_3 = Actor('no.png',pos=(460,335))
+yes_button_4 = Actor('yes.png',pos=(390,450))
+no_button_4 = Actor('no.png',pos=(460,450))
 # Switches
 switch_easy = Actor('switch_normal.png',pos=(950,450))
 switch_hard = Actor('switch_difficult.png',pos=(950,450))
@@ -117,6 +122,7 @@ hard_red_blocks = Actor('blocks_hard.png',pos=(925,575))
 lock = Actor('lock.png',pos=(290,300))
 lock2 = Actor('lock.png',pos=(290,425))
 lock3 = Actor('lock.png',pos=(390,300))
+lock4 = Actor('lock.png',pos=(390,425))
 # checkmark
 show_green_checkmark = Actor('checkmark_green.png',pos= (678,472))
 show_purple_checkmark = Actor('checkmark_green.png',pos= (878,472))
@@ -687,6 +693,16 @@ def draw():
             blorp_preview_3.draw()
             yes_button_3.draw()
             no_button_3.draw()
+        
+        if boss_defeated == False:
+            screen.draw.text('Not owned',(385, 440,),fontsize=25,color='black')
+            lock4.draw() # 390,300
+            blorp_preview_4.draw()
+        else:
+            screen.draw.text('Equip',(402, 412,),fontsize=25,color='silver')
+            blorp_preview_4.draw()
+            yes_button_4.draw()
+            no_button_4.draw()
     
         if difficulty == True:
             screen.draw.text('Difficulty switch: ',(850, 400,),fontsize=25,color='black')
@@ -703,7 +719,7 @@ def draw():
 
 def on_mouse_down(pos,button): 
      global money
-     global unlock_special, unlock_ultimate, unlock_bird
+     global unlock_special, unlock_ultimate, unlock_bird, unlock_legendary
      global blorp_select
      global blorp_color
      global timer
@@ -725,6 +741,7 @@ def on_mouse_down(pos,button):
          unlock_special = True
          unlock_ultimate = False
          unlock_bird = False
+         unlock_legendary = False
      if button == mouse.LEFT and no_button.collidepoint(pos) and Menu == True and price_1 == True:
          unlock_special = False
          blorp_color = 1
@@ -734,6 +751,7 @@ def on_mouse_down(pos,button):
          unlock_ultimate = True
          unlock_special = False
          unlock_bird = False
+         unlock_legendary = False
      if button == mouse.LEFT and no_button_2.collidepoint(pos) and Menu == True and price_2 == True:
          unlock_ultimate = False
          blorp_color = 1
@@ -743,8 +761,19 @@ def on_mouse_down(pos,button):
          unlock_ultimate = False
          unlock_special = False
          unlock_bird = True
+         unlock_legendary = False
      if button == mouse.LEFT and no_button_3.collidepoint(pos) and Menu == True and cloud_map_completed == True:
          unlock_bird = False
+         blorp_color = 1
+         blorp_select = 'blorp_grey.png'
+    # Legendary_blorp
+     if button == mouse.LEFT and yes_button_4.collidepoint(pos) and Menu == True and boss_defeated == True:
+         unlock_ultimate = False
+         unlock_special = False
+         unlock_bird = False
+         unlock_legendary = True
+     if button == mouse.LEFT and no_button_4.collidepoint(pos) and Menu == True and boss_defeated == True:
+         unlock_legendary = False
          blorp_color = 1
          blorp_select = 'blorp_grey.png'
 
@@ -1442,6 +1471,11 @@ def update(dt):
             if unlock_bird == True:
                 blorp_color = 11
                 blorp_select = 'blorp_bird.png'
+            # Legendary
+            if unlock_legendary == True:
+                blorp_color= 11
+                blorp_select = 'blorp_legendary.png'
+
             # Portal to temple
             if blorp.colliderect(crack) and level_complete == 12:
                 map_level = 16
