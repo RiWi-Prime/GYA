@@ -73,7 +73,7 @@ spin_the_wheel = 0
 price_1 = False
 price_2 = False
 cloud_map_completed = False
-boss_defeated = False
+boss_defeated = True # boss konstant that should be made false when boss i out
 # unlock color
 unlock_blue = False
 unlock_light_blue = False
