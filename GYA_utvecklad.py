@@ -835,8 +835,8 @@ def update(dt):
     elif level_complete_placeholder == 12:
         crack_placeholder = Actor("crack_12.png",pos = (170,550))
 
-    if map_level == 16:
-        pass
+    #if map_level == 16:
+        #pass
 
 
 
