@@ -144,6 +144,9 @@ sign = Actor('sign_wood.png',pos = (875,75))
 wheel = Actor('casino_wheel.png',pos = (175,200))
 menu_background = Actor('menu.png',pos = (650,300))
 crack = Actor('crack_12.png',pos = (125,525))
+attacks = []
+boss = Actor('blorp_boss',pos=(630,340)) # boss
+boss_health = Actor('healthbar_3.png',(625,25)) # boss
 crack_placeholder = Actor('empty.png',pos = (150,550)) # NAME THIS CRACK WHEN TESTING IS COMEPLETE
 backgrounds = ['background_grey.png','background_pink.png','background_green.png','background_purple.png',
                'background_pink.png','background_green.png','background_purple.png','background_red.png',
@@ -454,6 +457,10 @@ def musics():
     if music_sound == 2 and music_stop == False:
         music.play("hard.wav")
 
+def attack():
+    b = Actor('attack_coin')
+    b.pos = (WIDTH,random.randint(b.height//2 ,HEIGHT-b.height//2))
+    attacks.append(b)
 
 def draw_grid():
     '''draw a nXn grid'''
@@ -617,8 +624,11 @@ def draw():
         if got_money == True:
             screen.draw.text(f'You won money',(100,366),fontsize=30,color='green',alpha =(0.9))
             screen.draw.text(f'+ 1000 B',(65,30),fontsize=25,color="gold")
-            
-
+           
+    if map_level == 16:
+        boss_health.draw()
+        boss.draw()
+    
     blorp.draw()
 
     # MENU
@@ -824,6 +834,11 @@ def update(dt):
     ### BOSS FIGHT
     global crack_placeholder
     global level_complete_placeholder
+    global boss_health
+    global boss_attack
+    global boss
+
+    # Cracks 
     if level_complete_placeholder == 1:
         crack_placeholder = Actor("crack_1.png",pos = (170,550))
     elif level_complete_placeholder == 2:
@@ -848,6 +863,10 @@ def update(dt):
         crack_placeholder = Actor("crack_11.png",pos = (170,550))
     elif level_complete_placeholder == 12:
         crack_placeholder = Actor("crack_12.png",pos = (170,550))
+
+    #if map_level == 16:
+        #pass
+
 
 
     ### NEXT LEVEL
