@@ -73,7 +73,7 @@ spin_the_wheel = 0
 price_1 = False
 price_2 = False
 cloud_map_completed = False
-boss_defeated = True # boss konstant that should be made false when boss i out
+boss_defeated = False # boss konstant that should be made false when boss i out
 # unlock color
 unlock_blue = False
 unlock_light_blue = False
@@ -143,11 +143,11 @@ casino = Actor('sign_casino.png',pos = (300,100))
 sign = Actor('sign_wood.png',pos = (875,75))
 wheel = Actor('casino_wheel.png',pos = (175,200))
 menu_background = Actor('menu.png',pos = (650,300))
-crack = Actor('crack_12.png',pos = (125,525))
+crack = Actor('crack_12.png',pos = (0,0))
 attacks = []
 boss = Actor('blorp_boss',pos=(630,340)) # boss
 boss_health = Actor('healthbar_3.png',(625,25)) # boss
-crack_placeholder = Actor('empty.png',pos = (150,550)) # NAME THIS CRACK WHEN TESTING IS COMEPLETE
+crack_placeholder = Actor('empty.png',pos = (0,0)) # NAME THIS CRACK WHEN TESTING IS COMEPLETE
 backgrounds = ['background_grey.png','background_pink.png','background_green.png','background_purple.png',
                'background_pink.png','background_green.png','background_purple.png','background_red.png',
                'background_blue.png','background_red.png','background_blue.png','background_cloud.png','background_cloud.png'
@@ -530,8 +530,8 @@ def draw():
     if home == True:
         screen.draw.text('ENTER A PORTAL TO BEGIN!',(600,310),fontsize=55,color="darkgrey",alpha=0.4)
         screen.draw.text(f'Money : {money} B',(10,10),fontsize=25,color="gold")
-        crack.draw()
-        crack_placeholder.draw()
+        #crack.draw()
+        #crack_placeholder.draw()
         wheel.draw()
         casino.draw()
         sign.draw()
